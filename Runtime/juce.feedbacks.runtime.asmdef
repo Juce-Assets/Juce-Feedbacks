@@ -1,6 +1,8 @@
 {
-    "name": "juce.feedbacks",
-    "references": [],
+    "name": "Juce.Feedbacks.Runtime",
+    "references": [
+        "GUID:1765b9cf2ac90c24c957166617f61cc1"
+    ],
     "includePlatforms": [],
     "excludePlatforms": [],
     "allowUnsafeCode": false,
