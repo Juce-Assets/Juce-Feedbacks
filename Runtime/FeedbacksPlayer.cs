@@ -8,6 +8,8 @@ namespace Juce.Feedbacks
     {
         [SerializeField] private bool executeOnAwake = default;
 
+        [SerializeField] [Min(0)] private float delay = default;
+
         private readonly List<Feedback> feedbacks = new List<Feedback>();
 
         private void Awake()
@@ -39,16 +41,30 @@ namespace Juce.Feedbacks
         {
             Tween.SequenceTween mainSequenceTween = new Tween.SequenceTween();
 
+            if(delay > 0)
+            {
+                mainSequenceTween.AppendWaitTime(delay);
+            }
+
+            Tween.SequenceTween feedbacksSequenceTween = new Tween.SequenceTween();
+
             for (int i = 0; i < feedbacks.Count; ++i)
             {
                 Feedback currFeedback = feedbacks[i];
 
                 Tween.SequenceTween sequenceTween = new Tween.SequenceTween();
 
+                if (currFeedback.Delay > 0)
+                {
+                    sequenceTween.AppendWaitTime(currFeedback.Delay);
+                }
+
                 currFeedback.OnExectue(sequenceTween);
 
-                mainSequenceTween.Join(sequenceTween);
+                feedbacksSequenceTween.Join(sequenceTween);
             }
+
+            mainSequenceTween.Append(feedbacksSequenceTween);
 
             mainSequenceTween.Play();
         }

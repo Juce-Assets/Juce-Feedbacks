@@ -6,6 +6,13 @@ namespace Juce.Feedbacks
 {
     public abstract class Feedback : MonoBehaviour
     {
+        [SerializeField] [Min(0)] private float delay = default;
+
+        public float Delay
+        {
+            get { return delay; }
+        }
+
         public abstract void OnExectue(SequenceTween sequenceTween);
     }
 }
