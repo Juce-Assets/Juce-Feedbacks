@@ -330,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   executeOnAwake: 1
+  delay: 1
 --- !u!4 &894369688
 Transform:
   m_ObjectHideFlags: 0
