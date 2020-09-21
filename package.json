@@ -4,7 +4,8 @@
   "displayName": "Juce-Feedbacks",
   "description": "This is an example package",
   "dependencies": {
-    "com.juce.feedbacks": "0.0.1",
+    "com.juce.feedbacks": "0.0.1"
+  },
   "keywords": [
     "Juce",
     "Feedbacks"
