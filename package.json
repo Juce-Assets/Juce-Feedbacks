@@ -1,0 +1,19 @@
+{
+  "name": "com.juce.feedbacks",
+  "version": "0.0.1",
+  "displayName": "Juce-Feedbacks",
+  "description": "This is an example package",
+  "dependencies": {
+    "com.juce.feedbacks": "0.0.1",
+  "keywords": [
+    "Juce",
+    "Feedbacks"
+  ],
+  "author": {
+    "name": "Guillem Sunyer",
+    "email": "gsunyercaldu@gmail.com",
+    "url": "https://github.com/Guillemsc/Juce-Feedbacks"
+  },
+  "type": "template",
+  "hideInEditor": false
+}
