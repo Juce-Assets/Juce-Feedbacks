@@ -1,0 +1,19 @@
+{
+  "name": "com.juce.feedbacks",
+  "version": "0.0.1",
+  "displayName": "Juce Feedbacks",
+  "description": "This is an example package",
+  "dependencies": {
+    "com.juce.tween": "https://github.com/Guillemsc/Juce-Tween"
+ },
+ "keywords": [
+    "keyword1",
+    "keyword2",
+    "keyword3"
+  ],
+  "author": {
+    "name": "Guillem Sunyer Caldú",
+    "email": "gsunyercaldu@gmail.com",
+    "url": "https://github.com/Guillemsc/Juce-Feedbacks"
+  }
+}
