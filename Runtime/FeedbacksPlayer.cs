@@ -6,25 +6,24 @@ namespace Juce.Feedbacks
 {
     public class FeedbacksPlayer : MonoBehaviour
     {
+        [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
+
         [SerializeField] private bool executeOnAwake = default;
-
         [SerializeField] [Min(0)] private float delay = default;
-
-        private readonly List<Feedback> feedbacks = new List<Feedback>();
-
-        private void Awake()
-        {
-            FindFeedbacks();
-        }
 
         private void Start()
         {
             TryExecuteOnAwake();
         }
 
-        private void FindFeedbacks()
+        public void AddFeedback(Feedback feedback)
         {
-            gameObject.GetComponents<Feedback>(feedbacks);
+            feedbacks.Add(feedback);
+        }
+
+        public void RemoveFeedback(Feedback feedback)
+        {
+            feedbacks.Remove(feedback);
         }
 
         private void TryExecuteOnAwake()
@@ -51,6 +50,11 @@ namespace Juce.Feedbacks
             for (int i = 0; i < feedbacks.Count; ++i)
             {
                 Feedback currFeedback = feedbacks[i];
+
+                if(!currFeedback.Enabled)
+                {
+                    continue;
+                }
 
                 Tween.SequenceTween sequenceTween = new Tween.SequenceTween();
 

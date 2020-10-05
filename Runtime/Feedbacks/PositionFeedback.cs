@@ -14,65 +14,112 @@ namespace Juce.Feedbacks
 
         [Header("Values")]
         [SerializeField] private CoordinatesSpace space = default;
-        [SerializeField] private bool useStartingValue = default;
-        [SerializeField] private Vector3 start = default;
-        [SerializeField] private Vector3 end = default;
 
-        [Header("Easing")]
-        [SerializeField] private bool useCustomEasing = default;
-        [SerializeField] private Ease easing = Ease.InOutQuad;
-        [SerializeField] private AnimationCurve customEasing = default;
+        [SerializeField] [HideInInspector] private Vector3Element value = default;
+        [SerializeField] [HideInInspector] private EasingElement easing = default;
+
+        public override void OnCreate()
+        {
+            value = AddElement<Vector3Element>("Value");
+            easing = AddElement<EasingElement>("Easing");
+        }
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            if (useStartingValue)
+            if (value.UseStartPosition)
             {
+                SequenceTween startPositionSequence = new SequenceTween();
+
                 switch (space)
                 {
                     case CoordinatesSpace.Local:
                         {
-                            sequenceTween.Append(target.transform.TweenLocalPosition(start, 0.0f));
+                            if(value.UseStartX)
+                            {
+                                startPositionSequence.Join(target.transform.TweenLocalPositionX(value.StartPositionX, 0.0f));
+                            }
+
+                            if (value.UseStartY)
+                            {
+                                startPositionSequence.Join(target.transform.TweenLocalPositionY(value.StartPositionY, 0.0f));
+                            }
+
+                            if (value.UseStartZ)
+                            {
+                                startPositionSequence.Join(target.transform.TweenLocalPositionZ(value.StartPositionZ, 0.0f));
+                            }
                         }
                         break;
 
                     case CoordinatesSpace.World:
                         {
-                            sequenceTween.Append(target.transform.TweenPosition(start, 0.0f));
+                            if (value.UseStartX)
+                            {
+                                startPositionSequence.Join(target.transform.TweenPositionX(value.StartPositionX, 0.0f));
+                            }
+
+                            if (value.UseStartY)
+                            {
+                                startPositionSequence.Join(target.transform.TweenPositionY(value.StartPositionY, 0.0f));
+                            }
+
+                            if (value.UseStartZ)
+                            {
+                                startPositionSequence.Join(target.transform.TweenPositionZ(value.StartPositionZ, 0.0f));
+                            }
                         }
                         break;
                 }
+
+                sequenceTween.Append(startPositionSequence);
             }
+
+            SequenceTween endPositionSequence = new SequenceTween();
 
             switch (space)
             {
                 case CoordinatesSpace.Local:
                     {
-                        Tween.Tween tween = target.transform.TweenLocalPosition(end, duration);
-                        SetEasing(tween);
-                        sequenceTween.Append(tween);
+                        if (value.UseEndX)
+                        {
+                            endPositionSequence.Join(target.transform.TweenLocalPositionX(value.EndPositionX, duration));
+                        }
+
+                        if (value.UseEndY)
+                        {
+                            endPositionSequence.Join(target.transform.TweenLocalPositionY(value.EndPositionY, duration));
+                        }
+
+                        if (value.UseEndX)
+                        {
+                            endPositionSequence.Join(target.transform.TweenLocalPositionZ(value.EndPositionZ, duration));
+                        }
                     }
                     break;
 
                 case CoordinatesSpace.World:
                     {
-                        Tween.Tween tween = target.transform.TweenPosition(end, duration);
-                        SetEasing(tween);
-                        sequenceTween.Append(tween);
+                        if (value.UseEndX)
+                        {
+                            endPositionSequence.Join(target.transform.TweenPositionX(value.EndPositionX, duration));
+                        }
+
+                        if (value.UseEndY)
+                        {
+                            endPositionSequence.Join(target.transform.TweenPositionY(value.EndPositionY, duration));
+                        }
+
+                        if (value.UseEndX)
+                        {
+                            endPositionSequence.Join(target.transform.TweenPositionZ(value.EndPositionZ, duration));
+                        }
                     }
                     break;
             }
-        }
 
-        private void SetEasing(Tween.Tween tween)
-        {
-            if (!useCustomEasing)
-            {
-                tween.SetEase(easing);
-            }
-            else
-            {
-                tween.SetEase(customEasing);
-            }
+            easing.SetEasing(endPositionSequence);
+
+            sequenceTween.Append(endPositionSequence);
         }
     }
 }
