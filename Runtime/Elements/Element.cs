@@ -4,7 +4,7 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    public class FeedbackElement : ScriptableObject
+    public class Element : ScriptableObject
     {
         [SerializeField] private string elementName = default;
 

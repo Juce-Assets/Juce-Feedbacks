@@ -4,7 +4,7 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    public class Vector3Element : FeedbackElement
+    public class Vector3Element : Element
     {
         [SerializeField] [HideInInspector] private bool useStartPosition = default;
         [SerializeField] [HideInInspector] private bool useStartX = default;

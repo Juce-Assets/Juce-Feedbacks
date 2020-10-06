@@ -60,7 +60,7 @@ namespace Juce.Feedbacks
         {
             Feedback newFeedback = ScriptableObject.CreateInstance(feedbackTypeEditorData.Type) as Feedback;
 
-            if(newFeedback == null)
+            if (newFeedback == null)
             {
                 Debug.LogError($"Could not create {nameof(Feedback)} instance, {nameof(feedbackTypeEditorData.Type)} does not inherit from {nameof(Feedback)}");
             }
@@ -69,7 +69,7 @@ namespace Juce.Feedbacks
 
             CustomTarget.AddFeedback(newFeedback);
 
-            newFeedback.OnCreate();
+            newFeedback.Init();
 
             return newFeedback;
         }
@@ -88,7 +88,7 @@ namespace Juce.Feedbacks
 
         private void ChacheAllFeedbacksEditor()
         {
-            for(int i = 0; i < feedbacksProperty.arraySize; ++i)
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
                 Feedback currFeedback = (Feedback)feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue;
 
@@ -111,9 +111,9 @@ namespace Juce.Feedbacks
 
         private void RemoveCacheFeedbackEditor(Feedback feedback)
         {
-            for(int i = 0; i < cachedEditorFeedback.Count; ++i)
+            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
             {
-                if(cachedEditorFeedback[i].Feedback == feedback)
+                if (cachedEditorFeedback[i].Feedback == feedback)
                 {
                     cachedEditorFeedback.RemoveAt(i);
 
@@ -220,27 +220,45 @@ namespace Juce.Feedbacks
 
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
-                    string name = feedbackTypeEditorData.Name;
-
-                    if(!string.IsNullOrEmpty(currFeedback.Feedback.UserData))
-                    {
-                        name += $" [{currFeedback.Feedback.UserData}]";
-                    }
-
-                    Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
+                    Styling.DrawHeader(ref expanded, ref enabled, feedbackTypeEditorData.Name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
 
                     currFeedback.Feedback.Expanded = expanded;
                     currFeedback.Feedback.Enabled = enabled;
 
-                    if (expanded)
+                    string errors;
+                    bool hasErrors = currFeedback.Feedback.GetFeedbackErrors(out errors);
+
+                    if (hasErrors)
+                    {
+                        GUIStyle s = new GUIStyle(EditorStyles.label);
+                        s.normal.textColor = Color.red;
+
+                        EditorGUILayout.LabelField($"Warning: {errors}", s);
+                    }
+
+                    if (!string.IsNullOrEmpty(currFeedback.Feedback.UserData))
+                    {
+                        EditorGUILayout.LabelField($"{currFeedback.Feedback.UserData}");
+                    }
+
+                    if (!expanded)
+                    {
+                        string feedbackInfoString = currFeedback.Feedback.GetFeedbackInfo();
+
+                        if (!string.IsNullOrEmpty(feedbackInfoString))
+                        {
+                            EditorGUILayout.LabelField(feedbackInfoString);
+                        }
+                    }
+                    else
                     {
                         EditorGUILayout.Space(2);
 
-                        Styling.DrawSplitter(-4, 4);
+                        Styling.DrawSplitter(1, -4, 4);
 
                         currFeedback.Editor.OnInspectorGUI();
 
-                        foreach(FeedbackElement element in currFeedback.Feedback.Elements)
+                        foreach (Element element in currFeedback.Feedback.Elements)
                         {
                             EditorGUILayout.Space(2);
 
@@ -270,6 +288,12 @@ namespace Juce.Feedbacks
 
         private void DrawAddFeedbackInspector()
         {
+            EditorGUILayout.Space(8);
+
+            Styling.DrawSplitter(2.0f);
+
+            EditorGUILayout.Space(2);
+
             if (GUILayout.Button("Add feedback"))
             {
                 ShowFeedbacksMenu();

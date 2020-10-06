@@ -7,19 +7,56 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Position", "GameObject/")]
     public class PositionFeedback : Feedback
     {
-        [SerializeField] private float duration = default;
-
         [Header("Target")]
         [SerializeField] private GameObject target = default;
 
-        [Header("Values")]
-        [SerializeField] private CoordinatesSpace space = default;
-
+        [SerializeField] [HideInInspector] private DurationElement duration = default;
+        [SerializeField] [HideInInspector] private LoopElement loop = default;
+        [SerializeField] [HideInInspector] private CoordinatesSpaceElement coordinatesSpace;
         [SerializeField] [HideInInspector] private Vector3Element value = default;
         [SerializeField] [HideInInspector] private EasingElement easing = default;
 
-        public override void OnCreate()
+        public override bool GetFeedbackErrors(out string errors)
         {
+            if(target != null)
+            {
+                errors = "";
+                return false;
+            }
+
+            errors = "Target is null";
+
+            return true;
+        }
+
+        public override string GetFeedbackInfo()
+        {
+            string info = $"{duration.Duration}s";
+
+            if(value.UseStartPosition)
+            {
+                info += $" | Start: x:{value.StartPositionX} y:{value.StartPositionY} z: {value.StartPositionZ}";
+            }
+
+            info += $" | End: x:{value.EndPositionX} y:{value.EndPositionY} z: {value.EndPositionZ}";
+
+            if (!easing.UseAnimationCurve)
+            {
+                info += $" | Ease: {easing.Easing}";
+            }
+            else
+            {
+                info += $" | Ease: Curve";
+            }
+
+            return info;
+        }
+
+        protected override void OnCreate()
+        {
+            duration = AddElement<DurationElement>("Timing");
+            loop = AddElement<LoopElement>("Loop");
+            coordinatesSpace = AddElement<CoordinatesSpaceElement>("Space");
             value = AddElement<Vector3Element>("Value");
             easing = AddElement<EasingElement>("Easing");
         }
@@ -30,7 +67,7 @@ namespace Juce.Feedbacks
             {
                 SequenceTween startPositionSequence = new SequenceTween();
 
-                switch (space)
+                switch (coordinatesSpace.CoordinatesSpace)
                 {
                     case CoordinatesSpace.Local:
                         {
@@ -76,23 +113,23 @@ namespace Juce.Feedbacks
 
             SequenceTween endPositionSequence = new SequenceTween();
 
-            switch (space)
+            switch (coordinatesSpace.CoordinatesSpace)
             {
                 case CoordinatesSpace.Local:
                     {
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionX(value.EndPositionX, duration));
+                            endPositionSequence.Join(target.transform.TweenLocalPositionX(value.EndPositionX, duration.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionY(value.EndPositionY, duration));
+                            endPositionSequence.Join(target.transform.TweenLocalPositionY(value.EndPositionY, duration.Duration));
                         }
 
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionZ(value.EndPositionZ, duration));
+                            endPositionSequence.Join(target.transform.TweenLocalPositionZ(value.EndPositionZ, duration.Duration));
                         }
                     }
                     break;
@@ -101,17 +138,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionX(value.EndPositionX, duration));
+                            endPositionSequence.Join(target.transform.TweenPositionX(value.EndPositionX, duration.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionY(value.EndPositionY, duration));
+                            endPositionSequence.Join(target.transform.TweenPositionY(value.EndPositionY, duration.Duration));
                         }
 
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionZ(value.EndPositionZ, duration));
+                            endPositionSequence.Join(target.transform.TweenPositionZ(value.EndPositionZ, duration.Duration));
                         }
                     }
                     break;
@@ -120,6 +157,8 @@ namespace Juce.Feedbacks
             easing.SetEasing(endPositionSequence);
 
             sequenceTween.Append(endPositionSequence);
+
+            loop.SetLoop(sequenceTween);
         }
     }
 }
