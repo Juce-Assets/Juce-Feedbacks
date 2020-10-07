@@ -4,11 +4,11 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Position", "GameObject/")]
-    public class PositionFeedback : Feedback
+    [FeedbackIdentifier("Rotation", "Transform/")]
+    public class TransformRotationFeedback : Feedback
     {
         [Header("Target")]
-        [SerializeField] private GameObject target = default;
+        [SerializeField] private Transform target = default;
 
         [SerializeField] [HideInInspector] private DurationElement duration = default;
         [SerializeField] [HideInInspector] private LoopElement loop = default;
@@ -18,7 +18,7 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if(target != null)
+            if (target != null)
             {
                 errors = "";
                 return false;
@@ -33,12 +33,12 @@ namespace Juce.Feedbacks
         {
             string info = $"{duration.Duration}s";
 
-            if(value.UseStartPosition)
+            if (value.UseStartValue)
             {
-                info += $" | Start: x:{value.StartPositionX} y:{value.StartPositionY} z: {value.StartPositionZ}";
+                info += $" | Start: x:{value.StartValueX} y:{value.StartValueY} z: {value.StartValueZ}";
             }
 
-            info += $" | End: x:{value.EndPositionX} y:{value.EndPositionY} z: {value.EndPositionZ}";
+            info += $" | End: x:{value.EndValueX} y:{value.EndValueY} z: {value.EndValueZ}";
 
             if (!easing.UseAnimationCurve)
             {
@@ -57,33 +57,33 @@ namespace Juce.Feedbacks
             duration = AddElement<DurationElement>("Timing");
             loop = AddElement<LoopElement>("Loop");
             coordinatesSpace = AddElement<CoordinatesSpaceElement>("Space");
-            value = AddElement<Vector3Element>("Value");
+            value = AddElement<Vector3Element>("Values");
             easing = AddElement<EasingElement>("Easing");
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            if (value.UseStartPosition)
+            if (value.UseStartValue)
             {
-                SequenceTween startPositionSequence = new SequenceTween();
+                SequenceTween startSequence = new SequenceTween();
 
                 switch (coordinatesSpace.CoordinatesSpace)
                 {
                     case CoordinatesSpace.Local:
                         {
-                            if(value.UseStartX)
+                            if (value.UseStartX)
                             {
-                                startPositionSequence.Join(target.transform.TweenLocalPositionX(value.StartPositionX, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationX(value.StartValueX, 0.0f));
                             }
 
                             if (value.UseStartY)
                             {
-                                startPositionSequence.Join(target.transform.TweenLocalPositionY(value.StartPositionY, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationY(value.StartValueY, 0.0f));
                             }
 
                             if (value.UseStartZ)
                             {
-                                startPositionSequence.Join(target.transform.TweenLocalPositionZ(value.StartPositionZ, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationZ(value.StartValueZ, 0.0f));
                             }
                         }
                         break;
@@ -92,26 +92,26 @@ namespace Juce.Feedbacks
                         {
                             if (value.UseStartX)
                             {
-                                startPositionSequence.Join(target.transform.TweenPositionX(value.StartPositionX, 0.0f));
+                                startSequence.Join(target.TweenRotationX(value.StartValueX, 0.0f));
                             }
 
                             if (value.UseStartY)
                             {
-                                startPositionSequence.Join(target.transform.TweenPositionY(value.StartPositionY, 0.0f));
+                                startSequence.Join(target.TweenRotationY(value.StartValueY, 0.0f));
                             }
 
                             if (value.UseStartZ)
                             {
-                                startPositionSequence.Join(target.transform.TweenPositionZ(value.StartPositionZ, 0.0f));
+                                startSequence.Join(target.TweenRotationZ(value.StartValueZ, 0.0f));
                             }
                         }
                         break;
                 }
 
-                sequenceTween.Append(startPositionSequence);
+                sequenceTween.Append(startSequence);
             }
 
-            SequenceTween endPositionSequence = new SequenceTween();
+            SequenceTween endSequence = new SequenceTween();
 
             switch (coordinatesSpace.CoordinatesSpace)
             {
@@ -119,17 +119,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionX(value.EndPositionX, duration.Duration));
+                            endSequence.Join(target.TweenLocalRotationX(value.EndValueX, duration.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionY(value.EndPositionY, duration.Duration));
+                            endSequence.Join(target.TweenLocalRotationY(value.EndValueY, duration.Duration));
                         }
 
-                        if (value.UseEndX)
+                        if (value.UseEndZ)
                         {
-                            endPositionSequence.Join(target.transform.TweenLocalPositionZ(value.EndPositionZ, duration.Duration));
+                            endSequence.Join(target.TweenLocalRotationZ(value.EndValueZ, duration.Duration));
                         }
                     }
                     break;
@@ -138,25 +138,25 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionX(value.EndPositionX, duration.Duration));
+                            endSequence.Join(target.TweenRotationX(value.EndValueX, duration.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionY(value.EndPositionY, duration.Duration));
+                            endSequence.Join(target.TweenRotationY(value.EndValueY, duration.Duration));
                         }
 
-                        if (value.UseEndX)
+                        if (value.UseEndZ)
                         {
-                            endPositionSequence.Join(target.transform.TweenPositionZ(value.EndPositionZ, duration.Duration));
+                            endSequence.Join(target.TweenRotationZ(value.EndValueZ, duration.Duration));
                         }
                     }
                     break;
             }
 
-            easing.SetEasing(endPositionSequence);
+            easing.SetEasing(endSequence);
 
-            sequenceTween.Append(endPositionSequence);
+            sequenceTween.Append(endSequence);
 
             loop.SetLoop(sequenceTween);
         }

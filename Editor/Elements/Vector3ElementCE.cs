@@ -16,19 +16,19 @@ namespace Juce.Feedbacks
 
         private Vector3Element CustomTarget => (Vector3Element)target;
 
-        private SerializedProperty useStartPositionProperty;
+        private SerializedProperty useStartValueProperty;
         private SerializedProperty useStartXProperty;
         private SerializedProperty useStartYProperty;
         private SerializedProperty useStartZProperty;
         private SerializedProperty useEndXProperty;
         private SerializedProperty useEndYProperty;
         private SerializedProperty useEndZProperty;
-        private SerializedProperty startPositionXProperty;
-        private SerializedProperty startPositionYProperty;
-        private SerializedProperty startPositionZProperty;
-        private SerializedProperty endPositionXProperty;
-        private SerializedProperty endPositionYProperty;
-        private SerializedProperty endPositionZProperty;
+        private SerializedProperty startValueXProperty;
+        private SerializedProperty startValueYProperty;
+        private SerializedProperty startValueZProperty;
+        private SerializedProperty endValueXProperty;
+        private SerializedProperty endValueYProperty;
+        private SerializedProperty endValueZProperty;
 
         private void OnEnable()
         {
@@ -39,9 +39,9 @@ namespace Juce.Feedbacks
         {
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.PropertyField(useStartPositionProperty);
+            EditorGUILayout.PropertyField(useStartValueProperty);
 
-            if (useStartPositionProperty.boolValue)
+            if (useStartValueProperty.boolValue)
             {
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
@@ -54,7 +54,7 @@ namespace Juce.Feedbacks
                         using (new EditorGUI.DisabledScope(!useStartXProperty.boolValue))
                         {
                             EditorGUILayout.LabelField("X");
-                            EditorGUILayout.PropertyField(startPositionXProperty, GUIContent.none);
+                            EditorGUILayout.PropertyField(startValueXProperty, GUIContent.none);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -66,7 +66,7 @@ namespace Juce.Feedbacks
                         using (new EditorGUI.DisabledScope(!useStartYProperty.boolValue))
                         {
                             EditorGUILayout.LabelField("Y");
-                            EditorGUILayout.PropertyField(startPositionYProperty, GUIContent.none);
+                            EditorGUILayout.PropertyField(startValueYProperty, GUIContent.none);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -78,7 +78,7 @@ namespace Juce.Feedbacks
                         using (new EditorGUI.DisabledScope(!useStartZProperty.boolValue))
                         {
                             EditorGUILayout.LabelField("Z");
-                            EditorGUILayout.PropertyField(startPositionZProperty, GUIContent.none);
+                            EditorGUILayout.PropertyField(startValueZProperty, GUIContent.none);
                         }
                     }
                     EditorGUILayout.EndHorizontal();
@@ -96,7 +96,7 @@ namespace Juce.Feedbacks
                     using (new EditorGUI.DisabledScope(!useEndXProperty.boolValue))
                     {
                         EditorGUILayout.LabelField("X");
-                        EditorGUILayout.PropertyField(endPositionXProperty, GUIContent.none);
+                        EditorGUILayout.PropertyField(endValueXProperty, GUIContent.none);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -108,7 +108,7 @@ namespace Juce.Feedbacks
                     using (new EditorGUI.DisabledScope(!useEndYProperty.boolValue))
                     {
                         EditorGUILayout.LabelField("Y");
-                        EditorGUILayout.PropertyField(endPositionYProperty, GUIContent.none);
+                        EditorGUILayout.PropertyField(endValueYProperty, GUIContent.none);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -120,7 +120,7 @@ namespace Juce.Feedbacks
                     using (new EditorGUI.DisabledScope(!useEndZProperty.boolValue))
                     {
                         EditorGUILayout.LabelField("Z");
-                        EditorGUILayout.PropertyField(endPositionZProperty, GUIContent.none);
+                        EditorGUILayout.PropertyField(endValueZProperty, GUIContent.none);
                     }
                 }
                 EditorGUILayout.EndHorizontal();
@@ -136,19 +136,19 @@ namespace Juce.Feedbacks
 
         private void GatherProperties()
         {
-            useStartPositionProperty = serializedObject.FindProperty("useStartPosition");
+            useStartValueProperty = serializedObject.FindProperty("useStartValue");
             useStartXProperty = serializedObject.FindProperty("useStartX");
             useStartYProperty = serializedObject.FindProperty("useStartY");
             useStartZProperty = serializedObject.FindProperty("useStartZ");
             useEndXProperty = serializedObject.FindProperty("useEndX");
             useEndYProperty = serializedObject.FindProperty("useEndY");
             useEndZProperty = serializedObject.FindProperty("useEndZ");
-            startPositionXProperty = serializedObject.FindProperty("startPositionX");
-            startPositionYProperty = serializedObject.FindProperty("startPositionY");
-            startPositionZProperty = serializedObject.FindProperty("startPositionZ");
-            endPositionXProperty = serializedObject.FindProperty("endPositionX");
-            endPositionYProperty = serializedObject.FindProperty("endPositionY");
-            endPositionZProperty = serializedObject.FindProperty("endPositionZ");
+            startValueXProperty = serializedObject.FindProperty("startValueX");
+            startValueYProperty = serializedObject.FindProperty("startValueY");
+            startValueZProperty = serializedObject.FindProperty("startValueZ");
+            endValueXProperty = serializedObject.FindProperty("endValueX");
+            endValueYProperty = serializedObject.FindProperty("endValueY");
+            endValueZProperty = serializedObject.FindProperty("endValueZ");
         }
     }
 }

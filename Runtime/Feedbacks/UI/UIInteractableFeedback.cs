@@ -4,7 +4,7 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Position", "GameObject/")]
+    [FeedbackIdentifier("Interactable", "UI/")]
     public class UIInteractableFeedback : Feedback
     {
         [SerializeField] private float duration = default;
@@ -16,14 +16,27 @@ namespace Juce.Feedbacks
         [SerializeField] private bool interactable = default;
         [SerializeField] private bool blocksRaycasts = default;
 
+        public override bool GetFeedbackErrors(out string errors)
+        {
+            if (target != null)
+            {
+                errors = "";
+                return false;
+            }
+
+            errors = "Target is null";
+
+            return true;
+        }
+
+        public override string GetFeedbackInfo()
+        {
+            return $"Interactable: {interactable} | Blocks raycast: {blocksRaycasts}";
+        }
+
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            CanvasGroup canvasGroup = target.GetComponent<CanvasGroup>();
-
-            if (canvasGroup == null)
-            {
-                canvasGroup = target.AddComponent<CanvasGroup>();
-            }
+            CanvasGroup canvasGroup = target.GetOrAddComponent<CanvasGroup>();
 
             sequenceTween.AppendCallback(() =>
             {

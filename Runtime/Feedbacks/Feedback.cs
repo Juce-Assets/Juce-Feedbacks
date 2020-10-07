@@ -7,7 +7,7 @@ namespace Juce.Feedbacks
 {
     public abstract class Feedback : ScriptableObject
     {
-        [SerializeField] [HideInInspector] private bool expanded = default;
+        [SerializeField] [HideInInspector] private bool expanded = true;
         [SerializeField] private string userData = default;
 
         [SerializeField] [HideInInspector] private bool enabled = true;
