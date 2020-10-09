@@ -1,18 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Color Alpha", "SpriteRenderer/")]
-    public class SpriteRendererColorAlphaFeedback : Feedback
+    [FeedbackIdentifier("Color", "Material/")]
+    public class MaterialColorFeedback : Feedback
     {
         [Header("Target")]
-        [SerializeField] private SpriteRenderer target = default;
-
+        [SerializeField] [HideInInspector] private RendererMaterialPropertyElement target = default;
         [SerializeField] [HideInInspector] private DurationElement duration = default;
         [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private FloatElement value = default;
+        [SerializeField] [HideInInspector] private ColorElement value = default;
         [SerializeField] [HideInInspector] private EasingElement easing = default;
 
         public override bool GetFeedbackErrors(out string errors)
@@ -53,24 +53,34 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
+            target = AddElement<RendererMaterialPropertyElement>("Target");
+            target.MaterialPropertyType = MaterialPropertyType.Color;
+
             duration = AddElement<DurationElement>("Timing");
             loop = AddElement<LoopElement>("Loop");
 
-            value = AddElement<FloatElement>("Values");
-            value.MinValue = 0.0f;
-            value.MaxValue = 1.0f;
+            value = AddElement<ColorElement>("Values");
 
             easing = AddElement<EasingElement>("Easing");
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            if (value.UseStartValue)
+            if(target.Renderer == null)
             {
-                sequenceTween.Append(target.TweenColorAlpha(value.StartValue, 0.0f));
+                return;
             }
 
-            sequenceTween.Append(target.TweenColorAlpha(value.EndValue, duration.Duration));
+            Material material = target.Renderer.materials[target.MaterialIndex];
+
+            material.GetColor(target.Property);
+
+            if (value.UseStartValue)
+            {
+                sequenceTween.Append(material.TweenColor(value.StartValue, target.Property, 0.0f));
+            }
+
+            sequenceTween.Append(material.TweenColor(value.EndValue, target.Property, duration.Duration));
 
             easing.SetEasing(sequenceTween);
 

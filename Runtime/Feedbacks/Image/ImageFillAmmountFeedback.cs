@@ -1,14 +1,15 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Color Alpha", "SpriteRenderer/")]
-    public class SpriteRendererColorAlphaFeedback : Feedback
+    [FeedbackIdentifier("Fill Ammount", "Image/")]
+    public class ImageFillAmmountFeedback : Feedback
     {
         [Header("Target")]
-        [SerializeField] private SpriteRenderer target = default;
+        [SerializeField] private Image target = default;
 
         [SerializeField] [HideInInspector] private DurationElement duration = default;
         [SerializeField] [HideInInspector] private LoopElement loop = default;
@@ -67,10 +68,10 @@ namespace Juce.Feedbacks
         {
             if (value.UseStartValue)
             {
-                sequenceTween.Append(target.TweenColorAlpha(value.StartValue, 0.0f));
+                sequenceTween.Append(target.TweenFillAmount(value.StartValue, 0.0f));
             }
 
-            sequenceTween.Append(target.TweenColorAlpha(value.EndValue, duration.Duration));
+            sequenceTween.Append(target.TweenFillAmount(value.EndValue, duration.Duration));
 
             easing.SetEasing(sequenceTween);
 

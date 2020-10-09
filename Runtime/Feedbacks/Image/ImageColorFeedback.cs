@@ -1,18 +1,19 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Color Alpha", "SpriteRenderer/")]
-    public class SpriteRendererColorAlphaFeedback : Feedback
+    [FeedbackIdentifier("Color", "Image/")]
+    public class ImageColorFeedback : Feedback
     {
         [Header("Target")]
-        [SerializeField] private SpriteRenderer target = default;
+        [SerializeField] private Image target = default;
 
         [SerializeField] [HideInInspector] private DurationElement duration = default;
         [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private FloatElement value = default;
+        [SerializeField] [HideInInspector] private ColorElement value = default;
         [SerializeField] [HideInInspector] private EasingElement easing = default;
 
         public override bool GetFeedbackErrors(out string errors)
@@ -56,9 +57,7 @@ namespace Juce.Feedbacks
             duration = AddElement<DurationElement>("Timing");
             loop = AddElement<LoopElement>("Loop");
 
-            value = AddElement<FloatElement>("Values");
-            value.MinValue = 0.0f;
-            value.MaxValue = 1.0f;
+            value = AddElement<ColorElement>("Values");
 
             easing = AddElement<EasingElement>("Easing");
         }
@@ -67,10 +66,10 @@ namespace Juce.Feedbacks
         {
             if (value.UseStartValue)
             {
-                sequenceTween.Append(target.TweenColorAlpha(value.StartValue, 0.0f));
+                sequenceTween.Append(target.TweenColor(value.StartValue, 0.0f));
             }
 
-            sequenceTween.Append(target.TweenColorAlpha(value.EndValue, duration.Duration));
+            sequenceTween.Append(target.TweenColor(value.EndValue, duration.Duration));
 
             easing.SetEasing(sequenceTween);
 

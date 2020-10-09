@@ -220,7 +220,9 @@ namespace Juce.Feedbacks
 
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
-                    Styling.DrawHeader(ref expanded, ref enabled, feedbackTypeEditorData.Name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
+                    string name = $"{feedbackTypeEditorData.Path.Replace("/", " ")}{feedbackTypeEditorData.Name}";
+
+                    Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
 
                     currFeedback.Feedback.Expanded = expanded;
                     currFeedback.Feedback.Enabled = enabled;
