@@ -121,6 +121,33 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &41690761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43fec3cf11b24174cbf20af8ddd92c8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  userData: 
+  enabled: 0
+  delay: 0
+  elements:
+  - {fileID: 1437256265}
+  - {fileID: 611309479}
+  - {fileID: 507143887}
+  - {fileID: 284391810}
+  - {fileID: 446387116}
+  target: {fileID: 1437256265}
+  duration: {fileID: 611309479}
+  loop: {fileID: 507143887}
+  value: {fileID: 284391810}
+  easing: {fileID: 446387116}
 --- !u!114 &165573095
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +206,80 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &284391810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed89f12dd2bc1744b1834586c1851cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Values
+  useStartValue: 0
+  startValue: 0
+  endValue: 0
+  minValue: 0
+  maxValue: 0
+--- !u!114 &300542091
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f75459991038e46853c490f9b3bef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Target
+  renderer: {fileID: 692063005}
+  materialIndex: 0
+  materialPropertyType: 1
+  property: PixelSnap
+--- !u!114 &385064411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ed89f12dd2bc1744b1834586c1851cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Values
+  useStartValue: 0
+  startValue: 0
+  endValue: 100
+  minValue: -3.4028235e+38
+  maxValue: 3.4028235e+38
+--- !u!114 &446387116
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Easing
+  useAnimationCurve: 0
+  easing: 6
+  animationCurveEasing:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &500330220
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +295,22 @@ MonoBehaviour:
   elementName: Timing
   completeInstantly: 0
   duration: 1
+--- !u!114 &507143887
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!114 &552189804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -241,6 +358,21 @@ MonoBehaviour:
   loopMode: 0
   loopResetMode: 0
   loops: 0
+--- !u!114 &611309479
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa545bccc5319c840874a83d4d8f6666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Timing
+  completeInstantly: 0
+  duration: 10
 --- !u!114 &616145979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -309,7 +441,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 1229779179}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,7 +502,7 @@ MonoBehaviour:
   elementName: Values
   useStartValue: 0
   startValue: {r: 1, g: 1, b: 1, a: 1}
-  endValue: {r: 1, g: 1, b: 1, a: 1}
+  endValue: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &725265351
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -392,6 +524,22 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &736033050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!114 &738148525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -492,44 +640,27 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!21 &1229779179
-Material:
-  serializedVersion: 6
+--- !u!114 &1228489981
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprites-Default (Instance) (Instance) (Instance)
-  m_Shader: {fileID: 10753, guid: 0000000000000000f000000000000000, type: 0}
-  m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
-  m_LightmapFlags: 4
-  m_EnableInstancingVariants: 0
-  m_DoubleSidedGI: 0
-  m_CustomRenderQueue: -1
-  stringTagMap: {}
-  disabledShaderPasses: []
-  m_SavedProperties:
-    serializedVersion: 3
-    m_TexEnvs:
-    - _AlphaTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _DecalTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    m_Floats:
-    - PixelSnap: 0
-    - _EnableExternalAlpha: 0
-    m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _Flip: {r: 1, g: 1, b: 1, a: 1}
-    - _RendererColor: {r: 1, g: 1, b: 1, a: 1}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Easing
+  useAnimationCurve: 0
+  easing: 6
+  animationCurveEasing:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1237384257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -551,7 +682,7 @@ MonoBehaviour:
   - {fileID: 895748961}
   - {fileID: 166272461}
   - {fileID: 165573095}
-  target: {fileID: 692063005}
+  target: {fileID: 0}
   duration: {fileID: 500330220}
   loop: {fileID: 895748961}
   value: {fileID: 166272461}
@@ -692,6 +823,8 @@ MonoBehaviour:
   - {fileID: 1237384257}
   - {fileID: 738148525}
   - {fileID: 1855079881}
+  - {fileID: 41690761}
+  - {fileID: 1395141717}
   executeOnAwake: 1
   delay: 0
 --- !u!4 &1373000832
@@ -708,6 +841,33 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1395141717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ab11b038bb11f458f13d6490be64de, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  userData: 
+  enabled: 1
+  delay: 0
+  elements:
+  - {fileID: 300542091}
+  - {fileID: 2141239021}
+  - {fileID: 736033050}
+  - {fileID: 385064411}
+  - {fileID: 1228489981}
+  target: {fileID: 300542091}
+  duration: {fileID: 2141239021}
+  loop: {fileID: 736033050}
+  value: {fileID: 385064411}
+  easing: {fileID: 1228489981}
 --- !u!114 &1432098399
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -739,6 +899,23 @@ MonoBehaviour:
   elementName: Timing
   completeInstantly: 0
   duration: 1
+--- !u!114 &1437256265
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f75459991038e46853c490f9b3bef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Target
+  renderer: {fileID: 692063005}
+  materialIndex: 0
+  materialPropertyType: 0
+  property: _Color
 --- !u!114 &1445706719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1027,9 +1204,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 74611edb16eaf8d4c883a5c4bedb48bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   userData: 
-  enabled: 1
+  enabled: 0
   delay: 0
   elements:
   - {fileID: 2085092664}
@@ -1130,9 +1307,7 @@ MonoBehaviour:
   elementName: Target
   renderer: {fileID: 692063005}
   materialIndex: 0
-  material: {fileID: 1229779179}
   materialPropertyType: 0
-  propertyIndex: 0
   property: _Color
 --- !u!114 &2104516358
 MonoBehaviour:
@@ -1155,8 +1330,23 @@ MonoBehaviour:
   - {fileID: 1687956192}
   - {fileID: 1445706719}
   - {fileID: 247414907}
-  target: {fileID: 692063005}
+  target: {fileID: 0}
   duration: {fileID: 616145979}
   loop: {fileID: 1687956192}
   value: {fileID: 1445706719}
   easing: {fileID: 247414907}
+--- !u!114 &2141239021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa545bccc5319c840874a83d4d8f6666, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Timing
+  completeInstantly: 0
+  duration: 1

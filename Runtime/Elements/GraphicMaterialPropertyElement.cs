@@ -1,17 +1,18 @@
 ﻿using System;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Juce.Feedbacks
 {
-    public class RendererMaterialPropertyElement : Element
+    public class GraphicMaterialPropertyElement : Element
     {
-        [SerializeField] [HideInInspector] private Renderer renderer = default;
-        [SerializeField] [HideInInspector] private int materialIndex = default;
+        [SerializeField] [HideInInspector] private Graphic graphic = default;
+        [SerializeField] [HideInInspector] private bool instantiateMaterial = true;
         [SerializeField] [HideInInspector] private MaterialPropertyType materialPropertyType = default;
         [SerializeField] [HideInInspector] private string property = default;
 
-        public Renderer Renderer => renderer;
-        public int MaterialIndex => materialIndex;
+        public Graphic Graphic => graphic;
+        public bool InstantiateMaterial => instantiateMaterial;
         public MaterialPropertyType MaterialPropertyType { set => materialPropertyType = value; }
         public string Property => property;
     }

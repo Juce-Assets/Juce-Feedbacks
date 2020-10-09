@@ -28,9 +28,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"Value: {setActive}";
-
-            return info;
+            return $"Value: {setActive}";
         }
 
         public override void OnExectue(SequenceTween sequenceTween)

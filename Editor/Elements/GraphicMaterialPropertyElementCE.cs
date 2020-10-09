@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Juce.Feedbacks
 {
-    [CustomEditor(typeof(RendererMaterialPropertyElement))]
-    public class RendererMaterialPropertyElementCE : Editor
+    [CustomEditor(typeof(GraphicMaterialPropertyElement))]
+    public class GraphicMaterialPropertyElementCE : Editor
     {
-        private RendererMaterialPropertyElement CustomTarget => (RendererMaterialPropertyElement)target;
+        private GraphicMaterialPropertyElement CustomTarget => (GraphicMaterialPropertyElement)target;
 
-        private SerializedProperty rendererProperty;
-        private SerializedProperty materialIndexProperty;
+        private SerializedProperty graphicProperty;
+        private SerializedProperty instantiateMaterialProperty;
         private SerializedProperty materialPropertyTypeProperty;
         private SerializedProperty propertyProperty;
 
@@ -27,33 +28,18 @@ namespace Juce.Feedbacks
         {
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.PropertyField(rendererProperty);
+            EditorGUILayout.PropertyField(graphicProperty);
 
-            if(rendererProperty.objectReferenceValue != null)
+            if (graphicProperty.objectReferenceValue != null)
             {
-                Renderer renderer = (Renderer)rendererProperty.objectReferenceValue;
+                Graphic graphic = (Graphic)graphicProperty.objectReferenceValue;
 
-                string[] materials = new string[renderer.sharedMaterials.Length];
-
-                for(int i = 0; i < renderer.sharedMaterials.Length; ++i)
+                if (graphic != null)
                 {
-                    materials[i] = renderer.sharedMaterials[i].name;
-                }
+                    EditorGUILayout.PropertyField(instantiateMaterialProperty);
 
-                materialIndexProperty.intValue = EditorGUILayout.Popup("Material", materialIndexProperty.intValue, materials);
+                    Material material = graphic.materialForRendering;
 
-                if (materialIndexProperty.intValue < renderer.sharedMaterials.Length)
-                {
-                    material = renderer.sharedMaterials[materialIndexProperty.intValue];
-                }
-                else
-                {
-                    material = null;
-                    propertyIndex = -1;
-                }
-
-                if (material != null)
-                {
                     int propertiesCount = ShaderUtil.GetPropertyCount(material.shader);
 
                     if (propertiesCount > 0)
@@ -110,15 +96,15 @@ namespace Juce.Feedbacks
 
         private void GatherProperties()
         {
-            rendererProperty = serializedObject.FindProperty("renderer");
-            materialIndexProperty = serializedObject.FindProperty("materialIndex");
+            graphicProperty = serializedObject.FindProperty("graphic");
+            instantiateMaterialProperty = serializedObject.FindProperty("instantiateMaterial");
             materialPropertyTypeProperty = serializedObject.FindProperty("materialPropertyType");
             propertyProperty = serializedObject.FindProperty("property");
         }
 
         private ShaderUtil.ShaderPropertyType TypeToShaderType(MaterialPropertyType type)
         {
-            switch(type)
+            switch (type)
             {
                 case MaterialPropertyType.Color:
                     {

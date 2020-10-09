@@ -5,11 +5,11 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Color", "Material/")]
-    public class MaterialColorFeedback : Feedback
+    [FeedbackIdentifier("Color", "Graphic Material/")]
+    public class GraphicMaterialColorFeedback : Feedback
     {
         [Header("Target")]
-        [SerializeField] [HideInInspector] private RendererMaterialPropertyElement target = default;
+        [SerializeField] [HideInInspector] private GraphicMaterialPropertyElement target = default;
         [SerializeField] [HideInInspector] private DurationElement duration = default;
         [SerializeField] [HideInInspector] private LoopElement loop = default;
         [SerializeField] [HideInInspector] private ColorElement value = default;
@@ -17,7 +17,7 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target != null)
+            if (target.Graphic != null)
             {
                 errors = "";
                 return false;
@@ -53,7 +53,7 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            target = AddElement<RendererMaterialPropertyElement>("Target");
+            target = AddElement<GraphicMaterialPropertyElement>("Target");
             target.MaterialPropertyType = MaterialPropertyType.Color;
 
             duration = AddElement<DurationElement>("Timing");
@@ -66,14 +66,32 @@ namespace Juce.Feedbacks
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            if(target.Renderer == null)
+            if (target.Graphic == null)
             {
                 return;
             }
 
-            Material material = target.Renderer.materials[target.MaterialIndex];
+            if(target.InstantiateMaterial)
+            {
+                GraphicMaterialInstance materialInstance =  target.Graphic.gameObject.GetComponent<GraphicMaterialInstance>();
 
-            material.GetColor(target.Property);
+                if(materialInstance == null)
+                {
+                    materialInstance = target.Graphic.gameObject.AddComponent<GraphicMaterialInstance>();
+
+                    materialInstance.Init(target.Graphic);
+                }
+            }
+
+            Material material = target.Graphic.materialForRendering;
+
+            bool hasProperty = material.HasProperty(target.Property);
+
+            if (!hasProperty)
+            {
+                Debug.Log("");
+                return;
+            }
 
             if (value.UseStartValue)
             {

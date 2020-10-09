@@ -9,8 +9,8 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private float startValue = default;
         [SerializeField] [HideInInspector] private float endValue = default;
 
-        [SerializeField] [HideInInspector] private float minValue = default;
-        [SerializeField] [HideInInspector] private float maxValue = default;
+        [SerializeField] [HideInInspector] private float minValue = float.MinValue;
+        [SerializeField] [HideInInspector] private float maxValue = float.MaxValue;
 
         public bool UseStartValue => useStartValue;
         public float StartValue => startValue;
