@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
+using UnityEngine.UIElements;
 
 namespace Juce.Feedbacks
 {
@@ -31,6 +32,20 @@ namespace Juce.Feedbacks
             feedbacks.Remove(feedback);
         }
 
+        public void ReorderFeedback(int startIndex, int endIndex)
+        {
+            if (startIndex == endIndex)
+            {
+                return;
+            }
+
+            Feedback item = feedbacks[startIndex];
+
+            feedbacks.RemoveAt(startIndex);
+
+            feedbacks.Insert(endIndex, item);
+        }
+
         private void TryExecuteOnAwake()
         {
             if(!executeOnAwake)
@@ -43,11 +58,11 @@ namespace Juce.Feedbacks
 
         public void Play()
         {
-            Tween.SequenceTween mainSequenceTween = new Tween.SequenceTween();
+            FlowContext context = new FlowContext();
 
             if(delay > 0)
             {
-                mainSequenceTween.AppendWaitTime(delay);
+                context.MainSequence.AppendWaitTime(delay);
             }
 
             Tween.SequenceTween feedbacksSequenceTween = new Tween.SequenceTween();
@@ -63,29 +78,29 @@ namespace Juce.Feedbacks
 
                 Tween.SequenceTween sequenceTween = new Tween.SequenceTween();
 
-                currFeedback.OnExectue(sequenceTween);
+                currFeedback.OnExectue(context, sequenceTween);
 
-                feedbacksSequenceTween.Join(sequenceTween);
+                context.CurrentSequence.Join(sequenceTween);
             }
 
-            mainSequenceTween.Append(feedbacksSequenceTween);
+            context.MainSequence.Append(context.CurrentSequence);
 
             switch (loopMode)
             {
                 case LoopMode.XTimes:
                     {
-                        mainSequenceTween.SetLoops(loops, loopResetMode);
+                        context.MainSequence.SetLoops(loops, loopResetMode);
                     }
                     break;
 
                 case LoopMode.UntilManuallyStoped:
                     {
-                        mainSequenceTween.SetLoops(int.MaxValue, loopResetMode);
+                        context.MainSequence.SetLoops(int.MaxValue, loopResetMode);
                     }
                     break;
             }
 
-            mainSequenceTween.Play();
+            context.MainSequence.Play();
         }
     }
 }

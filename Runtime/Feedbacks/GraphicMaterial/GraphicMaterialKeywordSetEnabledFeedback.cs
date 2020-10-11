@@ -45,7 +45,7 @@ namespace Juce.Feedbacks
             timing.UseDuration = false;
         }
 
-        public override void OnExectue(SequenceTween sequenceTween)
+        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
         {
             if (target.Graphic == null)
             {
@@ -64,7 +64,7 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            sequenceTween.AppendWaitTime(timing.Delay);
+            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

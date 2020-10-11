@@ -41,6 +41,6 @@ namespace Juce.Feedbacks
         public virtual string GetFeedbackInfo() { return string.Empty; }
         protected virtual void OnCreate() { }
 
-        public abstract void OnExectue(SequenceTween sequenceTween);
+        public abstract void OnExectue(FlowContext context, SequenceTween sequenceTween);
     }
 }

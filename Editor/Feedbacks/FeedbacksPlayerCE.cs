@@ -12,8 +12,9 @@ namespace Juce.Feedbacks
         private FeedbacksPlayer CustomTarget => (FeedbacksPlayer)target;
 
         private readonly List<FeedbackTypeEditorData> feedbackTypes = new List<FeedbackTypeEditorData>();
-
         private readonly List<FeedbackEditorData> cachedEditorFeedback = new List<FeedbackEditorData>();
+
+        private readonly DragHelper dragHelper = new DragHelper();
 
         private SerializedProperty feedbacksProperty;
 
@@ -94,6 +95,20 @@ namespace Juce.Feedbacks
             RemoveCacheFeedbackEditor(feedback);
 
             CustomTarget.RemoveFeedback(feedback);
+        }
+
+        private void ReorderFeedback(int startIndex, int endIndex)
+        {
+            if (startIndex == endIndex)
+            {
+                return;
+            }
+
+            FeedbackEditorData item = cachedEditorFeedback[startIndex];
+            cachedEditorFeedback.RemoveAt(startIndex);
+            cachedEditorFeedback.Insert(endIndex, item);
+
+            CustomTarget.ReorderFeedback(startIndex, endIndex);
         }
 
         private void ChacheAllFeedbacksEditor()
@@ -221,7 +236,6 @@ namespace Juce.Feedbacks
 
                 FeedbackTypeEditorData feedbackTypeEditorData = currFeedback.FeedbackTypeEditorData;
 
-
                 bool expanded = currFeedback.Feedback.Expanded;
                 bool enabled = currFeedback.Feedback.Enabled;
 
@@ -243,7 +257,9 @@ namespace Juce.Feedbacks
                         name += $" [{targetInfo}]";
                     }
 
-                    Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
+                    Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
+
+                    dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, i);
 
                     currFeedback.Feedback.Expanded = expanded;
                     currFeedback.Feedback.Enabled = enabled;
@@ -301,14 +317,14 @@ namespace Juce.Feedbacks
             }
 
             // Finish dragging
-            //int startIndex;
-            //int endIndex;
-            //bool dragged = draggingHelper.ResolveDragging(e, out startIndex, out endIndex);
+            int startIndex;
+            int endIndex;
+            bool dragged = dragHelper.ResolveDragging(e, out startIndex, out endIndex);
 
-            //if (dragged)
-            //{
-            //    customTarget.ReorderFeedback(startIndex, endIndex);
-            //}
+            if (dragged)
+            {
+                ReorderFeedback(startIndex, endIndex);
+            }
         }
 
         private void DrawAddFeedbackInspector()

@@ -64,9 +64,9 @@ namespace Juce.Feedbacks
             easing = AddElement<EasingElement>("Easing");
         }
 
-        public override void OnExectue(SequenceTween sequenceTween)
+        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(timing.Delay);
+            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
 
             if (value.UseStartValue)
             {

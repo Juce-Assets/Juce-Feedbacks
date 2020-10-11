@@ -42,9 +42,9 @@ namespace Juce.Feedbacks
             timing = AddElement<TimingElement>("Timing");
         }
 
-        public override void OnExectue(SequenceTween sequenceTween)
+        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(timing.Delay);
+            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
 
             sequenceTween.AppendCallback(() => target.SetActive(value.Value));
         }

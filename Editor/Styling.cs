@@ -68,8 +68,8 @@ namespace Juce.Feedbacks
             Rect menuRect = new Rect(labelRect.xMax + 4f, labelRect.y - 5f, 16, 20);
 
             // Background rect should be full-width
-            backgroundRect.xMin = 0f;
-            backgroundRect.width += 4f;
+            backgroundRect.xMin -= 1f;
+            backgroundRect.width += 1f;
 
             // Foldout
             expanded = GUI.Toggle(foldoutRect, expanded, GUIContent.none, EditorStyles.foldout);
