@@ -38,6 +38,7 @@ namespace Juce.Feedbacks
             OnCreate();
         }
 
+        public virtual string GetFeedbackTargetInfo() { return string.Empty; }
         public virtual bool GetFeedbackErrors(out string errors) { errors = string.Empty; return false; }
         public virtual string GetFeedbackInfo() { return string.Empty; }
         protected virtual void OnCreate() { }

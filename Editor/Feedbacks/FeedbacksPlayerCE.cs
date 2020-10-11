@@ -100,6 +100,11 @@ namespace Juce.Feedbacks
         {
             RemoveCacheFeedbackEditor(feedback);
 
+            if(feedback == null)
+            {
+                return;
+            }
+
             FeedbackTypeEditorData feedbackTypeEditorData = GetFeedbackEditorDataByType(feedback.GetType());
 
             Editor currEditor = Editor.CreateEditor(feedback);
@@ -221,6 +226,13 @@ namespace Juce.Feedbacks
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
                     string name = $"{feedbackTypeEditorData.Path.Replace("/", " ")}{feedbackTypeEditorData.Name}";
+
+                    string targetInfo = currFeedback.Feedback.GetFeedbackTargetInfo();
+
+                    if(!string.IsNullOrEmpty(targetInfo))
+                    {
+                        name += $" [{targetInfo}]";
+                    }
 
                     Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
 

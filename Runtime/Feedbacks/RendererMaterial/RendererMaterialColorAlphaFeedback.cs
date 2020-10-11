@@ -28,6 +28,11 @@ namespace Juce.Feedbacks
             return true;
         }
 
+        public override string GetFeedbackTargetInfo()
+        {
+            return target.Renderer != null ? target.Renderer.gameObject.name : string.Empty;
+        }
+
         public override string GetFeedbackInfo()
         {
             string info = $"{duration.Duration}s";

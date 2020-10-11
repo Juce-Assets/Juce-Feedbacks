@@ -26,6 +26,11 @@ namespace Juce.Feedbacks
             return true;
         }
 
+        public override string GetFeedbackTargetInfo()
+        {
+            return target != null ? target.name : string.Empty;
+        }
+
         public override string GetFeedbackInfo()
         {
             return $"Value: {setActive}";

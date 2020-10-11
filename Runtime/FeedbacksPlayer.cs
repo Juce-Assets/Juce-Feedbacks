@@ -13,7 +13,7 @@ namespace Juce.Feedbacks
 
         private void Start()
         {
-            TryExecuteOnAwake();
+            TryExecuteOnAwake(); 
         }
 
         public void AddFeedback(Feedback feedback)

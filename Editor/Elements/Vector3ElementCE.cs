@@ -7,13 +7,6 @@ namespace Juce.Feedbacks
     [CustomEditor(typeof(Vector3Element))]
     public class Vector3ElementCE : Editor
     {
-        //[SerializeField] [HideInInspector] private bool useStartPosition = default;
-        //[SerializeField] [HideInInspector] private bool useX = default;
-        //[SerializeField] [HideInInspector] private bool useY = default;
-        //[SerializeField] [HideInInspector] private bool useZ = default;
-        //[SerializeField] [HideInInspector] private Vector3 startPosition = default;
-        //[SerializeField] [HideInInspector] private Vector3 endPosition = default;
-
         private Vector3Element CustomTarget => (Vector3Element)target;
 
         private SerializedProperty useStartValueProperty;

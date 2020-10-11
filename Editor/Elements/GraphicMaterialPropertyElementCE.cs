@@ -40,47 +40,35 @@ namespace Juce.Feedbacks
 
                     Material material = graphic.materialForRendering;
 
-                    int propertiesCount = ShaderUtil.GetPropertyCount(material.shader);
+                    MaterialPropertyType type = (MaterialPropertyType)materialPropertyTypeProperty.enumValueIndex;
 
-                    if (propertiesCount > 0)
+                    List<string> properties = MaterialUtils.GetMaterialProperties(material, type);
+
+                    if (propertyIndex == -1)
                     {
-                        MaterialPropertyType type = (MaterialPropertyType)materialPropertyTypeProperty.enumValueIndex;
-                        ShaderUtil.ShaderPropertyType typeLookingFor = TypeToShaderType(type);
+                        propertyIndex = 0;
 
-                        List<string> properties = new List<string>();
-
-                        for (int i = 0; i < propertiesCount; ++i)
+                        for (int i = 0; i < properties.Count; ++i)
                         {
-                            ShaderUtil.ShaderPropertyType currPropertyType = ShaderUtil.GetPropertyType(material.shader, i);
-
-                            if (typeLookingFor == currPropertyType)
+                            if (string.Equals(properties[i], propertyProperty.stringValue))
                             {
-                                properties.Add(ShaderUtil.GetPropertyName(material.shader, i));
+                                propertyIndex = i;
+                                break;
                             }
                         }
+                    }
 
-                        if (propertyIndex == -1)
+                    propertyIndex = EditorGUILayout.Popup("Properties", propertyIndex, properties.ToArray());
+
+                    if (propertyIndex > -1)
+                    {
+                        if (propertyIndex < properties.Count)
                         {
-                            propertyIndex = 0;
-
-                            for (int i = 0; i < properties.Count; ++i)
-                            {
-                                if (string.Equals(properties[i], propertyProperty.stringValue))
-                                {
-                                    propertyIndex = i;
-                                    break;
-                                }
-                            }
+                            propertyProperty.stringValue = properties[propertyIndex];
                         }
-
-                        propertyIndex = EditorGUILayout.Popup("Properties", propertyIndex, properties.ToArray());
-
-                        if (propertyIndex > -1)
+                        else
                         {
-                            if (propertyIndex < properties.Count)
-                            {
-                                propertyProperty.stringValue = properties[propertyIndex];
-                            }
+                            propertyProperty.stringValue = "";
                         }
                     }
                 }
@@ -100,29 +88,6 @@ namespace Juce.Feedbacks
             instantiateMaterialProperty = serializedObject.FindProperty("instantiateMaterial");
             materialPropertyTypeProperty = serializedObject.FindProperty("materialPropertyType");
             propertyProperty = serializedObject.FindProperty("property");
-        }
-
-        private ShaderUtil.ShaderPropertyType TypeToShaderType(MaterialPropertyType type)
-        {
-            switch (type)
-            {
-                case MaterialPropertyType.Color:
-                    {
-                        return ShaderUtil.ShaderPropertyType.Color;
-                    }
-
-                case MaterialPropertyType.Float:
-                    {
-                        return ShaderUtil.ShaderPropertyType.Float;
-                    }
-
-                case MaterialPropertyType.Vector:
-                    {
-                        return ShaderUtil.ShaderPropertyType.Vector;
-                    }
-            }
-
-            return default;
         }
     }
 }

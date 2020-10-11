@@ -28,6 +28,11 @@ namespace Juce.Feedbacks
             return true;
         }
 
+        public override string GetFeedbackTargetInfo()
+        {
+            return target.Graphic != null ? target.Graphic.gameObject.name : string.Empty;
+        }
+
         public override string GetFeedbackInfo()
         {
             string info = $"{duration.Duration}s";
@@ -73,17 +78,7 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            if (target.InstantiateMaterial)
-            {
-                GraphicMaterialInstance materialInstance = target.Graphic.gameObject.GetComponent<GraphicMaterialInstance>();
-
-                if (materialInstance == null)
-                {
-                    materialInstance = target.Graphic.gameObject.AddComponent<GraphicMaterialInstance>();
-
-                    materialInstance.Init(target.Graphic);
-                }
-            }
+            GraphicMaterialUtils.TryInstantiateGraphicMaterial(target);
 
             Material material = target.Graphic.materialForRendering;
 
