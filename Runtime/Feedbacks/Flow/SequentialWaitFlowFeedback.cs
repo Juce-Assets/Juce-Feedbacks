@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("New Sequence", "Flow/")]
-    public class NewSequenceFlowFeedback : Feedback
+    [FeedbackIdentifier("Sequential Wait", "Flow/")]
+    public class SequentialWaitFlowFeedback : Feedback
     {
         public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
         {

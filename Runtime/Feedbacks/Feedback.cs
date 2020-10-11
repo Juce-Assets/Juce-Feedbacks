@@ -20,6 +20,8 @@ namespace Juce.Feedbacks
         public string UserData { get => userData; set => userData = value; }
         public bool Enabled { get => enabled; set => enabled = value; }
 
+        public SequenceTween FeedbackSequence { get; set; }
+
         protected T AddElement<T>(string name) where T : Element
         {
             T elementInstance = ScriptableObject.CreateInstance<T>();

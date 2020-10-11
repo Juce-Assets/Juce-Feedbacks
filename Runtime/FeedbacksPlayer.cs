@@ -17,6 +17,8 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
         [SerializeField] [HideInInspector] [Min(0)] private int loops = default;
 
+        private SequenceTween currMainSequence;
+
         private void Start()
         {
             TryExecuteOnAwake(); 
@@ -58,14 +60,14 @@ namespace Juce.Feedbacks
 
         public void Play()
         {
+            Kill();
+
             FlowContext context = new FlowContext();
 
             if(delay > 0)
             {
                 context.MainSequence.AppendWaitTime(delay);
             }
-
-            Tween.SequenceTween feedbacksSequenceTween = new Tween.SequenceTween();
 
             for (int i = 0; i < feedbacks.Count; ++i)
             {
@@ -81,6 +83,8 @@ namespace Juce.Feedbacks
                 currFeedback.OnExectue(context, sequenceTween);
 
                 context.CurrentSequence.Join(sequenceTween);
+
+                currFeedback.FeedbackSequence = sequenceTween;
             }
 
             context.MainSequence.Append(context.CurrentSequence);
@@ -101,6 +105,38 @@ namespace Juce.Feedbacks
             }
 
             context.MainSequence.Play();
+
+            currMainSequence = context.MainSequence;
+        }
+
+        public void Complete()
+        {
+            if (currMainSequence == null)
+            {
+                return;
+            }
+;
+            currMainSequence.Complete();
+        }
+
+        public void Kill()
+        {
+            if (currMainSequence == null)
+            {
+                return;
+            }
+;
+            currMainSequence.Kill();
+        }
+
+        public void Restart()
+        {
+            if (currMainSequence == null)
+            {
+                return;
+            }
+;
+            currMainSequence.Restart();
         }
     }
 }

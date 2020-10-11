@@ -43,6 +43,8 @@ namespace Juce.Feedbacks
 
             DrawAddFeedbackInspector();
 
+            DrawFeedbackPlayerControls();
+
             serializedObject.ApplyModifiedProperties();
 
             if (EditorGUI.EndChangeCheck())
@@ -222,6 +224,18 @@ namespace Juce.Feedbacks
             }
         }
 
+        private void DrawProgress(Tween.Tween tween)
+        {
+            if (tween != null && tween.IsPlaying)
+            {
+                Rect progressRect = GUILayoutUtility.GetRect(4f, 2f);
+                progressRect.width *= tween.GetProgress();
+                EditorGUI.DrawRect(progressRect, Color.white);
+
+                Repaint();
+            }
+        }
+
         private void DrawFeedbacksEditors()
         {
             Event e = Event.current;
@@ -282,6 +296,8 @@ namespace Juce.Feedbacks
 
                     if (!expanded)
                     {
+                        DrawProgress(currFeedback.Feedback.FeedbackSequence);
+
                         string feedbackInfoString = currFeedback.Feedback.GetFeedbackInfo();
 
                         if (!string.IsNullOrEmpty(feedbackInfoString))
@@ -375,6 +391,41 @@ namespace Juce.Feedbacks
             menu.AddItem(new GUIContent("Remove"), false, () => RemoveFeedback(feedback));
 
             menu.ShowAsContext();
+        }
+
+        private void DrawFeedbackPlayerControls()
+        {
+            EditorGUILayout.Space(8);
+
+            using (new EditorGUI.DisabledScope(!Application.isPlaying))
+            {
+                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+                {
+                    GUILayout.BeginHorizontal();
+                    {
+                        if (GUILayout.Button("Play"))
+                        {
+                            CustomTarget.Play();
+                        }
+
+                        if (GUILayout.Button("Complete"))
+                        {
+                            CustomTarget.Complete();
+                        }
+
+                        if (GUILayout.Button("Kill"))
+                        {
+                            CustomTarget.Kill();
+                        }
+
+                        if (GUILayout.Button("Restart"))
+                        {
+                             CustomTarget.Restart();
+                        }
+                    }
+                    GUILayout.EndHorizontal();
+                }
+            }
         }
     }
 }

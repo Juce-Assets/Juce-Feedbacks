@@ -10,6 +10,8 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
         [SerializeField] [HideInInspector] [Min(0)] private int loops = default;
 
+        public int Loops => loops;
+
         public void SetLoop(Tween.Tween tween)
         {
             switch(loopMode)

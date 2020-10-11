@@ -121,27 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &120161358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Easing
-  useAnimationCurve: 0
-  easing: 6
-  animationCurveEasing:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
 --- !u!1 &124202387
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,7 +202,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &142616144
+--- !u!114 &133422635
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,11 +211,34 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Space
-  coordinatesSpace: 0
+  elementName: Easing
+  useAnimationCurve: 0
+  easing: 6
+  animationCurveEasing:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &160781213
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Timing
+  delay: 0
+  useDuration: 1
+  duration: 1
 --- !u!1 &163236870
 GameObject:
   m_ObjectHideFlags: 0
@@ -318,32 +320,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &172390661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b16f8d70bad64244ac94fbe8a90d7da, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Values
-  useStartValue: 0
-  useStartX: 0
-  useStartY: 0
-  useStartZ: 0
-  useEndX: 1
-  useEndY: 1
-  useEndZ: 0
-  startValueX: 0
-  startValueY: 0
-  startValueZ: 0
-  endValueX: 2
-  endValueY: 0.7
-  endValueZ: 0
 --- !u!1 &173876319
 GameObject:
   m_ObjectHideFlags: 0
@@ -508,7 +484,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &196625129
+--- !u!114 &204408515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -517,14 +493,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
+  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 0
-  useDuration: 0
-  duration: 1
---- !u!114 &216249270
+  elementName: Space
+  coordinatesSpace: 0
+--- !u!114 &468583651
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -533,35 +507,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
+  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Easing
-  useAnimationCurve: 0
-  easing: 6
-  animationCurveEasing:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &290933876
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 0
-  useDuration: 1
-  duration: 2.3
---- !u!114 &480583148
+  elementName: Space
+  coordinatesSpace: 0
+--- !u!114 &500944138
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -579,13 +530,13 @@ MonoBehaviour:
   useStartY: 0
   useStartZ: 0
   useEndX: 1
-  useEndY: 0
+  useEndY: 1
   useEndZ: 0
   startValueX: 0
   startValueY: 0
   startValueZ: 0
-  endValueX: 2.4
-  endValueY: 0
+  endValueX: 0
+  endValueY: -0.595
   endValueZ: 0
 --- !u!1 &511187862
 GameObject:
@@ -617,18 +568,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbacks:
-  - {fileID: 709377698}
-  - {fileID: 667871873}
-  - {fileID: 936318039}
-  - {fileID: 1804950490}
-  - {fileID: 553151408}
-  - {fileID: 1564201730}
-  - {fileID: 799800661}
+  - {fileID: 1936055799}
+  - {fileID: 1485949100}
+  - {fileID: 1486650110}
+  - {fileID: 1206266316}
+  - {fileID: 1565049452}
+  - {fileID: 1133860091}
+  - {fileID: 1827978599}
+  - {fileID: 607120300}
   executeOnAwake: 1
   delay: 0
-  loopMode: 2
+  loopMode: 0
   loopResetMode: 0
-  loops: 1
+  loops: 2
 --- !u!4 &511187864
 Transform:
   m_ObjectHideFlags: 0
@@ -643,6 +595,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &541186837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Value
+  loopMode: 1
+  loopResetMode: 0
+  loops: 1
 --- !u!1 &551581866
 GameObject:
   m_ObjectHideFlags: 0
@@ -724,61 +692,7 @@ Transform:
   m_Father: {fileID: 1179115166}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &553151408
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 1
-  userData: 
-  enabled: 1
-  elements:
-  - {fileID: 1176975550}
-  - {fileID: 172390661}
-  - {fileID: 1528496248}
-  - {fileID: 1529186853}
-  - {fileID: 120161358}
-  target: {fileID: 1179115166}
-  coordinatesSpace: {fileID: 1176975550}
-  value: {fileID: 172390661}
-  timing: {fileID: 1528496248}
-  loop: {fileID: 1529186853}
-  easing: {fileID: 120161358}
---- !u!114 &667871873
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  userData: 
-  enabled: 1
-  elements:
-  - {fileID: 142616144}
-  - {fileID: 673172577}
-  - {fileID: 722560914}
-  - {fileID: 1409568379}
-  - {fileID: 1961524149}
-  target: {fileID: 1179115166}
-  coordinatesSpace: {fileID: 142616144}
-  value: {fileID: 673172577}
-  timing: {fileID: 722560914}
-  loop: {fileID: 1409568379}
-  easing: {fileID: 1961524149}
---- !u!114 &673172577
+--- !u!114 &557202761
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -802,9 +716,9 @@ MonoBehaviour:
   startValueY: 0
   startValueZ: 0
   endValueX: 0
-  endValueY: 0.1
+  endValueY: 1
   endValueZ: 0
---- !u!114 &679091988
+--- !u!114 &607120300
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -813,13 +727,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 0
-  useDuration: 1
-  duration: 1
+  expanded: 0
+  userData: 
+  enabled: 1
+  elements:
+  - {fileID: 1708419186}
+  - {fileID: 500944138}
+  - {fileID: 160781213}
+  - {fileID: 1629788878}
+  - {fileID: 1309620256}
+  target: {fileID: 1179115166}
+  coordinatesSpace: {fileID: 1708419186}
+  value: {fileID: 500944138}
+  timing: {fileID: 160781213}
+  loop: {fileID: 1629788878}
+  easing: {fileID: 1309620256}
+--- !u!114 &611653983
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!1 &701324118
 GameObject:
   m_ObjectHideFlags: 0
@@ -844,7 +785,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 701324118}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.511, y: -0.786, z: -21.304731}
+  m_LocalPosition: {x: -1.38, y: -0.786, z: -21.304731}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1664533958}
@@ -858,32 +799,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &709377698
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  userData: 
-  enabled: 1
-  elements:
-  - {fileID: 1316193727}
-  - {fileID: 290933876}
-  - {fileID: 1510436942}
-  - {fileID: 761854852}
-  target: {fileID: 551581868}
-  value: {fileID: 1316193727}
-  timing: {fileID: 290933876}
-  loop: {fileID: 1510436942}
-  easing: {fileID: 761854852}
---- !u!114 &722560914
+--- !u!114 &730420808
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -898,8 +814,8 @@ MonoBehaviour:
   elementName: Timing
   delay: 0
   useDuration: 1
-  duration: 2
---- !u!114 &761854852
+  duration: 1
+--- !u!114 &1038815411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -912,78 +828,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   elementName: Easing
-  useAnimationCurve: 1
+  useAnimationCurve: 0
   easing: 6
   animationCurveEasing:
     serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.14805909
-      value: 0.99450684
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.3034424
-      value: -0.002746582
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.5100342
-      value: 1.0082397
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.66169435
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.8226972
-      value: 0.9997174
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: 0
-      outSlope: 0
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.095654376
-      outWeight: 0
+    m_Curve: []
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &799800661
+--- !u!114 &1039022011
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -992,25 +845,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
+  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
-  userData: 
-  enabled: 1
-  elements:
-  - {fileID: 1983437129}
-  - {fileID: 480583148}
-  - {fileID: 1686229126}
-  - {fileID: 1026877051}
-  - {fileID: 216249270}
-  target: {fileID: 1179115166}
-  coordinatesSpace: {fileID: 1983437129}
-  value: {fileID: 480583148}
-  timing: {fileID: 1686229126}
-  loop: {fileID: 1026877051}
-  easing: {fileID: 216249270}
---- !u!114 &936318039
+  elementName: Timing
+  delay: 0
+  useDuration: 1
+  duration: 1
+--- !u!114 &1133860091
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1019,41 +861,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
+  m_Script: {fileID: 11500000, guid: 585935bb46a639a4eb95e58cc66be10e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
   userData: 
   enabled: 1
-  elements:
-  - {fileID: 1233867567}
-  - {fileID: 1897190749}
-  - {fileID: 679091988}
-  - {fileID: 1440615766}
-  - {fileID: 1491437338}
-  target: {fileID: 1179115166}
-  coordinatesSpace: {fileID: 1233867567}
-  value: {fileID: 1897190749}
-  timing: {fileID: 679091988}
-  loop: {fileID: 1440615766}
-  easing: {fileID: 1491437338}
---- !u!114 &1026877051
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Loop
-  loopMode: 0
-  loopResetMode: 0
-  loops: 0
---- !u!114 &1176975550
+  elements: []
+  time: 2
+--- !u!114 &1135241903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1150,7 +966,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1233867567
+--- !u!114 &1206266316
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1159,12 +975,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
+  m_Script: {fileID: 11500000, guid: 822ee15e1c7681a46b14dbad600815bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Space
-  coordinatesSpace: 0
---- !u!114 &1316193727
+  expanded: 0
+  userData: 
+  enabled: 1
+  elements: []
+--- !u!114 &1220937793
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1182,14 +1000,77 @@ MonoBehaviour:
   useStartY: 0
   useStartZ: 0
   useEndX: 1
-  useEndY: 1
+  useEndY: 0
   useEndZ: 0
   startValueX: 0
   startValueY: 0
   startValueZ: 0
-  endValueX: 1.4
-  endValueY: 1.4
+  endValueX: 0
+  endValueY: 0
   endValueZ: 0
+--- !u!114 &1239835860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b16f8d70bad64244ac94fbe8a90d7da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Values
+  useStartValue: 0
+  useStartX: 0
+  useStartY: 0
+  useStartZ: 0
+  useEndX: 1
+  useEndY: 0
+  useEndZ: 0
+  startValueX: 0
+  startValueY: 0
+  startValueZ: 0
+  endValueX: 2
+  endValueY: 0
+  endValueZ: 0
+--- !u!114 &1309620256
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Easing
+  useAnimationCurve: 0
+  easing: 6
+  animationCurveEasing:
+    serializedVersion: 2
+    m_Curve: []
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!114 &1360462438
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!1 &1392323543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1271,7 +1152,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1409568379
+--- !u!114 &1485949100
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1280,14 +1161,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Loop
-  loopMode: 0
-  loopResetMode: 0
-  loops: 0
---- !u!114 &1440615766
+  expanded: 0
+  userData: 
+  enabled: 1
+  elements: []
+--- !u!114 &1486650110
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1296,14 +1177,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Loop
-  loopMode: 0
-  loopResetMode: 0
-  loops: 0
---- !u!114 &1491437338
+  expanded: 0
+  userData: 
+  enabled: 1
+  elements:
+  - {fileID: 1135241903}
+  - {fileID: 1220937793}
+  - {fileID: 1964968074}
+  - {fileID: 611653983}
+  - {fileID: 1537499732}
+  target: {fileID: 1179115166}
+  coordinatesSpace: {fileID: 1135241903}
+  value: {fileID: 1220937793}
+  timing: {fileID: 1964968074}
+  loop: {fileID: 611653983}
+  easing: {fileID: 1537499732}
+--- !u!114 &1537499732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1324,7 +1216,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &1510436942
+--- !u!114 &1565049452
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1333,66 +1225,40 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Loop
-  loopMode: 0
-  loopResetMode: 0
-  loops: 0
---- !u!114 &1528496248
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 1.3
-  useDuration: 1
-  duration: 1
---- !u!114 &1529186853
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Loop
-  loopMode: 0
-  loopResetMode: 0
-  loops: 0
---- !u!114 &1564201730
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a30aba14d37c214db45f9cca4d4a86b, type: 3}
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
   userData: 
   enabled: 1
   elements:
-  - {fileID: 196625129}
-  target: {fileID: 1892965444}
-  flipX: 0
-  flipY: 0
-  timing: {fileID: 196625129}
+  - {fileID: 468583651}
+  - {fileID: 557202761}
+  - {fileID: 1039022011}
+  - {fileID: 1360462438}
+  - {fileID: 1038815411}
+  target: {fileID: 1179115166}
+  coordinatesSpace: {fileID: 468583651}
+  value: {fileID: 557202761}
+  timing: {fileID: 1039022011}
+  loop: {fileID: 1360462438}
+  easing: {fileID: 1038815411}
+--- !u!114 &1629788878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!1 &1664533957
 GameObject:
   m_ObjectHideFlags: 0
@@ -1555,7 +1421,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1686229126
+--- !u!114 &1708419186
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1564,14 +1430,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
+  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 2.1
-  useDuration: 1
-  duration: 1
---- !u!114 &1804950490
+  elementName: Space
+  coordinatesSpace: 0
+--- !u!114 &1827978599
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1580,34 +1444,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a30aba14d37c214db45f9cca4d4a86b, type: 3}
+  m_Script: {fileID: 11500000, guid: c52eeae8853cd354495891fe114716e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
   userData: 
   enabled: 1
   elements:
-  - {fileID: 1883757054}
-  target: {fileID: 1179115165}
-  flipX: 0
-  flipY: 0
-  timing: {fileID: 1883757054}
---- !u!114 &1883757054
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Timing
-  delay: 0
-  useDuration: 0
-  duration: 1
+  - {fileID: 541186837}
+  loop: {fileID: 541186837}
 --- !u!1 &1892965442
 GameObject:
   m_ObjectHideFlags: 0
@@ -1689,7 +1534,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1897190749
+--- !u!114 &1936055799
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1698,24 +1543,25 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b16f8d70bad64244ac94fbe8a90d7da, type: 3}
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Values
-  useStartValue: 0
-  useStartX: 0
-  useStartY: 0
-  useStartZ: 0
-  useEndX: 1
-  useEndY: 0
-  useEndZ: 0
-  startValueX: 0
-  startValueY: 0
-  startValueZ: 0
-  endValueX: 1
-  endValueY: 0
-  endValueZ: 0
---- !u!114 &1961524149
+  expanded: 0
+  userData: 
+  enabled: 1
+  elements:
+  - {fileID: 204408515}
+  - {fileID: 1239835860}
+  - {fileID: 730420808}
+  - {fileID: 2065128104}
+  - {fileID: 133422635}
+  target: {fileID: 1179115166}
+  coordinatesSpace: {fileID: 204408515}
+  value: {fileID: 1239835860}
+  timing: {fileID: 730420808}
+  loop: {fileID: 2065128104}
+  easing: {fileID: 133422635}
+--- !u!114 &1964968074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1724,77 +1570,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7f94250b555811f42961fdc70dbeda9f, type: 3}
+  m_Script: {fileID: 11500000, guid: b38b76628e0ae3848af260ca9eeb49f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  elementName: Easing
-  useAnimationCurve: 1
-  easing: 6
-  animationCurveEasing:
-    serializedVersion: 2
-    m_Curve:
-    - serializedVersion: 3
-      time: 0
-      value: 0
-      inSlope: 0.80167145
-      outSlope: 0.80167145
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0
-      outWeight: 0.3044391
-    - serializedVersion: 3
-      time: 0.25484723
-      value: -0.07520887
-      inSlope: 0.08984142
-      outSlope: 0.08984142
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.43332028
-      value: 0.07396999
-      inSlope: -0.12471962
-      outSlope: -0.12471962
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.51416236
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 0.6584476
-      value: -0.07762453
-      inSlope: 1.2631942
-      outSlope: 1.2631942
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.33333334
-    - serializedVersion: 3
-      time: 1
-      value: 0
-      inSlope: -1.083907
-      outSlope: -1.083907
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.1407541
-      outWeight: 0
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
---- !u!114 &1983437129
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa083e8909643ea4aa883159528078b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  elementName: Space
-  coordinatesSpace: 0
+  elementName: Timing
+  delay: 0
+  useDuration: 1
+  duration: 1
 --- !u!1 &2051323068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1876,6 +1658,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &2065128104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0105a88ca3f134e4fa692787602c051a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  elementName: Loop
+  loopMode: 0
+  loopResetMode: 0
+  loops: 0
 --- !u!1 &2103385896
 GameObject:
   m_ObjectHideFlags: 0
