@@ -12,6 +12,7 @@ namespace Juce.Feedbacks
         [SerializeField] private Image target = default;
 
         [SerializeField] [HideInInspector] private SpriteElement value = default;
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -39,6 +40,9 @@ namespace Juce.Feedbacks
         protected override void OnCreate()
         {
             value = AddElement<SpriteElement>("Values");
+
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
@@ -47,6 +51,8 @@ namespace Juce.Feedbacks
             {
                 return;
             }
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

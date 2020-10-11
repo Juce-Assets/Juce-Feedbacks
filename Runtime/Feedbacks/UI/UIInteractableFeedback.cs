@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
         [SerializeField] private bool interactable = default;
         [SerializeField] private bool blocksRaycasts = default;
 
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target != null)
@@ -39,9 +41,17 @@ namespace Juce.Feedbacks
             return $"Interactable: {interactable} | Blocks raycast: {blocksRaycasts}";
         }
 
+        protected override void OnCreate()
+        {
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
+        }
+
         public override void OnExectue(SequenceTween sequenceTween)
         {
             CanvasGroup canvasGroup = target.GetOrAddComponent<CanvasGroup>();
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

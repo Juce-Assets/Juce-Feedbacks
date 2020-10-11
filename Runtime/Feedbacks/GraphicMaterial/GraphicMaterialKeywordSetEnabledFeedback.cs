@@ -7,11 +7,9 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Keyword Set Enabled", "Graphic Material/")]
     public class GraphicMaterialKeywordSetEnabledFeedback : Feedback
     {
-        [Header("Target")]
         [SerializeField] [HideInInspector] private GraphicMaterialPropertyElement target = default;
-
-        [Header("Value")]
         [SerializeField] [HideInInspector] private BoolElement value = default;
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -42,6 +40,9 @@ namespace Juce.Feedbacks
             target.MaterialPropertyType = MaterialPropertyType.All;
 
             value = AddElement<BoolElement>("Enabled");
+
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
@@ -62,6 +63,8 @@ namespace Juce.Feedbacks
                 Debug.Log("");
                 return;
             }
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

@@ -11,6 +11,7 @@ namespace Juce.Feedbacks
         [SerializeField] private AudioSource target = default;
 
         [SerializeField] [HideInInspector] private AudioClipElement value = default;
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -40,6 +41,9 @@ namespace Juce.Feedbacks
         protected override void OnCreate()
         {
             value = AddElement<AudioClipElement>("Values");
+
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
@@ -48,6 +52,8 @@ namespace Juce.Feedbacks
             {
                 return;
             }
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

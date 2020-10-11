@@ -13,8 +13,6 @@ namespace Juce.Feedbacks
 
         private SerializedProperty userDataProperty;
         private SerializedProperty delayProperty;
-        private SerializedProperty loopProperty;
-        private SerializedProperty loopsProperty;
 
         private void OnEnable()
         {
@@ -25,7 +23,9 @@ namespace Juce.Feedbacks
         {
             EditorGUI.BeginChangeCheck();
 
-            EditorGUILayout.PropertyField(userDataProperty);
+            //EditorGUILayout.PropertyField(userDataProperty);
+
+            EditorGUILayout.PropertyField(delayProperty);
 
             base.DrawDefaultInspector();
 
@@ -39,8 +39,6 @@ namespace Juce.Feedbacks
         {
             userDataProperty = serializedObject.FindProperty("userData");
             delayProperty = serializedObject.FindProperty("delay");
-            loopProperty = serializedObject.FindProperty("loop");
-            loopsProperty = serializedObject.FindProperty("loops");
         }
     }
 }

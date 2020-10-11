@@ -13,6 +13,8 @@ namespace Juce.Feedbacks
         [Header("Values")]
         [SerializeField] private bool withChildren = true;
 
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target != null)
@@ -38,12 +40,20 @@ namespace Juce.Feedbacks
             return info;
         }
 
+        protected override void OnCreate()
+        {
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
+        }
+
         public override void OnExectue(SequenceTween sequenceTween)
         {
             if (target == null)
             {
                 return;
             }
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

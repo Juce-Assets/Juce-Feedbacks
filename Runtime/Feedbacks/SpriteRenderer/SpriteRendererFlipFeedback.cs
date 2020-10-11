@@ -14,6 +14,8 @@ namespace Juce.Feedbacks
         [SerializeField] private bool flipX = default;
         [SerializeField] private bool flipY = default;
 
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target != null)
@@ -39,7 +41,8 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-           
+            timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
@@ -48,6 +51,8 @@ namespace Juce.Feedbacks
             {
                 return;
             }
+
+            sequenceTween.AppendWaitTime(timing.Delay);
 
             sequenceTween.AppendCallback(() =>
             {

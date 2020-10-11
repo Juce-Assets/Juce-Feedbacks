@@ -10,10 +10,10 @@ namespace Juce.Feedbacks
         [Header("Target")]
         [SerializeField] private Transform target = default;
 
-        [SerializeField] [HideInInspector] private DurationElement duration = default;
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private CoordinatesSpaceElement coordinatesSpace;
+        [SerializeField] [HideInInspector] private CoordinatesSpaceElement coordinatesSpace = default;
         [SerializeField] [HideInInspector] private Vector3Element value = default;
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [SerializeField] [HideInInspector] private LoopElement loop = default;
         [SerializeField] [HideInInspector] private EasingElement easing = default;
 
         public override bool GetFeedbackErrors(out string errors)
@@ -36,7 +36,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"{duration.Duration}s";
+            string info = $"{timing.Duration}s";
 
             if (value.UseStartValue)
             {
@@ -59,15 +59,17 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            duration = AddElement<DurationElement>("Timing");
-            loop = AddElement<LoopElement>("Loop");
             coordinatesSpace = AddElement<CoordinatesSpaceElement>("Space");
             value = AddElement<Vector3Element>("Values");
+            timing = AddElement<TimingElement>("Timing");
+            loop = AddElement<LoopElement>("Loop");
             easing = AddElement<EasingElement>("Easing");
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
+            sequenceTween.AppendWaitTime(timing.Delay);
+
             if (value.UseStartValue)
             {
                 SequenceTween startSequence = new SequenceTween();
@@ -124,17 +126,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenLocalPositionX(value.EndValueX, duration.Duration));
+                            endSequence.Join(target.TweenLocalPositionX(value.EndValueX, timing.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenLocalPositionY(value.EndValueY, duration.Duration));
+                            endSequence.Join(target.TweenLocalPositionY(value.EndValueY, timing.Duration));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenLocalPositionZ(value.EndValueZ, duration.Duration));
+                            endSequence.Join(target.TweenLocalPositionZ(value.EndValueZ, timing.Duration));
                         }
                     }
                     break;
@@ -143,17 +145,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenPositionX(value.EndValueX, duration.Duration));
+                            endSequence.Join(target.TweenPositionX(value.EndValueX, timing.Duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenPositionY(value.EndValueY, duration.Duration));
+                            endSequence.Join(target.TweenPositionY(value.EndValueY, timing.Duration));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenPositionZ(value.EndValueZ, duration.Duration));
+                            endSequence.Join(target.TweenPositionZ(value.EndValueZ, timing.Duration));
                         }
                     }
                     break;

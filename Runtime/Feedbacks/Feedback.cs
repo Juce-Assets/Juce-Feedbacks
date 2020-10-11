@@ -11,7 +11,6 @@ namespace Juce.Feedbacks
         [SerializeField] private string userData = default;
 
         [SerializeField] [HideInInspector] private bool enabled = true;
-        [SerializeField] [HideInInspector] [Min(0)] private float delay = default;
 
         [SerializeField] [HideInInspector] protected List<Element> elements = new List<Element>();
 
@@ -20,7 +19,6 @@ namespace Juce.Feedbacks
         public bool Expanded { get => expanded; set => expanded = value; }
         public string UserData { get => userData; set => userData = value; }
         public bool Enabled { get => enabled; set => enabled = value; }
-        public float Delay => delay;
 
         protected T AddElement<T>(string name) where T : Element
         {

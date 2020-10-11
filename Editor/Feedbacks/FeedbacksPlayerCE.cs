@@ -17,6 +17,10 @@ namespace Juce.Feedbacks
 
         private SerializedProperty feedbacksProperty;
 
+        private SerializedProperty loopModeProperty;
+        private SerializedProperty loopResetModeProperty;
+        private SerializedProperty loopsProperty;
+
         private void OnEnable()
         {
             GatherProperties();
@@ -31,6 +35,8 @@ namespace Juce.Feedbacks
             EditorGUI.BeginChangeCheck();
 
             base.DrawDefaultInspector();
+
+            DrawLoopProperties();
 
             DrawFeedbacksEditors();
 
@@ -47,6 +53,10 @@ namespace Juce.Feedbacks
         private void GatherProperties()
         {
             feedbacksProperty = serializedObject.FindProperty("feedbacks");
+
+            loopModeProperty = serializedObject.FindProperty("loopMode");
+            loopResetModeProperty = serializedObject.FindProperty("loopResetMode");
+            loopsProperty = serializedObject.FindProperty("loops");
         }
 
         private Feedback AddFeedback(Type type)
@@ -100,7 +110,7 @@ namespace Juce.Feedbacks
         {
             RemoveCacheFeedbackEditor(feedback);
 
-            if(feedback == null)
+            if (feedback == null)
             {
                 return;
             }
@@ -182,13 +192,26 @@ namespace Juce.Feedbacks
             return null;
         }
 
+        private void DrawLoopProperties()
+        {
+            EditorGUILayout.PropertyField(loopModeProperty);
+
+            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStoped)
+            {
+                EditorGUILayout.PropertyField(loopResetModeProperty);
+            }
+
+            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes)
+            {
+                EditorGUILayout.PropertyField(loopsProperty);
+            }
+        }
+
         private void DrawFeedbacksEditors()
         {
             Event e = Event.current;
 
             EditorGUILayout.Space(5);
-
-            //FeedbacksPlayerStyling.DrawSplitter();
 
             EditorGUILayout.LabelField("Feedbacks", EditorStyles.boldLabel);
 
@@ -198,23 +221,9 @@ namespace Juce.Feedbacks
 
                 FeedbackTypeEditorData feedbackTypeEditorData = currFeedback.FeedbackTypeEditorData;
 
-                //if (!string.IsNullOrEmpty(currFeedback.UserLabel))
-                //{
-                //    title += $" [{currFeedback.UserLabel}]";
-                //}
 
                 bool expanded = currFeedback.Feedback.Expanded;
                 bool enabled = currFeedback.Feedback.Enabled;
-
-                //Rect headerRect = FeedbacksPlayerStyling.DrawHeader(ref expanded, ref activeField, title, () =>
-                //{
-                //    ShowFeedbackContextMenu(currFeedback);
-                //});
-
-                //currFeedback.Expanded = expanded;
-                //currFeedback.Active = activeField;
-
-                //FeedbacksPlayerStyling.DrawSplitter();
 
                 if (!string.IsNullOrEmpty(feedbackTypeEditorData.Description))
                 {
@@ -229,7 +238,7 @@ namespace Juce.Feedbacks
 
                     string targetInfo = currFeedback.Feedback.GetFeedbackTargetInfo();
 
-                    if(!string.IsNullOrEmpty(targetInfo))
+                    if (!string.IsNullOrEmpty(targetInfo))
                     {
                         name += $" [{targetInfo}]";
                     }
@@ -281,6 +290,8 @@ namespace Juce.Feedbacks
                             EditorGUILayout.LabelField(element.ElementName, EditorStyles.boldLabel);
 
                             elementEditor.OnInspectorGUI();
+
+                            DestroyImmediate(elementEditor);
                         }
                     }
                 }

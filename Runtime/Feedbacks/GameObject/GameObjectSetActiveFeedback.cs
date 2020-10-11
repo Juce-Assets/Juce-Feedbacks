@@ -10,8 +10,8 @@ namespace Juce.Feedbacks
         [Header("Target")]
         [SerializeField] private GameObject target = default;
 
-        [Header("Values")]
-        [SerializeField] private bool setActive = default;
+        [SerializeField] [HideInInspector] private BoolElement value = default;
+        [SerializeField] [HideInInspector] private TimingElement timing = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -33,12 +33,20 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            return $"Value: {setActive}";
+            return $"Value: {value.Value}";
+        }
+
+        protected override void OnCreate()
+        {
+            value = AddElement<BoolElement>("Value");
+            timing = AddElement<TimingElement>("Timing");
         }
 
         public override void OnExectue(SequenceTween sequenceTween)
         {
-            sequenceTween.AppendCallback(() => target.SetActive(target));
+            sequenceTween.AppendWaitTime(timing.Delay);
+
+            sequenceTween.AppendCallback(() => target.SetActive(value.Value));
         }
     }
 }

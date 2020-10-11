@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
@@ -10,6 +11,10 @@ namespace Juce.Feedbacks
 
         [SerializeField] private bool executeOnAwake = default;
         [SerializeField] [Min(0)] private float delay = default;
+
+        [SerializeField] [HideInInspector] private LoopMode loopMode = LoopMode.Disabled;
+        [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
+        [SerializeField] [HideInInspector] [Min(0)] private int loops = default;
 
         private void Start()
         {
@@ -58,17 +63,27 @@ namespace Juce.Feedbacks
 
                 Tween.SequenceTween sequenceTween = new Tween.SequenceTween();
 
-                if (currFeedback.Delay > 0)
-                {
-                    sequenceTween.AppendWaitTime(currFeedback.Delay);
-                }
-
                 currFeedback.OnExectue(sequenceTween);
 
                 feedbacksSequenceTween.Join(sequenceTween);
             }
 
             mainSequenceTween.Append(feedbacksSequenceTween);
+
+            switch (loopMode)
+            {
+                case LoopMode.XTimes:
+                    {
+                        mainSequenceTween.SetLoops(loops, loopResetMode);
+                    }
+                    break;
+
+                case LoopMode.UntilManuallyStoped:
+                    {
+                        mainSequenceTween.SetLoops(int.MaxValue, loopResetMode);
+                    }
+                    break;
+            }
 
             mainSequenceTween.Play();
         }
