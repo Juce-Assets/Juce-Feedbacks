@@ -23,8 +23,6 @@ namespace Juce.Feedbacks
         {
             EditorGUI.BeginChangeCheck();
 
-            //EditorGUILayout.PropertyField(userDataProperty);
-
             EditorGUILayout.PropertyField(delayProperty);
 
             base.DrawDefaultInspector();

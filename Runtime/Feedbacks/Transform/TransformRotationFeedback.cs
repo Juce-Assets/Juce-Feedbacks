@@ -10,6 +10,8 @@ namespace Juce.Feedbacks
         [Header("Target")]
         [SerializeField] private Transform target = default;
 
+        [SerializeField] private RotationMode rotationMode = default;
+
         [SerializeField] [HideInInspector] private CoordinatesSpaceElement coordinatesSpace = default;
         [SerializeField] [HideInInspector] private Vector3Element value = default;
         [SerializeField] [HideInInspector] private TimingElement timing = default;
@@ -80,17 +82,17 @@ namespace Juce.Feedbacks
                         {
                             if (value.UseStartX)
                             {
-                                startSequence.Join(target.TweenLocalRotationX(value.StartValueX, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationX(value.StartValueX, 0.0f, rotationMode));
                             }
 
                             if (value.UseStartY)
                             {
-                                startSequence.Join(target.TweenLocalRotationY(value.StartValueY, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationY(value.StartValueY, 0.0f, rotationMode));
                             }
 
                             if (value.UseStartZ)
                             {
-                                startSequence.Join(target.TweenLocalRotationZ(value.StartValueZ, 0.0f));
+                                startSequence.Join(target.TweenLocalRotationZ(value.StartValueZ, 0.0f, rotationMode));
                             }
                         }
                         break;
@@ -126,17 +128,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenLocalRotationX(value.EndValueX, timing.Duration));
+                            endSequence.Join(target.TweenLocalRotationX(value.EndValueX, timing.Duration, rotationMode));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenLocalRotationY(value.EndValueY, timing.Duration));
+                            endSequence.Join(target.TweenLocalRotationY(value.EndValueY, timing.Duration, rotationMode));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenLocalRotationZ(value.EndValueZ, timing.Duration));
+                            endSequence.Join(target.TweenLocalRotationZ(value.EndValueZ, timing.Duration, rotationMode));
                         }
                     }
                     break;

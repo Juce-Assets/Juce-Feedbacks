@@ -39,7 +39,9 @@ namespace Juce.Feedbacks
         protected override void OnCreate()
         {
             value = AddElement<BoolElement>("Value");
+
             timing = AddElement<TimingElement>("Timing");
+            timing.UseDuration = false;
         }
 
         public override void OnExectue(FlowContext context, SequenceTween sequenceTween)

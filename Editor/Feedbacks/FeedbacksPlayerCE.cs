@@ -51,6 +51,11 @@ namespace Juce.Feedbacks
             {
                 EditorUtility.SetDirty(CustomTarget.gameObject);
             }
+
+            if(Application.isPlaying)
+            {
+                Repaint();
+            }
         }
 
         private void GatherProperties()
@@ -231,8 +236,6 @@ namespace Juce.Feedbacks
                 Rect progressRect = GUILayoutUtility.GetRect(4f, 2f);
                 progressRect.width *= tween.GetProgress();
                 EditorGUI.DrawRect(progressRect, Color.white);
-
-                Repaint();
             }
         }
 
