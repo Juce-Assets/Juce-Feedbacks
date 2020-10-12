@@ -1177,7 +1177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   userData: 
   enabled: 1
   elements:
@@ -1548,7 +1548,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   userData: 
   enabled: 1
   elements:
@@ -1977,7 +1977,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   userData: 
   enabled: 1
   elements:

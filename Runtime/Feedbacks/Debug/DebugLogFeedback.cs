@@ -5,12 +5,23 @@ using Juce.Tween;
 namespace Juce.Feedbacks
 {
     [FeedbackIdentifier("Log", "Debug/")]
+    [FeedbackColor(0.5f, 0.4f, 0.1f)]
     public class DebugLogFeedback : Feedback
     {
         [Header("Values")]
         [SerializeField] private string log = default;
 
         [SerializeField] [HideInInspector] private TimingElement timing = default;
+
+        public override string GetFeedbackInfo()
+        {
+            if(string.IsNullOrEmpty(log))
+            {
+                return string.Empty;
+            }
+
+            return $"Log: { log }";
+        }
 
         protected override void OnCreate()
         {

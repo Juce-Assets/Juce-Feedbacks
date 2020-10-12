@@ -52,7 +52,7 @@ namespace Juce.Feedbacks
                 EditorUtility.SetDirty(CustomTarget.gameObject);
             }
 
-            if(Application.isPlaying)
+            if (Application.isPlaying)
             {
                 Repaint();
             }
@@ -180,18 +180,13 @@ namespace Juce.Feedbacks
                             continue;
                         }
 
-                        FeedbackDescription description = currType.GetCustomAttribute(typeof(FeedbackDescription)) as FeedbackDescription;
+                        FeedbackDescription descriptionAttribute = currType.GetCustomAttribute(typeof(FeedbackDescription)) as FeedbackDescription;
+                        string description = descriptionAttribute != null ? descriptionAttribute.Description : string.Empty;
 
-                        FeedbackTypeEditorData data;
+                        FeedbackColor colorAttribute = currType.GetCustomAttribute(typeof(FeedbackColor)) as FeedbackColor;
+                        Color color = colorAttribute != null ? colorAttribute.Color : new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-                        if (description != null)
-                        {
-                            data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path, description.Description);
-                        }
-                        else
-                        {
-                            data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path);
-                        }
+                        FeedbackTypeEditorData data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path, description, color);
 
                         feedbackTypes.Add(data);
                     }
@@ -231,11 +226,19 @@ namespace Juce.Feedbacks
 
         private void DrawProgress(Tween.Tween tween)
         {
+            Rect progressRect = GUILayoutUtility.GetRect(0.0f, 0.0f);
+            progressRect.x -= 3;
+            progressRect.width += 6;
+            progressRect.height = 2.0f;
+
             if (tween != null && tween.IsPlaying)
             {
-                Rect progressRect = GUILayoutUtility.GetRect(4f, 2f);
                 progressRect.width *= tween.GetProgress();
                 EditorGUI.DrawRect(progressRect, Color.white);
+            }
+            else
+            {
+                EditorGUI.DrawRect(progressRect, new Color(0.0f, 0.0f, 0.0f, 0.0f));
             }
         }
 
@@ -274,7 +277,8 @@ namespace Juce.Feedbacks
                         name += $" [{targetInfo}]";
                     }
 
-                    Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, () => ShowFeedbackContextMenu(currFeedback.Feedback));
+                    Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, feedbackTypeEditorData.Color, 
+                        () => ShowFeedbackContextMenu(currFeedback.Feedback));
 
                     dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, i);
 
@@ -287,7 +291,7 @@ namespace Juce.Feedbacks
                     if (hasErrors)
                     {
                         GUIStyle s = new GUIStyle(EditorStyles.label);
-                        s.normal.textColor = Color.red;
+                        s.normal.textColor = new Color(0.8f, 0.2f, 0.2f);
 
                         EditorGUILayout.LabelField($"Warning: {errors}", s);
                     }
@@ -423,7 +427,7 @@ namespace Juce.Feedbacks
 
                         if (GUILayout.Button("Restart"))
                         {
-                             CustomTarget.Restart();
+                            CustomTarget.Restart();
                         }
                     }
                     GUILayout.EndHorizontal();

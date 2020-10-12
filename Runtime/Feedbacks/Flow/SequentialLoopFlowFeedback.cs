@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Juce.Feedbacks
 {
     [FeedbackIdentifier("Sequential Loop", "Flow/")]
+    [FeedbackColor(0.0f, 0.4f, 0.5f)]
     public class SequentialLoopFlowFeedback : Feedback
     {
         [SerializeField] [HideInInspector] private LoopElement loop = default;

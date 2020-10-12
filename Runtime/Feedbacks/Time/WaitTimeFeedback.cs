@@ -5,6 +5,7 @@ using Juce.Tween;
 namespace Juce.Feedbacks
 {
     [FeedbackIdentifier("Wait", "Time/")]
+    [FeedbackColor(0.1f, 0.5f, 0.3f)]
     public class WaitTimeFeedback : Feedback
     {
         [Header("Values")]

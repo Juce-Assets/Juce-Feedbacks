@@ -34,7 +34,7 @@ namespace Juce.Feedbacks
             EditorGUI.DrawRect(rect, Splitter);
         }
 
-        public static Rect DrawHeader(ref bool expanded, ref bool activeField, string title, Action showGenericMenu)
+        public static Rect DrawHeader(ref bool expanded, ref bool activeField, string title, Color color, Action showGenericMenu)
         {
             Event e = Event.current;
 
@@ -68,8 +68,12 @@ namespace Juce.Feedbacks
             Rect menuRect = new Rect(labelRect.xMax + 4f, labelRect.y - 5f, 16, 20);
 
             // Background rect should be full-width
-            backgroundRect.xMin -= 1f;
-            backgroundRect.width += 1f;
+            backgroundRect.xMin -= 3f;
+            backgroundRect.yMin -= 2f;
+            backgroundRect.width += 3f;
+            backgroundRect.height += 2f;
+
+            EditorGUI.DrawRect(backgroundRect, color);
 
             // Foldout
             expanded = GUI.Toggle(foldoutRect, expanded, GUIContent.none, EditorStyles.foldout);
