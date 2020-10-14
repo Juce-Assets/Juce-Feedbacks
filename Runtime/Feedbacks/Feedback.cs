@@ -20,7 +20,7 @@ namespace Juce.Feedbacks
         public string UserData { get => userData; set => userData = value; }
         public bool Enabled { get => enabled; set => enabled = value; }
 
-        public SequenceTween FeedbackSequence { get; set; }
+        public ExecuteResult ExecuteResult { get; set; }
 
         protected T AddElement<T>(string name) where T : Element
         {
@@ -43,6 +43,6 @@ namespace Juce.Feedbacks
         public virtual string GetFeedbackInfo() { return string.Empty; }
         protected virtual void OnCreate() { }
 
-        public abstract void OnExectue(FlowContext context, SequenceTween sequenceTween);
+        public abstract ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween);
     }
 }

@@ -44,11 +44,22 @@ namespace Juce.Feedbacks
             timing.UseDuration = false;
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
+            Tween.Tween delayTween = null;
+
+            if (timing.Delay > 0)
+            {
+                delayTween = new WaitTimeTween(timing.Delay);
+                sequenceTween.Append(delayTween);
+            }
 
             sequenceTween.AppendCallback(() => target.SetActive(value.Value));
+
+            ExecuteResult result = new ExecuteResult();
+            result.DelayTween = delayTween;
+
+            return result;
         }
     }
 }

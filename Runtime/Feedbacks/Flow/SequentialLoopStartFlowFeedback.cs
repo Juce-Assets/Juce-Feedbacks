@@ -8,11 +8,11 @@ namespace Juce.Feedbacks
     [FeedbackColor(0.0f, 0.4f, 0.5f)]
     public class SequentialLoopStartFlowFeedback : Feedback
     {
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             if(context.HasLoopStart)
             {
-                return;
+                return null;
             }
 
             context.MainSequence.Append(context.CurrentSequence);
@@ -20,6 +20,8 @@ namespace Juce.Feedbacks
             context.CurrentSequence = new SequenceTween();
 
             context.HasLoopStart = true;
+
+            return new ExecuteResult();
         }
     }
 }

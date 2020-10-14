@@ -180,13 +180,12 @@ namespace Juce.Feedbacks
                             continue;
                         }
 
-                        FeedbackDescription descriptionAttribute = currType.GetCustomAttribute(typeof(FeedbackDescription)) as FeedbackDescription;
-                        string description = descriptionAttribute != null ? descriptionAttribute.Description : string.Empty;
-
                         FeedbackColor colorAttribute = currType.GetCustomAttribute(typeof(FeedbackColor)) as FeedbackColor;
                         Color color = colorAttribute != null ? colorAttribute.Color : new Color(0.0f, 0.0f, 0.0f, 0.0f);
 
-                        FeedbackTypeEditorData data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path, description, color);
+                        string fullName = $"{identifier.Path.Replace("/", " ")}{identifier.Name}";
+
+                        FeedbackTypeEditorData data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path, fullName, color);
 
                         feedbackTypes.Add(data);
                     }
@@ -224,17 +223,29 @@ namespace Juce.Feedbacks
             }
         }
 
-        private void DrawProgress(Tween.Tween tween)
+        private void DrawProgress(Feedback feedback)
         {
             Rect progressRect = GUILayoutUtility.GetRect(0.0f, 0.0f);
             progressRect.x -= 3;
             progressRect.width += 6;
             progressRect.height = 2.0f;
 
-            if (tween != null && tween.IsPlaying)
+            if (feedback.ExecuteResult != null && feedback.ExecuteResult.ProgresTween != null)
             {
-                progressRect.width *= tween.GetProgress();
-                EditorGUI.DrawRect(progressRect, Color.white);
+                if(feedback.ExecuteResult.DelayTween != null && feedback.ExecuteResult.DelayTween.IsPlaying)
+                {
+                    progressRect.width *= feedback.ExecuteResult.DelayTween.GetProgress();
+                    EditorGUI.DrawRect(progressRect, Color.gray);
+                }
+                else if (feedback.ExecuteResult.ProgresTween.IsCompleted)
+                {
+                    EditorGUI.DrawRect(progressRect, Color.green);
+                }
+                else
+                {
+                    progressRect.width *= feedback.ExecuteResult.ProgresTween.GetProgress();
+                    EditorGUI.DrawRect(progressRect, Color.white);
+                }
             }
             else
             {
@@ -259,16 +270,9 @@ namespace Juce.Feedbacks
                 bool expanded = currFeedback.Feedback.Expanded;
                 bool enabled = currFeedback.Feedback.Enabled;
 
-                if (!string.IsNullOrEmpty(feedbackTypeEditorData.Description))
-                {
-                    EditorGUILayout.HelpBox(feedbackTypeEditorData.Description, MessageType.None);
-
-                    EditorGUILayout.Space(2);
-                }
-
                 using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
                 {
-                    string name = $"{feedbackTypeEditorData.Path.Replace("/", " ")}{feedbackTypeEditorData.Name}";
+                    string name = feedbackTypeEditorData.FullName;
 
                     string targetInfo = currFeedback.Feedback.GetFeedbackTargetInfo();
 
@@ -303,7 +307,7 @@ namespace Juce.Feedbacks
 
                     if (!expanded)
                     {
-                        DrawProgress(currFeedback.Feedback.FeedbackSequence);
+                        DrawProgress(currFeedback.Feedback);
 
                         string feedbackInfoString = currFeedback.Feedback.GetFeedbackInfo();
 
@@ -334,9 +338,6 @@ namespace Juce.Feedbacks
                         }
                     }
                 }
-
-                // Check if we start dragging this feedback
-                //draggingHelper.CheckDraggingItem(e, headerRect, FeedbacksPlayerStyling.ReorderRect, i);
             }
 
             // Finish dragging
@@ -396,8 +397,21 @@ namespace Juce.Feedbacks
             GenericMenu menu = new GenericMenu();
 
             menu.AddItem(new GUIContent("Remove"), false, () => RemoveFeedback(feedback));
+            menu.AddSeparator("");
+            menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDescription(feedback));
 
             menu.ShowAsContext();
+        }
+
+        private void ShowFeedbackDescription(Feedback feedback)
+        {
+            FeedbackTypeEditorData feedbackTypeEditorData = GetFeedbackEditorDataByType(feedback.GetType());
+
+            FeedbackDocumentationWindow window = EditorWindow.GetWindow<FeedbackDocumentationWindow>("Feedbacks documentation");
+
+            window.Init(feedbackTypeEditorData);
+
+            window.Show();
         }
 
         private void DrawFeedbackPlayerControls()

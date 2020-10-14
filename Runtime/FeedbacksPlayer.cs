@@ -80,11 +80,16 @@ namespace Juce.Feedbacks
 
                 Tween.SequenceTween sequenceTween = new Tween.SequenceTween();
 
-                currFeedback.OnExectue(context, sequenceTween);
+                ExecuteResult executeResult = currFeedback.OnExecute(context, sequenceTween);
+
+                if(executeResult == null)
+                {
+                    continue;
+                }
 
                 context.CurrentSequence.Join(sequenceTween);
 
-                currFeedback.FeedbackSequence = sequenceTween;
+                currFeedback.ExecuteResult = executeResult;
             }
 
             context.MainSequence.Append(context.CurrentSequence);

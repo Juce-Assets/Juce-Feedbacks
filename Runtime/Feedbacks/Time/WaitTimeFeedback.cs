@@ -21,9 +21,14 @@ namespace Juce.Feedbacks
             return $"Time: { time }";
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(time);
+            Tween.Tween progressTween = new WaitTimeTween(time);
+
+            ExecuteResult result = new ExecuteResult();
+            result.ProgresTween = progressTween;
+
+            return result;
         }
     }
 }

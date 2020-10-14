@@ -20,7 +20,7 @@ namespace Juce.Feedbacks
             loop = AddElement<LoopElement>("Value");
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             loop.SetLoop(context.CurrentSequence);
 
@@ -36,6 +36,8 @@ namespace Juce.Feedbacks
             }
 
             context.CurrentSequence = new SequenceTween();
+
+            return new ExecuteResult();
         }
     }
 }

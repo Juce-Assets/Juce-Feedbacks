@@ -67,20 +67,33 @@ namespace Juce.Feedbacks
             easing = AddElement<EasingElement>("Easing");
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
+            Tween.Tween delayTween = null;
+
+            if (timing.Delay > 0)
+            {
+                delayTween = new WaitTimeTween(timing.Delay);
+                sequenceTween.Append(delayTween);
+            }
 
             if (value.UseStartValue)
             {
                 sequenceTween.Append(target.TweenColor(value.StartValue, 0.0f));
             }
 
-            sequenceTween.Append(target.TweenColor(value.EndValue, timing.Duration));
+            Tween.Tween progressTween = target.TweenColor(value.EndValue, timing.Duration);
+            sequenceTween.Append(progressTween);
 
             easing.SetEasing(sequenceTween);
 
             loop.SetLoop(sequenceTween);
+
+            ExecuteResult result = new ExecuteResult();
+            result.DelayTween = delayTween;
+            result.ProgresTween = progressTween;
+
+            return result;
         }
     }
 }

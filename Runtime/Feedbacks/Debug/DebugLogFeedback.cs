@@ -29,11 +29,17 @@ namespace Juce.Feedbacks
             timing.UseDuration = false;
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
+            Tween.Tween delayTween = new WaitTimeTween(timing.Delay);
+            sequenceTween.Append(delayTween);
 
             sequenceTween.AppendCallback(() => Debug.Log(log));
+
+            ExecuteResult result = new ExecuteResult();
+            result.DelayTween = delayTween;
+
+            return result;
         }
     }
 }

@@ -8,6 +8,5 @@ namespace Juce.Feedbacks
         public SequenceTween MainSequence { get; } = new SequenceTween();
         public SequenceTween CurrentSequence { get; set; } = new SequenceTween();
         public bool HasLoopStart { get; set; }
-        public float CurrentDelay { get; set; }
     }
 }

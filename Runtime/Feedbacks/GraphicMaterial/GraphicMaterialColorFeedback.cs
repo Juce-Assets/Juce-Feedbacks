@@ -68,11 +68,11 @@ namespace Juce.Feedbacks
             easing = AddElement<EasingElement>("Easing");
         }
 
-        public override void OnExectue(FlowContext context, SequenceTween sequenceTween)
+        public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             if (target.Graphic == null)
             {
-                return;
+                return null;
             }
 
             GraphicMaterialUtils.TryInstantiateGraphicMaterial(target);
@@ -84,21 +84,34 @@ namespace Juce.Feedbacks
             if (!hasProperty)
             {
                 Debug.Log("");
-                return;
+                return null;
             }
 
-            sequenceTween.AppendWaitTime(context.CurrentDelay + timing.Delay);
+            Tween.Tween delayTween = null;
+
+            if (timing.Delay > 0)
+            {
+                delayTween = new WaitTimeTween(timing.Delay);
+                sequenceTween.Append(delayTween);
+            }
 
             if (value.UseStartValue)
             {
                 sequenceTween.Append(material.TweenColor(value.StartValue, target.Property, 0.0f));
             }
 
+            Tween.Tween progressTween = material.TweenColor(value.EndValue, target.Property, timing.Duration);
             sequenceTween.Append(material.TweenColor(value.EndValue, target.Property, timing.Duration));
 
             easing.SetEasing(sequenceTween);
 
             loop.SetLoop(sequenceTween);
+
+            ExecuteResult result = new ExecuteResult();
+            result.DelayTween = delayTween;
+            result.ProgresTween = progressTween;
+
+            return result;
         }
     }
 }
