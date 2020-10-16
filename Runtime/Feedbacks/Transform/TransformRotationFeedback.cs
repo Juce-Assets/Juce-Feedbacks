@@ -61,11 +61,20 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            coordinatesSpace = AddElement<CoordinatesSpaceElement>("Space");
-            value = AddElement<Vector3Element>("Values");
-            timing = AddElement<TimingElement>("Timing");
-            loop = AddElement<LoopElement>("Loop");
-            easing = AddElement<EasingElement>("Easing");
+            AddElement<CoordinatesSpaceElement>(0, "Space");
+            AddElement<Vector3Element>(1, "Values");
+            AddElement<TimingElement>(2, "Timing");
+            AddElement<LoopElement>(3, "Loop");
+            AddElement<EasingElement>(4, "Easing");
+        }
+
+        protected override void OnLink()
+        {
+            coordinatesSpace = GetElement<CoordinatesSpaceElement>(0);
+            value = GetElement<Vector3Element>(1);
+            timing = GetElement<TimingElement>(2);
+            loop = GetElement<LoopElement>(3);
+            easing = GetElement<EasingElement>(4);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

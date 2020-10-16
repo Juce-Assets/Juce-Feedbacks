@@ -17,7 +17,12 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            loop = AddElement<LoopElement>("Value");
+            AddElement<LoopElement>(0, "Value");
+        }
+
+        protected override void OnLink()
+        {
+            loop = GetElement<LoopElement>(0);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

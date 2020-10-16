@@ -40,10 +40,15 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            value = AddElement<AudioClipElement>("Values");
+            AddElement<AudioClipElement>(0, "Values");
+            TimingElement timingElement = AddElement<TimingElement>(1, "Timing");
+            timingElement.UseDuration = false;
+        }
 
-            timing = AddElement<TimingElement>("Timing");
-            timing.UseDuration = false;
+        protected override void OnLink()
+        {
+            value = GetElement<AudioClipElement>(0);
+            timing = GetElement<TimingElement>(1);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

@@ -57,17 +57,26 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            target = AddElement<GraphicMaterialPropertyElement>("Target");
-            target.MaterialPropertyType = MaterialPropertyType.Color;
+            GraphicMaterialPropertyElement graphicMaterialPropertyElement = AddElement<GraphicMaterialPropertyElement>(0, "Target");
+            graphicMaterialPropertyElement.MaterialPropertyType = MaterialPropertyType.Color;
 
-            value = AddElement<FloatElement>("Values");
-            value.MinValue = 0.0f;
-            value.MaxValue = 1.0f;
+            FloatElement floatElement = AddElement<FloatElement>(1, "Values");
+            floatElement.MinValue = 0.0f;
+            floatElement.MaxValue = 1.0f;
 
-            timing = AddElement<TimingElement>("Timing");
-            loop = AddElement<LoopElement>("Loop");
+            AddElement<TimingElement>(2, "Timing");
+            AddElement<LoopElement>(3, "Loop");
 
-            easing = AddElement<EasingElement>("Easing");
+            AddElement<EasingElement>(4, "Easing");
+        }
+
+        protected override void OnLink()
+        {
+            target = GetElement<GraphicMaterialPropertyElement>(0);
+            value = GetElement<FloatElement>(1);
+            timing = GetElement<TimingElement>(2);
+            loop = GetElement<LoopElement>(3);
+            easing = GetElement<EasingElement>(4);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

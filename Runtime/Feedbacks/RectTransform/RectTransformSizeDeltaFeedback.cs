@@ -58,10 +58,18 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            timing = AddElement<TimingElement>("Timing");
-            loop = AddElement<LoopElement>("Loop");
-            value = AddElement<Vector2Element>("Values");
-            easing = AddElement<EasingElement>("Easing");
+            AddElement<Vector2Element>(0, "Values");
+            AddElement<TimingElement>(1, "Timing");
+            AddElement<LoopElement>(2, "Loop");
+            AddElement<EasingElement>(3, "Easing");
+        }
+
+        protected override void OnLink()
+        {
+            value = GetElement<Vector2Element>(0);
+            timing = GetElement<TimingElement>(1);
+            loop = GetElement<LoopElement>(2);
+            easing = GetElement<EasingElement>(3);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

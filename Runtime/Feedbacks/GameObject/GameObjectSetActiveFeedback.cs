@@ -38,10 +38,16 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            value = AddElement<BoolElement>("Value");
+            AddElement<BoolElement>(0, "Value");
 
-            timing = AddElement<TimingElement>("Timing");
-            timing.UseDuration = false;
+            TimingElement timingElement = AddElement<TimingElement>(1, "Timing");
+            timingElement.UseDuration = false;
+        }
+
+        protected override void OnLink()
+        {
+            value = GetElement<BoolElement>(0);
+            timing = GetElement<TimingElement>(1);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

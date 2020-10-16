@@ -118,6 +118,17 @@ namespace Juce.Feedbacks
             CustomTarget.ReorderFeedback(startIndex, endIndex);
         }
 
+        public void PasteFeedback(Feedback feedback)
+        {
+            Feedback feedbackCopy = Instantiate(feedback) as Feedback;
+
+            feedbackCopy.Init(feedback);
+
+            CacheFeedbackEditor(feedbackCopy);
+
+            CustomTarget.AddFeedback(feedbackCopy);
+        }
+
         private void ChacheAllFeedbacksEditor()
         {
             for (int i = 0; i < feedbacksProperty.arraySize; ++i)
@@ -230,21 +241,28 @@ namespace Juce.Feedbacks
             progressRect.width += 6;
             progressRect.height = 2.0f;
 
-            if (feedback.ExecuteResult != null && feedback.ExecuteResult.ProgresTween != null)
+            if (feedback.ExecuteResult != null)
             {
                 if(feedback.ExecuteResult.DelayTween != null && feedback.ExecuteResult.DelayTween.IsPlaying)
                 {
                     progressRect.width *= feedback.ExecuteResult.DelayTween.GetProgress();
                     EditorGUI.DrawRect(progressRect, Color.gray);
                 }
-                else if (feedback.ExecuteResult.ProgresTween.IsCompleted)
+                else if (feedback.ExecuteResult.ProgresTween != null)
                 {
-                    EditorGUI.DrawRect(progressRect, Color.green);
+                    if (feedback.ExecuteResult.ProgresTween.IsCompleted)
+                    {
+                        EditorGUI.DrawRect(progressRect, Color.green);
+                    }
+                    else
+                    {
+                        progressRect.width *= feedback.ExecuteResult.ProgresTween.GetProgress();
+                        EditorGUI.DrawRect(progressRect, Color.white);
+                    }
                 }
                 else
                 {
-                    progressRect.width *= feedback.ExecuteResult.ProgresTween.GetProgress();
-                    EditorGUI.DrawRect(progressRect, Color.white);
+                    EditorGUI.DrawRect(progressRect, new Color(0.0f, 0.0f, 0.0f, 0.0f));
                 }
             }
             else
@@ -397,8 +415,11 @@ namespace Juce.Feedbacks
             GenericMenu menu = new GenericMenu();
 
             menu.AddItem(new GUIContent("Remove"), false, () => RemoveFeedback(feedback));
+            menu.AddItem(new GUIContent("Copy"), false, () => CopyPasteHelper.Instance.CopyFeedback(feedback));
+            menu.AddItem(new GUIContent("Paste"), false, () => CopyPasteHelper.Instance.PasteFeedback(this));
             menu.AddSeparator("");
             menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDescription(feedback));
+
 
             menu.ShowAsContext();
         }

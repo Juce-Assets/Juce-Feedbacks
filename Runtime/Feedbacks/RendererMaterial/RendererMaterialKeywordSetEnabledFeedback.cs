@@ -40,13 +40,20 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            target = AddElement<RendererMaterialPropertyElement>("Target");
-            target.MaterialPropertyType = MaterialPropertyType.All;
+            RendererMaterialPropertyElement rendererMaterialPropertyElement = AddElement<RendererMaterialPropertyElement>(0, "Target");
+            rendererMaterialPropertyElement.MaterialPropertyType = MaterialPropertyType.All;
 
-            value = AddElement<BoolElement>("Enabled");
+            AddElement<BoolElement>(1, "Values");
 
-            timing = AddElement<TimingElement>("Timing");
-            timing.UseDuration = false;
+            TimingElement timingElement = AddElement<TimingElement>(2, "Timing");
+            timingElement.UseDuration = false;
+        }
+
+        protected override void OnLink()
+        {
+            target = GetElement<RendererMaterialPropertyElement>(0);
+            value = GetElement<BoolElement>(1);
+            timing = GetElement<TimingElement>(2);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

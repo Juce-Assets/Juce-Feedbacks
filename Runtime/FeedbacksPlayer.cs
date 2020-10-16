@@ -92,7 +92,7 @@ namespace Juce.Feedbacks
                 currFeedback.ExecuteResult = executeResult;
             }
 
-            context.MainSequence.Append(context.CurrentSequence);
+            context.MainSequence.Join(context.CurrentSequence);
 
             switch (loopMode)
             {

@@ -58,14 +58,21 @@ namespace Juce.Feedbacks
 
         protected override void OnCreate()
         {
-            value = AddElement<FloatElement>("Values");
-            value.MinValue = 0.0f;
-            value.MaxValue = 1.0f;
+            FloatElement floatElement = AddElement<FloatElement>(0, "Values");
+            floatElement.MinValue = 0.0f;
+            floatElement.MaxValue = 1.0f;
 
-            timing = AddElement<TimingElement>("Timing");
-            loop = AddElement<LoopElement>("Loop");
+            AddElement<TimingElement>(1, "Timing");
+            AddElement<LoopElement>(2, "Loop");
+            AddElement<EasingElement>(3, "Easing");
+        }
 
-            easing = AddElement<EasingElement>("Easing");
+        protected override void OnLink()
+        {
+            value = GetElement<FloatElement>(0);
+            timing = GetElement<TimingElement>(1);
+            loop = GetElement<LoopElement>(2);
+            easing = GetElement<EasingElement>(3);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
