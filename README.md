@@ -41,3 +41,6 @@ From here, you can start adding any of the avaliable feedbacks that are included
 ![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/UsingFeedbacks4.png)
 
 ![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/UsingFeedbacks5.png)
+
+### Feedback Sections
+![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/FeedbackSkeleton.png)
