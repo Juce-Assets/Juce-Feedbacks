@@ -48,3 +48,4 @@ From here, you can start adding any of the avaliable feedbacks that are included
 In the following image we can see the sections that an average feedback will have.
 
 ![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/FeedbackSkeleton.png)
+
