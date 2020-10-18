@@ -31,4 +31,4 @@ Download this repository, and place it under the Assets folder of your Unity pro
 And that's all, with that you should be ready to go!
 
 ## Usage
-Read the [Usage Guide](https://github.com/Juce-Assets/Juce-Feedbacks/wiki/Usage) for more information.
+Read the [Usage Guide](https://github.com/Juce-Assets/Juce-Feedbacks/wiki/Usage-Guide) for more information.
