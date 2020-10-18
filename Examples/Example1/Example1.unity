@@ -1013,6 +1013,52 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
+--- !u!114 &591035968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  userData: 
+  enabled: 1
+  target: {fileID: 0}
+  coordinatesSpace: 0
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 0
+    useEndZ: 0
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0
+    endValueY: 0
+    endValueZ: 0
+  delay: 0
+  duration: 0
+  easing:
+    useAnimationCurve: 0
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  loop:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
 --- !u!1 &620412492
 GameObject:
   m_ObjectHideFlags: 0
@@ -3110,7 +3156,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f4a6b6cb0cc10a4ab4b303fae16dfc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  feedbacks: []
+  feedbacks:
+  - {fileID: 591035968}
+  - {fileID: 1959041172}
   executeOnAwake: 0
   loopMode: 0
   loopResetMode: 0
@@ -3170,6 +3218,25 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
+  loop:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1959041172
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c52eeae8853cd354495891fe114716e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 1
+  userData: 
+  enabled: 1
   loop:
     loopMode: 0
     loopResetMode: 0
