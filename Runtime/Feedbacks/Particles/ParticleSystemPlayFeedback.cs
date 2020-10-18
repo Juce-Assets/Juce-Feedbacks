@@ -7,13 +7,14 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Play", "ParticleSystem/")]
     public class ParticleSystemPlayFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private ParticleSystem target = default;
 
-        [Header("Values")]
+        [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private bool withChildren = true;
 
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -40,17 +41,6 @@ namespace Juce.Feedbacks
             return info;
         }
 
-        protected override void OnCreate()
-        {
-            TimingElement timingElement = AddElement<TimingElement>(0, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            timing = GetElement<TimingElement>(0);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             if (target == null)
@@ -60,9 +50,9 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 

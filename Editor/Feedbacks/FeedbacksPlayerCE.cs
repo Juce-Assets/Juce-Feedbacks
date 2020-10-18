@@ -87,8 +87,6 @@ namespace Juce.Feedbacks
 
             CustomTarget.AddFeedback(newFeedback);
 
-            newFeedback.Init();
-
             return newFeedback;
         }
 
@@ -118,11 +116,9 @@ namespace Juce.Feedbacks
             CustomTarget.ReorderFeedback(startIndex, endIndex);
         }
 
-        public void PasteFeedback(Feedback feedback)
+        public void PasteFeedbackAsNew(Feedback feedback)
         {
             Feedback feedbackCopy = Instantiate(feedback) as Feedback;
-
-            feedbackCopy.Init(feedback);
 
             CacheFeedbackEditor(feedbackCopy);
 
@@ -320,7 +316,7 @@ namespace Juce.Feedbacks
 
                     if (!string.IsNullOrEmpty(currFeedback.Feedback.UserData))
                     {
-                        EditorGUILayout.LabelField($"{currFeedback.Feedback.UserData}");
+                        GUILayout.Label($"{currFeedback.Feedback.UserData}", EditorStyles.wordWrappedLabel);
                     }
 
                     if (!expanded)
@@ -340,20 +336,9 @@ namespace Juce.Feedbacks
 
                         Styling.DrawSplitter(1, -4, 4);
 
+                        EditorGUILayout.Space(5);
+
                         currFeedback.Editor.OnInspectorGUI();
-
-                        foreach (Element element in currFeedback.Feedback.Elements)
-                        {
-                            EditorGUILayout.Space(2);
-
-                            Editor elementEditor = Editor.CreateEditor(element);
-
-                            EditorGUILayout.LabelField(element.ElementName, EditorStyles.boldLabel);
-
-                            elementEditor.OnInspectorGUI();
-
-                            DestroyImmediate(elementEditor);
-                        }
                     }
                 }
             }
@@ -415,9 +400,21 @@ namespace Juce.Feedbacks
             GenericMenu menu = new GenericMenu();
 
             menu.AddItem(new GUIContent("Remove"), false, () => RemoveFeedback(feedback));
-            menu.AddItem(new GUIContent("Copy"), false, () => CopyPasteHelper.Instance.CopyFeedback(feedback));
-            menu.AddItem(new GUIContent("Paste"), false, () => CopyPasteHelper.Instance.PasteFeedback(this));
+
             menu.AddSeparator("");
+
+            menu.AddItem(new GUIContent("Copy"), false, () => CopyPasteHelper.Instance.CopyFeedback(feedback));
+
+            if (CopyPasteHelper.Instance.CanPaste)
+            {
+                menu.AddItem(new GUIContent("Paste as new"), false, () => CopyPasteHelper.Instance.PasteFeedbackAsNew(this));
+            }
+            else
+            {
+                menu.AddDisabledItem(new GUIContent("Paste As New"), false);
+            }
+            menu.AddSeparator("");
+
             menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDescription(feedback));
 
 

@@ -7,11 +7,14 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("SetActive", "GameObject/")]
     public class GameObjectSetActiveFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private GameObject target = default;
 
-        [SerializeField] [HideInInspector] private BoolElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] [HideInInspector] private bool setActive = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -33,34 +36,20 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            return $"Value: {value.Value}";
-        }
-
-        protected override void OnCreate()
-        {
-            AddElement<BoolElement>(0, "Value");
-
-            TimingElement timingElement = AddElement<TimingElement>(1, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            value = GetElement<BoolElement>(0);
-            timing = GetElement<TimingElement>(1);
+            return $"Value: {setActive}";
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
-            sequenceTween.AppendCallback(() => target.SetActive(value.Value));
+            sequenceTween.AppendCallback(() => target.SetActive(setActive));
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

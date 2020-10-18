@@ -11,7 +11,6 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
 
         [SerializeField] private bool executeOnAwake = default;
-        [SerializeField] [Min(0)] private float delay = default;
 
         [SerializeField] [HideInInspector] private LoopMode loopMode = LoopMode.Disabled;
         [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
@@ -63,11 +62,6 @@ namespace Juce.Feedbacks
             Kill();
 
             FlowContext context = new FlowContext();
-
-            if(delay > 0)
-            {
-                context.MainSequence.AppendWaitTime(delay);
-            }
 
             for (int i = 0; i < feedbacks.Count; ++i)
             {

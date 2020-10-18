@@ -8,26 +8,17 @@ namespace Juce.Feedbacks
     [FeedbackColor(0.0f, 0.4f, 0.5f)]
     public class SequentialLoopFlowFeedback : Feedback
     {
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override string GetFeedbackInfo()
         {
             return $"Loops: {loop.Loops}";
         }
 
-        protected override void OnCreate()
-        {
-            AddElement<LoopElement>(0, "Value");
-        }
-
-        protected override void OnLink()
-        {
-            loop = GetElement<LoopElement>(0);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            loop.SetLoop(context.CurrentSequence);
+            LoopUtils.SetLoop(context.CurrentSequence, loop);
 
             if (!context.HasLoopStart)
             {

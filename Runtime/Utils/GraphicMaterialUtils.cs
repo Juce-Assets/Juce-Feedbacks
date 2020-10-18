@@ -4,7 +4,7 @@ namespace Juce.Feedbacks
 {
     public static class GraphicMaterialUtils
     {
-        public static void TryInstantiateGraphicMaterial(GraphicMaterialPropertyElement target)
+        public static void TryInstantiateGraphicMaterial(GraphicMaterialProperty target)
         {
             if (target.InstantiateMaterial)
             {

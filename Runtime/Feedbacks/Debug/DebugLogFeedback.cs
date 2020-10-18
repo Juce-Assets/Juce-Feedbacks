@@ -8,10 +8,11 @@ namespace Juce.Feedbacks
     [FeedbackColor(0.5f, 0.4f, 0.1f)]
     public class DebugLogFeedback : Feedback
     {
-        [Header("Values")]
+        [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private string log = default;
 
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
 
         public override string GetFeedbackInfo()
         {
@@ -23,21 +24,15 @@ namespace Juce.Feedbacks
             return $"Log: { log }";
         }
 
-        protected override void OnCreate()
-        {
-            TimingElement timingElement = AddElement<TimingElement>(0, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            timing = GetElement<TimingElement>(0);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            Tween.Tween delayTween = new WaitTimeTween(timing.Delay);
-            sequenceTween.Append(delayTween);
+            Tween.Tween delayTween = null;
+
+            if (delay > 0)
+            {
+                delayTween = new WaitTimeTween(delay);
+                sequenceTween.Append(delayTween);
+            }
 
             sequenceTween.AppendCallback(() => Debug.Log(log));
 

@@ -7,9 +7,15 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Keyword Set Enabled", "Graphic Material/")]
     public class GraphicMaterialKeywordSetEnabledFeedback : Feedback
     {
-        [SerializeField] [HideInInspector] private GraphicMaterialPropertyElement target = default;
-        [SerializeField] [HideInInspector] private BoolElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.TargetSection)]
+        [SerializeField] private GraphicMaterialProperty target = new GraphicMaterialProperty();
+
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private bool setEnabled = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] private float delay = default;
+        [SerializeField] private float duration = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -31,25 +37,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            return $"Value: {value.Value}";
-        }
-
-        protected override void OnCreate()
-        {
-            GraphicMaterialPropertyElement graphicMaterialPropertyElement = AddElement<GraphicMaterialPropertyElement>(0, "Target");
-            graphicMaterialPropertyElement.MaterialPropertyType = MaterialPropertyType.All;
-
-            AddElement<BoolElement>(1, "Enabled");
-
-            TimingElement timingElement = AddElement<TimingElement>(2, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            target = GetElement<GraphicMaterialPropertyElement>(0);
-            value = GetElement<BoolElement>(1);
-            timing = GetElement<TimingElement>(2);
+            return $"Value: {setEnabled}";
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -73,15 +61,15 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
             sequenceTween.AppendCallback(() =>
             {
-                if (value.Value)
+                if (setEnabled)
                 {
                     material.EnableKeyword(target.Property);
                 }

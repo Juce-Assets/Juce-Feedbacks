@@ -7,25 +7,34 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Scale", "Transform/")]
     public class TransformScaleFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private Transform target = default;
 
-        [SerializeField] [HideInInspector] private Vector3Element value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private EasingElement easing = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private StartEndVector3Property value = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = default;
+
+        [Header(FeedbackSectionsUtils.EasingSection)]
+        [SerializeField] private EasingProperty easing = default;
+
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target != null)
+            errors = string.Empty;
+
+            bool targetIsNull = ErrorUtils.CheckTargetNull(target, out string targetNullErrorMessage);
+
+            if(targetIsNull)
             {
-                errors = "";
-                return false;
+                errors = targetNullErrorMessage;
             }
 
-            errors = "Target is null";
-
-            return true;
+            return targetIsNull;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -35,50 +44,16 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"{timing.Duration}s";
-
-            if (value.UseStartValue)
-            {
-                info += $" | Start: x:{value.StartValueX} y:{value.StartValueY} z: {value.StartValueZ}";
-            }
-
-            info += $" | End: x:{value.EndValueX} y:{value.EndValueY} z: {value.EndValueZ}";
-
-            if (!easing.UseAnimationCurve)
-            {
-                info += $" | Ease: {easing.Easing}";
-            }
-            else
-            {
-                info += $" | Ease: Curve";
-            }
-
-            return info;
-        }
-
-        protected override void OnCreate()
-        {
-            AddElement<Vector3Element>(0, "Values");
-            AddElement<TimingElement>(1, "Timing");
-            AddElement<LoopElement>(2, "Loop");
-            AddElement<EasingElement>(3, "Easing");
-        }
-
-        protected override void OnLink()
-        {
-            value = GetElement<Vector3Element>(0);
-            timing = GetElement<TimingElement>(1);
-            loop = GetElement<LoopElement>(2);
-            easing = GetElement<EasingElement>(3);
+            return value.GetInfo();
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
@@ -108,26 +83,25 @@ namespace Juce.Feedbacks
 
             if (value.UseEndX)
             {
-                endSequence.Join(target.TweenLocalScaleX(value.EndValueX, timing.Duration));
+                endSequence.Join(target.TweenLocalScaleX(value.EndValueX, duration));
             }
 
             if (value.UseEndY)
             {
-                endSequence.Join(target.TweenLocalScaleY(value.EndValueY, timing.Duration));
+                endSequence.Join(target.TweenLocalScaleY(value.EndValueY, duration));
             }
 
             if (value.UseEndZ)
             {
-                endSequence.Join(target.TweenLocalScaleZ(value.EndValueZ, timing.Duration));
+                endSequence.Join(target.TweenLocalScaleZ(value.EndValueZ, duration));
             }
 
             Tween.Tween progressTween = endSequence;
 
-            easing.SetEasing(endSequence);
-
             sequenceTween.Append(endSequence);
 
-            loop.SetLoop(sequenceTween);
+            EasingUtils.SetEasing(sequenceTween, easing);
+            LoopUtils.SetLoop(sequenceTween, loop);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

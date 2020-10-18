@@ -8,11 +8,15 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Sprite", "Image/")]
     public class ImageSpriteFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private Image target = default;
 
-        [SerializeField] [HideInInspector] private SpriteElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private Sprite spriteToSet = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -34,21 +38,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            return value.Value != null ? value.Value.name : string.Empty;
-        }
-
-        protected override void OnCreate()
-        {
-            AddElement<SpriteElement>(0, "Values");
-
-            TimingElement timingElement = AddElement<TimingElement>(1, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            value = GetElement<SpriteElement>(0);
-            timing = GetElement<TimingElement>(1);
+            return spriteToSet != null ? spriteToSet.name : string.Empty;
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -60,15 +50,15 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
             sequenceTween.AppendCallback(() =>
             {
-                target.sprite = value.Value;
+                target.sprite = spriteToSet;
             });
 
             ExecuteResult result = new ExecuteResult();

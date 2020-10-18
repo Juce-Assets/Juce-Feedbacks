@@ -8,12 +8,14 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Keyword Set Enabled", "Renderer Material/")]
     public class RendererMaterialKeywordSetEnabledFeedback : Feedback
     {
-        [Header("Target")]
-        [SerializeField] [HideInInspector] private RendererMaterialPropertyElement target = default;
+        [Header(FeedbackSectionsUtils.TargetSection)]
+        [SerializeField] [HideInInspector] private RendererMaterialProperty target = new RendererMaterialProperty();
 
-        [SerializeField] [HideInInspector] private BoolElement value = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] [HideInInspector] private bool enabled = default;
 
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -35,25 +37,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            return $"Value: {value.Value}";
-        }
-
-        protected override void OnCreate()
-        {
-            RendererMaterialPropertyElement rendererMaterialPropertyElement = AddElement<RendererMaterialPropertyElement>(0, "Target");
-            rendererMaterialPropertyElement.MaterialPropertyType = MaterialPropertyType.All;
-
-            AddElement<BoolElement>(1, "Values");
-
-            TimingElement timingElement = AddElement<TimingElement>(2, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            target = GetElement<RendererMaterialPropertyElement>(0);
-            value = GetElement<BoolElement>(1);
-            timing = GetElement<TimingElement>(2);
+            return $"Value: { enabled }";
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -75,15 +59,15 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
             sequenceTween.AppendCallback(() =>
             {
-                if (value.Value)
+                if (enabled)
                 {
                     material.EnableKeyword(target.Property);
                 }

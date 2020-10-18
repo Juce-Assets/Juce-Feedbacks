@@ -7,19 +7,21 @@ namespace Juce.Feedbacks
     {
         private Feedback clipboardFeedback;
 
+        public bool CanPaste => clipboardFeedback != null;
+
         public void CopyFeedback(Feedback clipboardFeedback)
         {
             this.clipboardFeedback = clipboardFeedback;
         }
 
-        public void PasteFeedback(FeedbacksPlayerCE feedbackPlayer)
+        public void PasteFeedbackAsNew(FeedbacksPlayerCE feedbackPlayer)
         {
             if(clipboardFeedback == null)
             {
                 return;
             }
 
-            feedbackPlayer.PasteFeedback(clipboardFeedback);
+            feedbackPlayer.PasteFeedbackAsNew(clipboardFeedback);
         }
     }
 }

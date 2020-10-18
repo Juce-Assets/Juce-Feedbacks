@@ -8,11 +8,21 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Float", "Graphic Material/")]
     public class GraphicMaterialFloatFeedback : Feedback
     {
-        [SerializeField] [HideInInspector] private GraphicMaterialPropertyElement target = default;
-        [SerializeField] [HideInInspector] private FloatElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private EasingElement easing = default;
+        [Header(FeedbackSectionsUtils.TargetSection)]
+        [SerializeField] private GraphicMaterialFloatProperty target = new GraphicMaterialFloatProperty();
+
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private StartEndFloatProperty value = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = default;
+
+        [Header(FeedbackSectionsUtils.EasingSection)]
+        [SerializeField] private EasingProperty easing = default;
+
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -34,7 +44,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"{timing.Duration}s";
+            string info = $"{duration}s";
 
             if (value.UseStartValue)
             {
@@ -53,28 +63,6 @@ namespace Juce.Feedbacks
             }
 
             return info;
-        }
-
-        protected override void OnCreate()
-        {
-            GraphicMaterialPropertyElement graphicMaterialPropertyElement = AddElement<GraphicMaterialPropertyElement>(0, "Target");
-            graphicMaterialPropertyElement.MaterialPropertyType = MaterialPropertyType.Color;
-
-            AddElement<FloatElement>(1, "Values");
-
-            AddElement<TimingElement>(2, "Timing");
-            AddElement<LoopElement>(3, "Loop");
-
-            AddElement<EasingElement>(4, "Easing");
-        }
-
-        protected override void OnLink()
-        {
-            target = GetElement<GraphicMaterialPropertyElement>(0);
-            value = GetElement<FloatElement>(1);
-            timing = GetElement<TimingElement>(2);
-            loop = GetElement<LoopElement>(3);
-            easing = GetElement<EasingElement>(4);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -98,9 +86,9 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
@@ -109,12 +97,11 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(material.TweenFloat(value.StartValue, target.Property, 0.0f));
             }
 
-            Tween.Tween progressTween = material.TweenFloat(value.EndValue, target.Property, timing.Duration);
+            Tween.Tween progressTween = material.TweenFloat(value.EndValue, target.Property, duration);
             sequenceTween.Append(progressTween);
 
-            easing.SetEasing(sequenceTween);
-
-            loop.SetLoop(sequenceTween);
+            EasingUtils.SetEasing(sequenceTween, easing);
+            LoopUtils.SetLoop(sequenceTween, loop);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

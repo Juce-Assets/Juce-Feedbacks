@@ -7,16 +7,23 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Rotation", "Transform/")]
     public class TransformRotationFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private Transform target = default;
 
+        [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private RotationMode rotationMode = default;
+        [SerializeField] private CoordinatesSpace coordinatesSpace = default;
+        [SerializeField] private StartEndVector3Property value = default;
 
-        [SerializeField] [HideInInspector] private CoordinatesSpaceElement coordinatesSpace = default;
-        [SerializeField] [HideInInspector] private Vector3Element value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private EasingElement easing = default;
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = default;
+
+        [Header(FeedbackSectionsUtils.EasingSection)]
+        [SerializeField] private EasingProperty easing = default;
+
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -38,7 +45,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"{timing.Duration}s";
+            string info = $"{duration}s";
 
             if (value.UseStartValue)
             {
@@ -59,31 +66,13 @@ namespace Juce.Feedbacks
             return info;
         }
 
-        protected override void OnCreate()
-        {
-            AddElement<CoordinatesSpaceElement>(0, "Space");
-            AddElement<Vector3Element>(1, "Values");
-            AddElement<TimingElement>(2, "Timing");
-            AddElement<LoopElement>(3, "Loop");
-            AddElement<EasingElement>(4, "Easing");
-        }
-
-        protected override void OnLink()
-        {
-            coordinatesSpace = GetElement<CoordinatesSpaceElement>(0);
-            value = GetElement<Vector3Element>(1);
-            timing = GetElement<TimingElement>(2);
-            loop = GetElement<LoopElement>(3);
-            easing = GetElement<EasingElement>(4);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
@@ -91,7 +80,7 @@ namespace Juce.Feedbacks
             {
                 SequenceTween startSequence = new SequenceTween();
 
-                switch (coordinatesSpace.CoordinatesSpace)
+                switch (coordinatesSpace)
                 {
                     case CoordinatesSpace.Local:
                         {
@@ -137,23 +126,23 @@ namespace Juce.Feedbacks
 
             SequenceTween endSequence = new SequenceTween();
 
-            switch (coordinatesSpace.CoordinatesSpace)
+            switch (coordinatesSpace)
             {
                 case CoordinatesSpace.Local:
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenLocalRotationX(value.EndValueX, timing.Duration, rotationMode));
+                            endSequence.Join(target.TweenLocalRotationX(value.EndValueX, duration, rotationMode));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenLocalRotationY(value.EndValueY, timing.Duration, rotationMode));
+                            endSequence.Join(target.TweenLocalRotationY(value.EndValueY, duration, rotationMode));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenLocalRotationZ(value.EndValueZ, timing.Duration, rotationMode));
+                            endSequence.Join(target.TweenLocalRotationZ(value.EndValueZ, duration, rotationMode));
                         }
                     }
                     break;
@@ -162,17 +151,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenRotationX(value.EndValueX, timing.Duration));
+                            endSequence.Join(target.TweenRotationX(value.EndValueX, duration));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenRotationY(value.EndValueY, timing.Duration));
+                            endSequence.Join(target.TweenRotationY(value.EndValueY, duration));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenRotationZ(value.EndValueZ, timing.Duration));
+                            endSequence.Join(target.TweenRotationZ(value.EndValueZ, duration));
                         }
                     }
                     break;
@@ -180,11 +169,10 @@ namespace Juce.Feedbacks
 
             Tween.Tween progressTween = endSequence;
 
-            easing.SetEasing(endSequence);
-
             sequenceTween.Append(endSequence);
 
-            loop.SetLoop(sequenceTween);
+            EasingUtils.SetEasing(sequenceTween, easing);
+            LoopUtils.SetLoop(sequenceTween, loop);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

@@ -7,13 +7,21 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Pitch", "AudioSource/")]
     public class AudioSourcePitchFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private AudioSource target = default;
 
-        [SerializeField] [HideInInspector] private FloatElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
-        [SerializeField] [HideInInspector] private LoopElement loop = default;
-        [SerializeField] [HideInInspector] private EasingElement easing = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private StartEndFloatProperty value = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = default;
+
+        [Header(FeedbackSectionsUtils.EasingSection)]
+        [SerializeField] private EasingProperty easing = default;
+
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -35,7 +43,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackInfo()
         {
-            string info = $"{timing.Delay} {timing.Duration}s";
+            string info = $"{delay} {duration}s";
 
             if (value.UseStartValue)
             {
@@ -47,29 +55,13 @@ namespace Juce.Feedbacks
             return info;
         }
 
-        protected override void OnCreate()
-        {
-            AddElement<FloatElement>(0, "Values");
-            AddElement<TimingElement>(1, "Timing");
-            AddElement<LoopElement>(2, "Loop");
-            AddElement<EasingElement>(3, "Easing");
-        }
-
-        protected override void OnLink()
-        {
-            value = GetElement<FloatElement>(0);
-            timing = GetElement<TimingElement>(1);
-            loop = GetElement<LoopElement>(2);
-            easing = GetElement<EasingElement>(3);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
@@ -78,12 +70,11 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(target.TweenPitch(value.StartValue, 0.0f));
             }
 
-            Tween.Tween progressTween = target.TweenPitch(value.EndValue, timing.Duration);
+            Tween.Tween progressTween = target.TweenPitch(value.EndValue, duration);
             sequenceTween.Append(progressTween);
 
-            easing.SetEasing(sequenceTween);
-
-            loop.SetLoop(sequenceTween);
+            EasingUtils.SetEasing(sequenceTween, easing);
+            LoopUtils.SetLoop(sequenceTween, loop);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

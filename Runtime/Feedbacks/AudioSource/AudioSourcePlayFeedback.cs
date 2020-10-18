@@ -7,11 +7,18 @@ namespace Juce.Feedbacks
     [FeedbackIdentifier("Play", "AudioSource/")]
     public class AudioSourcePlayFeedback : Feedback
     {
-        [Header("Target")]
+        [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private AudioSource target = default;
 
-        [SerializeField] [HideInInspector] private AudioClipElement value = default;
-        [SerializeField] [HideInInspector] private TimingElement timing = default;
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private AudioClip audioClip = default;
+        [SerializeField] private bool oneShot = default;
+
+        [Header(FeedbackSectionsUtils.TimingSection)]
+        [SerializeField] [Min(0)] private float delay = default;
+
+        [Header(FeedbackSectionsUtils.LoopSection)]
+        [SerializeField] private LoopProperty loop = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -38,19 +45,6 @@ namespace Juce.Feedbacks
             return info;
         }
 
-        protected override void OnCreate()
-        {
-            AddElement<AudioClipElement>(0, "Values");
-            TimingElement timingElement = AddElement<TimingElement>(1, "Timing");
-            timingElement.UseDuration = false;
-        }
-
-        protected override void OnLink()
-        {
-            value = GetElement<AudioClipElement>(0);
-            timing = GetElement<TimingElement>(1);
-        }
-
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             if(target == null)
@@ -60,25 +54,27 @@ namespace Juce.Feedbacks
 
             Tween.Tween delayTween = null;
 
-            if (timing.Delay > 0)
+            if (delay > 0)
             {
-                delayTween = new WaitTimeTween(timing.Delay);
+                delayTween = new WaitTimeTween(delay);
                 sequenceTween.Append(delayTween);
             }
 
             sequenceTween.AppendCallback(() =>
             {
-                if (!value.OneShot)
+                if (!oneShot)
                 {
-                    target.clip = value.Value;
+                    target.clip = audioClip;
 
                     target.Play();
                 }
                 else
                 {
-                    target.PlayOneShot(value.Value);
+                    target.PlayOneShot(audioClip);
                 }
             });
+
+            LoopUtils.SetLoop(sequenceTween, loop);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;
