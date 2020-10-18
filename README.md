@@ -37,3 +37,7 @@ It's very easy to start creating feedbacks. First of all, add a FeedbacksPlayer 
 From here, you can start adding any of the avaliable feedbacks that are included in the library by pressing on the  button 'Add Feedback':
 
 ![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/UsingFeedbacks3.png)
+
+![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/UsingFeedbacks4.png)
+
+![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/master/Misc/UsingFeedbacks5.png)
