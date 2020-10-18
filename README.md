@@ -12,7 +12,7 @@ Welcome to **Juce-Feedbacks**, the open-source feedbacks library that's part of 
  [![ko-fi](https://www.ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/juceunity)
  
 ## Minimum Requirements
-- Unity 2019.4.X
+- Unity 2019.3.2
 
 ## Installing via Github
 ### Dependences
