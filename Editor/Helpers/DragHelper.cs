@@ -35,21 +35,22 @@ namespace Juce.Feedbacks
 
             // If hovering at the top of the feedback while dragging one, check where
             // the feedback should be dropped: top or bottom
-            if (rect.Contains(e.mousePosition))
+            bool rectContainsMousePosition = rect.Contains(e.mousePosition);
+
+            if (!rectContainsMousePosition || draggedStartID < 0)
             {
-                if (draggedStartID >= 0)
-                {
-                    draggedEndID = index;
+                return;
+            }
 
-                    Rect headerSplit = rect;
-                    headerSplit.height *= 0.5f;
-                    headerSplit.y += headerSplit.height;
+            draggedEndID = index;
 
-                    if (headerSplit.Contains(e.mousePosition))
-                    {
-                        draggedEndID = index + 1;
-                    }
-                }
+            Rect headerSplit = rect;
+            headerSplit.height *= 0.5f;
+            headerSplit.y += headerSplit.height;
+
+            if (headerSplit.Contains(e.mousePosition))
+            {
+                draggedEndID = index + 1;
             }
         }
 
