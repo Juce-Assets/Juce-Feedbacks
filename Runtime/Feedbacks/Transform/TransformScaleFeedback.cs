@@ -15,7 +15,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
-        [SerializeField] [Min(0)] private float duration = default;
+        [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]
         [SerializeField] private EasingProperty easing = default;
@@ -25,15 +25,15 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            errors = string.Empty;
-
-            bool targetIsNull = ErrorUtils.CheckTargetNull(target, out string targetNullErrorMessage);
-
-            if(targetIsNull)
+            if (target == null)
             {
-                errors = targetNullErrorMessage;
+                errors = ErrorUtils.TargetNullErrorMessage;
+                return true;
             }
 
+            errors = "";
+
+            return true;
             return targetIsNull;
         }
 

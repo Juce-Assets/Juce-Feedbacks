@@ -14,18 +14,18 @@ namespace Juce.Feedbacks
         [SerializeField] private bool setEnabled = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
-        [SerializeField] private float delay = default;
-        [SerializeField] private float duration = default;
+        [SerializeField] [Min(0)] private float delay = default;
+        [SerializeField] [Min(0)] private float duration = 1.0f;
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target.Graphic != null)
+            if (target == null)
             {
-                errors = "";
-                return false;
+                errors = ErrorUtils.TargetNullErrorMessage;
+                return true;
             }
 
-            errors = "Target is null";
+            errors = "";
 
             return true;
         }

@@ -24,13 +24,13 @@ namespace Juce.Feedbacks
         {
             if (target != null)
             {
-                errors = "";
-                return false;
+                errors = ErrorUtils.TargetNullErrorMessage;
+                return true;
             }
 
-            errors = "Target is null";
+            errors = "";
 
-            return true;
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()

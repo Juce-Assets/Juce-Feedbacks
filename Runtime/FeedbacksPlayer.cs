@@ -12,9 +12,7 @@ namespace Juce.Feedbacks
 
         [SerializeField] private bool executeOnAwake = default;
 
-        [SerializeField] [HideInInspector] private LoopMode loopMode = LoopMode.Disabled;
-        [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
-        [SerializeField] [HideInInspector] [Min(0)] private int loops = default;
+        [SerializeField] private LoopProperty loop = default;
 
         private SequenceTween currMainSequence;
 
@@ -88,20 +86,7 @@ namespace Juce.Feedbacks
 
             context.MainSequence.Join(context.CurrentSequence);
 
-            switch (loopMode)
-            {
-                case LoopMode.XTimes:
-                    {
-                        context.MainSequence.SetLoops(loops, loopResetMode);
-                    }
-                    break;
-
-                case LoopMode.UntilManuallyStoped:
-                    {
-                        context.MainSequence.SetLoops(int.MaxValue, loopResetMode);
-                    }
-                    break;
-            }
+            LoopUtils.SetLoop(context.MainSequence, loop);
 
             context.MainSequence.Play();
 

@@ -1,0 +1,16 @@
+﻿using System;
+using UnityEngine;
+using Juce.Tween;
+
+namespace Juce.Feedbacks
+{
+    [System.Serializable]
+    public class ModifiedThroughScriptProperty
+    {
+        [SerializeField] [HideInInspector] private bool modifiedThroughScript = default;
+        [SerializeField] [HideInInspector] private string feedbackId = default;
+
+        public bool ModifiedThroughScript => modifiedThroughScript;
+        public string FeedbackId => feedbackId;
+    }
+}

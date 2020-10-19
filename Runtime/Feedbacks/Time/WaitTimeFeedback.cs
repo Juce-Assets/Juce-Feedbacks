@@ -10,7 +10,7 @@ namespace Juce.Feedbacks
     {
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
-        [SerializeField] [Min(0)] private float duration = default;
+        [SerializeField] [Min(0)] private float duration = 1.0f;
 
         public override string GetFeedbackInfo()
         {

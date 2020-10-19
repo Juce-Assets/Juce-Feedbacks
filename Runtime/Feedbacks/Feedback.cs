@@ -8,13 +8,12 @@ namespace Juce.Feedbacks
     public abstract class Feedback : ScriptableObject
     {
         [SerializeField] [HideInInspector] private bool expanded = true;
+        [SerializeField] [HideInInspector] private bool enabled = true;
         [SerializeField] private string userData = default;
 
-        [SerializeField] [HideInInspector] private bool enabled = true;
-
         public bool Expanded { get => expanded; set => expanded = value; }
-        public string UserData { get => userData; set => userData = value; }
         public bool Enabled { get => enabled; set => enabled = value; }
+        public string UserData { get => userData; set => userData = value; }
 
         public ExecuteResult ExecuteResult { get; set; }
 

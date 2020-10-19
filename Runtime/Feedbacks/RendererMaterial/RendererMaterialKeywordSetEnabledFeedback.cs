@@ -19,13 +19,13 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target.Renderer != null)
+            if (target == null)
             {
-                errors = "";
-                return false;
+                errors = ErrorUtils.TargetNullErrorMessage;
+                return true;
             }
 
-            errors = "Target is null";
+            errors = "";
 
             return true;
         }

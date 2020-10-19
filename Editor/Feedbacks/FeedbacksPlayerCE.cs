@@ -18,10 +18,6 @@ namespace Juce.Feedbacks
 
         private SerializedProperty feedbacksProperty;
 
-        private SerializedProperty loopModeProperty;
-        private SerializedProperty loopResetModeProperty;
-        private SerializedProperty loopsProperty;
-
         private void OnEnable()
         {
             GatherProperties();
@@ -36,8 +32,6 @@ namespace Juce.Feedbacks
             EditorGUI.BeginChangeCheck();
 
             base.DrawDefaultInspector();
-
-            DrawLoopProperties();
 
             DrawFeedbacksEditors();
 
@@ -61,10 +55,6 @@ namespace Juce.Feedbacks
         private void GatherProperties()
         {
             feedbacksProperty = serializedObject.FindProperty("feedbacks");
-
-            loopModeProperty = serializedObject.FindProperty("loopMode");
-            loopResetModeProperty = serializedObject.FindProperty("loopResetMode");
-            loopsProperty = serializedObject.FindProperty("loops");
         }
 
         private Feedback AddFeedback(Type type)
@@ -213,21 +203,6 @@ namespace Juce.Feedbacks
             }
 
             return null;
-        }
-
-        private void DrawLoopProperties()
-        {
-            EditorGUILayout.PropertyField(loopModeProperty);
-
-            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStoped)
-            {
-                EditorGUILayout.PropertyField(loopResetModeProperty);
-            }
-
-            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes)
-            {
-                EditorGUILayout.PropertyField(loopsProperty);
-            }
         }
 
         private void DrawProgress(Feedback feedback)
