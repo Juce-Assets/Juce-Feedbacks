@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
 
         private readonly DragHelper dragHelper = new DragHelper();
 
+        private List<string> feedbacksInfo = new List<string>();
+
         private SerializedProperty feedbacksProperty;
 
         private void OnEnable()
@@ -298,12 +300,12 @@ namespace Juce.Feedbacks
                     {
                         DrawProgress(currFeedback.Feedback);
 
-                        string feedbackInfoString = currFeedback.Feedback.GetFeedbackInfo();
+                        feedbacksInfo.Clear();
+                        currFeedback.Feedback.GetFeedbackInfo(ref feedbacksInfo);
 
-                        if (!string.IsNullOrEmpty(feedbackInfoString))
-                        {
-                            EditorGUILayout.LabelField(feedbackInfoString);
-                        }
+                        string infoString = InfoUtils.FormatInfo(ref feedbacksInfo);
+
+                        EditorGUILayout.LabelField(infoString);
                     }
                     else
                     {

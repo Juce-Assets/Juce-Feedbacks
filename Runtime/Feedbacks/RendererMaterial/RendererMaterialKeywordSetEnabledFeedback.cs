@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -19,15 +20,20 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target == null)
+            if (target.Renderer == null)
             {
                 errors = ErrorUtils.TargetNullErrorMessage;
                 return true;
             }
 
-            errors = "";
+            if (string.IsNullOrEmpty(target.Property))
+            {
+                errors = ErrorUtils.MaterialPropertyNotSelected;
+                return true;
+            }
 
-            return true;
+            errors = "";
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -35,9 +41,9 @@ namespace Juce.Feedbacks
             return target.Renderer != null ? target.Renderer.gameObject.name : string.Empty;
         }
 
-        public override string GetFeedbackInfo()
+        public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            return $"Value: { enabled }";
+            InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

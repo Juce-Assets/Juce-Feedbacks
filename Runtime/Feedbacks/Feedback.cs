@@ -19,7 +19,7 @@ namespace Juce.Feedbacks
 
         public virtual string GetFeedbackTargetInfo() { return string.Empty; }
         public virtual bool GetFeedbackErrors(out string errors) { errors = string.Empty; return false; }
-        public virtual string GetFeedbackInfo() { return string.Empty; }
+        public virtual void GetFeedbackInfo(ref List<string> infoList) {}
 
         public abstract ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween);
     }

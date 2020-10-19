@@ -1,6 +1,7 @@
 ﻿using System;
 using UnityEngine;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -25,8 +26,7 @@ namespace Juce.Feedbacks
             }
 
             errors = "";
-
-            return true;
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -34,9 +34,9 @@ namespace Juce.Feedbacks
             return target != null ? target.gameObject.name : string.Empty;
         }
 
-        public override string GetFeedbackInfo()
+        public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            return spriteToSet != null ? spriteToSet.name : string.Empty;
+            InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

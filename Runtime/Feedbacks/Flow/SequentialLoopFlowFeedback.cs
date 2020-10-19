@@ -1,5 +1,6 @@
 ﻿using Juce.Tween;
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Juce.Feedbacks
@@ -10,11 +11,6 @@ namespace Juce.Feedbacks
     {
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty loop = default;
-
-        public override string GetFeedbackInfo()
-        {
-            return $"Loops: {loop.Loops}";
-        }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {

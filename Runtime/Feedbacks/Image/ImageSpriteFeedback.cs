@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -16,7 +17,6 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
-        [SerializeField] [Min(0)] private float duration = 1.0f;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -27,8 +27,7 @@ namespace Juce.Feedbacks
             }
 
             errors = "";
-
-            return true;
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -36,9 +35,9 @@ namespace Juce.Feedbacks
             return target != null ? target.gameObject.name : string.Empty;
         }
 
-        public override string GetFeedbackInfo()
+        public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            return spriteToSet != null ? spriteToSet.name : string.Empty;
+            InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

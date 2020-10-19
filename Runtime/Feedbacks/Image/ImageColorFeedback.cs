@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -33,8 +34,7 @@ namespace Juce.Feedbacks
             }
 
             errors = "";
-
-            return true;
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -42,20 +42,9 @@ namespace Juce.Feedbacks
             return target != null ? target.gameObject.name : string.Empty;
         }
 
-        public override string GetFeedbackInfo()
+        public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            string info = $"{duration}s";
-
-            if (!easing.UseAnimationCurve)
-            {
-                info += $" | Ease: {easing.Easing}";
-            }
-            else
-            {
-                info += $" | Ease: Curve";
-            }
-
-            return info;
+            InfoUtils.GetTimingInfo(ref infoList, delay, duration);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -70,27 +59,31 @@ namespace Juce.Feedbacks
 
             if (value.UseStartValue)
             {
+                SequenceTween startSequence = new SequenceTween();
+
                 if (value.UseStartColor)
                 {
-                    sequenceTween.Append(target.TweenColorNoAlpha(value.StartColor, 0.0f));
+                    startSequence.Join(target.TweenColorNoAlpha(value.StartColor, 0.0f));
                 }
 
                 if (value.UseStartAlpha)
                 {
-                    sequenceTween.Append(target.TweenColorAlpha(value.StartAlpha, 0.0f));
+                    sequenceTween.Join(target.TweenColorAlpha(value.StartAlpha, 0.0f));
                 }
+
+                sequenceTween.Append(startSequence);
             }
 
             SequenceTween endSequence = new SequenceTween();
 
             if (value.UseEndColor)
             {
-                endSequence.Append(target.TweenColorNoAlpha(value.EndColor, duration));
+                endSequence.Join(target.TweenColorNoAlpha(value.EndColor, duration));
             }
 
             if (value.UseEndAlpha)
             {
-                endSequence.Append(target.TweenColorAlpha(value.EndAlpha, duration));
+                endSequence.Join(target.TweenColorAlpha(value.EndAlpha, duration));
             }
 
             Tween.Tween progressTween = endSequence;

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -26,15 +27,20 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target == null)
+            if (target.Graphic == null)
             {
                 errors = ErrorUtils.TargetNullErrorMessage;
                 return true;
             }
 
-            errors = "";
+            if (string.IsNullOrEmpty(target.Property))
+            {
+                errors = ErrorUtils.MaterialPropertyNotSelected;
+                return true;
+            }
 
-            return true;
+            errors = "";
+            return false;
         }
 
         public override string GetFeedbackTargetInfo()
@@ -42,27 +48,9 @@ namespace Juce.Feedbacks
             return target.Graphic != null ? target.Graphic.gameObject.name : string.Empty;
         }
 
-        public override string GetFeedbackInfo()
+        public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            string info = $"{duration}s";
-
-            if (value.UseStartValue)
-            {
-                info += $" | Start: {value.StartValue} ";
-            }
-
-            info += $" | End: {value.EndValue} ";
-
-            if (!easing.UseAnimationCurve)
-            {
-                info += $" | Ease: {easing.Easing}";
-            }
-            else
-            {
-                info += $" | Ease: Curve";
-            }
-
-            return info;
+            InfoUtils.GetTimingInfo(ref infoList, delay, duration);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
