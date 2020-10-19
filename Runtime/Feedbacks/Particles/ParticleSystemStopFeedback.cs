@@ -17,7 +17,6 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
-        [SerializeField] [Min(0)] private float duration = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -27,7 +26,7 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 
@@ -38,7 +37,7 @@ namespace Juce.Feedbacks
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            InfoUtils.GetTimingInfo(ref infoList, delay, duration);
+            InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

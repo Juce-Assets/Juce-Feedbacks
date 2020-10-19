@@ -283,6 +283,11 @@ namespace Juce.Feedbacks
                     string errors;
                     bool hasErrors = currFeedback.Feedback.GetFeedbackErrors(out errors);
 
+                    if(hasErrors || !string.IsNullOrEmpty(currFeedback.Feedback.UserData))
+                    {
+                        EditorGUILayout.Space(2);
+                    }
+
                     if (hasErrors)
                     {
                         GUIStyle s = new GUIStyle(EditorStyles.label);
@@ -298,16 +303,25 @@ namespace Juce.Feedbacks
 
                     if (!expanded)
                     {
-                        DrawProgress(currFeedback.Feedback);
-
                         feedbacksInfo.Clear();
                         currFeedback.Feedback.GetFeedbackInfo(ref feedbacksInfo);
 
                         string infoString = InfoUtils.FormatInfo(ref feedbacksInfo);
 
-                        EditorGUILayout.LabelField(infoString);
+                        if (!string.IsNullOrEmpty(infoString))
+                        {
+                            EditorGUILayout.LabelField(infoString);
+                        }
                     }
-                    else
+
+                    if(expanded)
+                    {
+                        EditorGUILayout.Space(2);
+                    }
+
+                    DrawProgress(currFeedback.Feedback);
+
+                    if (expanded)
                     {
                         EditorGUILayout.Space(2);
 

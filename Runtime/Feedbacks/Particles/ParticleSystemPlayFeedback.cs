@@ -25,7 +25,7 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 

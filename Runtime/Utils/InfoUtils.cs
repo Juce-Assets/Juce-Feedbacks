@@ -103,17 +103,78 @@ namespace Juce.Feedbacks
                 endString += $" y:{startEndVector3.EndValueY}";
             }
 
-            if (startEndVector3.UseStartZ)
+            if (startEndVector3.UseEndZ)
             {
                 endString += $" z:{startEndVector3.EndValueZ}";
             }
 
-            if (startEndVector3.UseStartX || startEndVector3.UseStartY || startEndVector3.UseStartZ)
+            if (startEndVector3.UseEndX || startEndVector3.UseEndY || startEndVector3.UseEndZ)
             {
                 endString += " ]";
 
                 infoList.Add(endString);
             }
+        }
+
+        public static void GetStartEndVector2PropertyInfo(ref List<string> infoList, StartEndVector2Property startEndVector2)
+        {
+            string startString = string.Empty;
+
+            if (startEndVector2.UseStartX || startEndVector2.UseStartY)
+            {
+                startString += $"Start [";
+            }
+
+            if (startEndVector2.UseStartX)
+            {
+                startString += $" x:{startEndVector2.StartValueX}";
+            }
+
+            if (startEndVector2.UseStartY)
+            {
+                startString += $" y:{startEndVector2.StartValueX}";
+            }
+
+            if (startEndVector2.UseStartX || startEndVector2.UseStartY)
+            {
+                startString += " ]";
+
+                infoList.Add(startString);
+            }
+
+            string endString = string.Empty;
+
+            if (startEndVector2.UseEndX || startEndVector2.UseEndY)
+            {
+                endString += $"End [";
+            }
+
+            if (startEndVector2.UseEndX)
+            {
+                endString += $" x:{startEndVector2.EndValueX}";
+            }
+
+            if (startEndVector2.UseEndY)
+            {
+                endString += $" y:{startEndVector2.EndValueY}";
+            }
+
+            if (startEndVector2.UseEndX || startEndVector2.UseEndY)
+            {
+                endString += " ]";
+
+                infoList.Add(endString);
+            }
+        }
+
+        public static void GetStartEndFloatPropertyInfo(ref List<string> infoList, StartEndFloatProperty startEndUnitFloat)
+        {
+            if (startEndUnitFloat.UseStartValue)
+            {
+                infoList.Add($"Start: {startEndUnitFloat.StartValue}");
+            }
+
+            infoList.Add($"End: {startEndUnitFloat.EndValue}");
         }
 
         public static void GetStartEndUnitFloatPropertyInfo(ref List<string> infoList, StartEndUnitFloatProperty startEndUnitFloat)
@@ -175,6 +236,16 @@ namespace Juce.Feedbacks
 
                 infoList.Add(endString);
             }
+        }
+
+        public static void GetStartEndColorNoAlphaPropertyInfo(ref List<string> infoList, StartEndColorNoAlphaProperty startEndColorProperty)
+        {
+            if (startEndColorProperty.UseStartValue)
+            {
+                infoList.Add($"Start: [ {ColorNoAlphaToString(startEndColorProperty.StartColor)} ]");
+            }
+
+            infoList.Add($"End: [ {ColorNoAlphaToString(startEndColorProperty.EndColor)} ]");
         }
 
         public static string ColorNoAlphaToString(Color color)

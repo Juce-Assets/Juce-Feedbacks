@@ -26,7 +26,7 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 
@@ -38,6 +38,11 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
+
+            if (spriteToSet != null)
+            {
+                infoList.Add($"Sprite: { spriteToSet.name }");
+            }
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

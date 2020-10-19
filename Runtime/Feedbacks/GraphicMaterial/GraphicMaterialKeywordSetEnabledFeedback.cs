@@ -32,18 +32,31 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 
         public override string GetFeedbackTargetInfo()
         {
-            return target.Graphic != null ? target.Graphic.gameObject.name : string.Empty;
+            string targetInfo = string.Empty;
+
+            if (target.Graphic != null)
+            {
+                targetInfo += target.Graphic.gameObject.name;
+            }
+
+            if (!string.IsNullOrEmpty(target.Property))
+            {
+                targetInfo += $" -> {target.Property}";
+            }
+
+            return targetInfo;
         }
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
+            infoList.Add($"Enabled: {setEnabled}");
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

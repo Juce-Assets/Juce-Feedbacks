@@ -18,6 +18,11 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
+
+            if (!string.IsNullOrEmpty(log))
+            {
+                infoList.Add(log);
+            }
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

@@ -10,10 +10,10 @@ namespace Juce.Feedbacks
     public class RendererMaterialKeywordSetEnabledFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] [HideInInspector] private RendererMaterialProperty target = new RendererMaterialProperty();
+        [SerializeField] private RendererMaterialProperty target = new RendererMaterialProperty();
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] [HideInInspector] private bool enabled = default;
+        [SerializeField] private bool setEnabled = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -32,18 +32,31 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 
         public override string GetFeedbackTargetInfo()
         {
-            return target.Renderer != null ? target.Renderer.gameObject.name : string.Empty;
+            string targetInfo = string.Empty;
+
+            if(target.Renderer != null)
+            {
+                targetInfo += target.Renderer.gameObject.name;
+            }
+
+            if (!string.IsNullOrEmpty(target.Property))
+            {
+                targetInfo += $" -> {target.Property}";
+            }
+
+            return targetInfo;
         }
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
+            infoList.Add($"Enabled: {setEnabled}");
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -73,7 +86,7 @@ namespace Juce.Feedbacks
 
             sequenceTween.AppendCallback(() =>
             {
-                if (enabled)
+                if (setEnabled)
                 {
                     material.EnableKeyword(target.Property);
                 }

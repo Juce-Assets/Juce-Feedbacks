@@ -23,13 +23,13 @@ namespace Juce.Feedbacks
 
         public override bool GetFeedbackErrors(out string errors)
         {
-            if (target != null)
+            if (target == null)
             {
                 errors = ErrorUtils.TargetNullErrorMessage;
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 

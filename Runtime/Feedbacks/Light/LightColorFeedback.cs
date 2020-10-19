@@ -32,7 +32,7 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            errors = "";
+            errors = string.Empty;
             return false;
         }
 
@@ -44,10 +44,16 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
+            InfoUtils.GetStartEndColorNoAlphaPropertyInfo(ref infoList, value);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
+            if (target == null)
+            {
+                return null;
+            }
+
             Tween.Tween delayTween = null;
 
             if (delay > 0)
