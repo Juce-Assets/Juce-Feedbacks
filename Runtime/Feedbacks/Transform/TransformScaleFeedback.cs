@@ -22,7 +22,14 @@ namespace Juce.Feedbacks
         [SerializeField] private EasingProperty easing = default;
 
         [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty loop = default;
+        [SerializeField] private LoopProperty looping = default;
+
+        public Transform Target { get => target; set => target = value; }
+        public StartEndVector3Property Value => value;
+        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
+        public float Duration { get => duration; set => duration = Mathf.Max(0, duration); }
+        public EasingProperty Easing => easing;
+        public LoopProperty Looping => looping;
 
         public override bool GetFeedbackErrors(out string errors)
         {

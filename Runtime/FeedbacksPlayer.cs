@@ -11,7 +11,6 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
 
         [SerializeField] private bool executeOnAwake = default;
-
         [SerializeField] private LoopProperty loop = default;
 
         private SequenceTween currMainSequence;
@@ -121,6 +120,31 @@ namespace Juce.Feedbacks
             }
 ;
             currMainSequence.Restart();
+        }
+
+        public T GetFeedback<T>(string id) where T : Feedback
+        {
+            Type lookingForType = typeof(T);
+
+            for(int i = 0; i < feedbacks.Count; ++i)
+            {
+                Feedback currFeedback = feedbacks[i];
+
+                if(!currFeedback.ScriptUsage.UsedByScript)
+                {
+                    continue;
+                }
+
+                if(currFeedback.GetType() == lookingForType)
+                {
+                    if(string.Equals(currFeedback.ScriptUsage.IdUsedByScript, id))
+                    {
+                        return currFeedback as T;
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

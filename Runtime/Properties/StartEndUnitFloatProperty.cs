@@ -10,8 +10,9 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] [Range(0, 1)] private float startValue = default;
         [SerializeField] [HideInInspector] [Range(0, 1)] private float endValue = default;
 
-        public bool UseStartValue => useStartValue;
-        public float StartValue => startValue;
-        public float EndValue => endValue;
+        public bool UseStartValue { get => useStartValue; set =>  useStartValue = value; }
+
+        public float StartValue { get => startValue; set =>  startValue = value; }
+    public float EndValue { get => endValue; set => endValue = value; }
     }
 }

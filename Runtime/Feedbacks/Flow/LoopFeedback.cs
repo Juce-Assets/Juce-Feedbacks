@@ -7,7 +7,7 @@ namespace Juce.Feedbacks
 {
     [FeedbackIdentifier("Sequential Loop", "Flow/")]
     [FeedbackColor(0.0f, 0.4f, 0.5f)]
-    public class SequentialLoopFlowFeedback : Feedback
+    public class LoopFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty loop = default;
@@ -16,16 +16,7 @@ namespace Juce.Feedbacks
         {
             LoopUtils.SetLoop(context.CurrentSequence, loop);
 
-            if (!context.HasLoopStart)
-            {
-                context.MainSequence.Append(context.CurrentSequence);
-            }
-            else
-            {
-                context.HasLoopStart = false;
-
-                context.MainSequence.Join(context.CurrentSequence);
-            }
+            context.MainSequence.Join(context.CurrentSequence);
 
             context.CurrentSequence = new SequenceTween();
 

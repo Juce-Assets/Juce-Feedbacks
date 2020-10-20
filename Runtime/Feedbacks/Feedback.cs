@@ -9,11 +9,16 @@ namespace Juce.Feedbacks
     {
         [SerializeField] [HideInInspector] private bool expanded = true;
         [SerializeField] [HideInInspector] private bool enabled = true;
+
         [SerializeField] private string userData = default;
+
+        [Header("Scripting")]
+        [SerializeField] private ScriptUsageProperty scriptUsage = default;
 
         public bool Expanded { get => expanded; set => expanded = value; }
         public bool Enabled { get => enabled; set => enabled = value; }
         public string UserData { get => userData; set => userData = value; }
+        public ScriptUsageProperty ScriptUsage => scriptUsage;
 
         public ExecuteResult ExecuteResult { get; set; }
 

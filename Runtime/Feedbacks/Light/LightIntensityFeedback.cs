@@ -22,7 +22,7 @@ namespace Juce.Feedbacks
         [SerializeField] private EasingProperty easing = default;
 
         [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty loop = default;
+        [SerializeField] private LoopProperty looping = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {

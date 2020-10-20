@@ -18,6 +18,11 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        public GameObject Target { get => target; set => target = value; }
+        public bool Interactable { get => interactable; set => interactable = value; }
+        public bool BlocksRaycasts { get => blocksRaycasts; set => blocksRaycasts = value; }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target == null)

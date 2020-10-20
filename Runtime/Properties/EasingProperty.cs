@@ -11,8 +11,8 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private Ease easing = Tween.Ease.InOutQuad;
         [SerializeField] [HideInInspector] private AnimationCurve animationCurveEasing = default;
 
-        public bool UseAnimationCurve => useAnimationCurve;
-        public Ease Easing => easing;
-        public AnimationCurve AnimationCurveEasing => animationCurveEasing;
+        public bool UseAnimationCurve { get => useAnimationCurve; set => useAnimationCurve = value; }
+        public Ease Easing { get => easing; set => easing = value; }
+        public AnimationCurve AnimationCurveEasing { get => animationCurveEasing; set => animationCurveEasing = value; }
     }
 }

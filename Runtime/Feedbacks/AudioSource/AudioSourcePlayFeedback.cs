@@ -19,7 +19,7 @@ namespace Juce.Feedbacks
         [SerializeField] [Min(0)] private float delay = default;
 
         [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty loop = default;
+        [SerializeField] private LoopProperty looping = default;
 
         public override bool GetFeedbackErrors(out string errors)
         {

@@ -22,7 +22,14 @@ namespace Juce.Feedbacks
         [SerializeField] private EasingProperty easing = default;
 
         [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty loop = default;
+        [SerializeField] private LoopProperty looping = default;
+
+        public GameObject Target { get => target; set => target = value; }
+        public StartEndUnitFloatProperty Value => value;
+        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
+        public float Duration { get => duration; set => duration = Mathf.Max(0, duration); }
+        public EasingProperty Easing => easing;
+        public LoopProperty Looping => looping;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -73,7 +80,7 @@ namespace Juce.Feedbacks
             sequenceTween.Append(progressTween);
 
             EasingUtils.SetEasing(sequenceTween, easing);
-            LoopUtils.SetLoop(sequenceTween, loop);
+            LoopUtils.SetLoop(sequenceTween, looping);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

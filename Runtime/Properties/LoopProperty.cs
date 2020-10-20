@@ -11,8 +11,8 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private ResetMode loopResetMode = ResetMode.Restart;
         [SerializeField] [HideInInspector] [Min(0)] private int loops = default;
 
-        public LoopMode LoopMode => loopMode;
-        public ResetMode LoopResetMode => loopResetMode;
-        public int Loops => loops;
-    }
+        public LoopMode LoopMode { get => loopMode; set => loopMode = value; }
+        public ResetMode LoopResetMode { get => loopResetMode; set => loopResetMode = value; }
+        public int Loops { get => loops; set => loops = Mathf.Max(0, value); }
+}
 }
