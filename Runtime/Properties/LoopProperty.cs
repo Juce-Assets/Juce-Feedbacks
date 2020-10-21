@@ -14,5 +14,5 @@ namespace Juce.Feedbacks
         public LoopMode LoopMode { get => loopMode; set => loopMode = value; }
         public ResetMode LoopResetMode { get => loopResetMode; set => loopResetMode = value; }
         public int Loops { get => loops; set => loops = Mathf.Max(0, value); }
-}
+    }
 }

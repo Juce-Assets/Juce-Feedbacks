@@ -21,7 +21,7 @@ namespace Juce.Feedbacks
         public GameObject Target { get => target; set => target = value; }
         public bool Interactable { get => interactable; set => interactable = value; }
         public bool BlocksRaycasts { get => blocksRaycasts; set => blocksRaycasts = value; }
-        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
         {

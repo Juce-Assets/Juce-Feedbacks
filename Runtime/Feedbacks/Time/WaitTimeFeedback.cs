@@ -13,6 +13,9 @@ namespace Juce.Feedbacks
         [SerializeField] [Min(0)] private float delay = default;
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
+        public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
+
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);

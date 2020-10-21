@@ -26,8 +26,8 @@ namespace Juce.Feedbacks
 
         public GameObject Target { get => target; set => target = value; }
         public StartEndUnitFloatProperty Value => value;
-        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
-        public float Duration { get => duration; set => duration = Mathf.Max(0, duration); }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
+        public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
         public LoopProperty Looping => looping;
 

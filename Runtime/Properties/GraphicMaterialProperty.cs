@@ -22,8 +22,8 @@ namespace Juce.Feedbacks
             this.materialPropertyType = materialPropertyType;
         }
 
-        public Graphic Graphic => graphic;
-        public bool InstantiateMaterial => instantiateMaterial;
-        public string Property => property;
+        public Graphic Graphic { get => graphic; set => graphic = value; }
+        public bool InstantiateMaterial { get => instantiateMaterial; set => instantiateMaterial = value; }
+        public string Property { get => property; set => property = value; }
     }
 }

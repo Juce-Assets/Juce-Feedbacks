@@ -17,6 +17,10 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        public GameObject Target => target;
+        public bool SetActive { get => setActive; set => setActive = value; }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target == null)

@@ -13,10 +13,14 @@ namespace Juce.Feedbacks
         [SerializeField] private Image target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private Sprite spriteToSet = default;
+        [SerializeField] private Sprite sprite = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
+        public Image Target => target;
+        public Sprite Sprite => sprite;
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -39,9 +43,9 @@ namespace Juce.Feedbacks
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
 
-            if (spriteToSet != null)
+            if (sprite != null)
             {
-                infoList.Add($"Sprite: { spriteToSet.name }");
+                infoList.Add($"Sprite: { sprite.name }");
             }
         }
 
@@ -62,7 +66,7 @@ namespace Juce.Feedbacks
 
             sequenceTween.AppendCallback(() =>
             {
-                target.sprite = spriteToSet;
+                target.sprite = sprite;
             });
 
             ExecuteResult result = new ExecuteResult();

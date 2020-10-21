@@ -21,6 +21,12 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
+        public AudioSource Target => target;
+        public AudioClip AudioClip { get => audioClip; set => audioClip = value; }
+        public bool OneShot { get => oneShot; set => oneShot = value; }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
+        public LoopProperty Looping => looping;
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target == null)
@@ -72,7 +78,7 @@ namespace Juce.Feedbacks
                 }
             });
 
-            LoopUtils.SetLoop(sequenceTween, loop);
+            LoopUtils.SetLoop(sequenceTween, looping);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

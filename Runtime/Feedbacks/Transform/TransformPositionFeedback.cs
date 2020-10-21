@@ -25,6 +25,14 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
+        public Transform Target { get => target; set => target = value; }
+        public CoordinatesSpace CoordinatesSpace { get => coordinatesSpace; set => coordinatesSpace = value; }
+        public StartEndVector3Property Value => value;
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
+        public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
+        public EasingProperty Easing => easing;
+        public LoopProperty Looping => looping;
+
         public override bool GetFeedbackErrors(out string errors)
         {
             if (target == null)
@@ -160,7 +168,7 @@ namespace Juce.Feedbacks
             sequenceTween.Append(endSequence);
 
             EasingUtils.SetEasing(sequenceTween, easing);
-            LoopUtils.SetLoop(sequenceTween, loop);
+            LoopUtils.SetLoop(sequenceTween, looping);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;

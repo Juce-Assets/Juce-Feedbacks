@@ -16,14 +16,14 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private float endValueX = default;
         [SerializeField] [HideInInspector] private float endValueY = default;
 
-        public bool UseStartValue => useStartValue;
-        public bool UseStartX => useStartX;
-        public bool UseStartY => useStartY;
-        public bool UseEndX => useEndX;
-        public bool UseEndY => useEndY;
-        public float StartValueX => startValueX;
-        public float StartValueY => startValueY;
-        public float EndValueX => endValueX;
-        public float EndValueY => endValueY;
+        public bool UseStartValue { get => useStartValue; set => useStartValue = value; }
+        public bool UseStartX { get => useStartX; set => useStartX = value; }
+        public bool UseStartY { get => useStartY; set => useStartY = value; }
+        public bool UseEndX { get => useEndX; set => useEndX = value; }
+        public bool UseEndY { get => useEndY; set => useEndY = value; }
+        public float StartValueX { get => startValueX; set => startValueX = value; }
+        public float StartValueY { get => startValueY; set => startValueY = value; }
+        public float EndValueX { get => endValueX; set => endValueX = value; }
+        public float EndValueY { get => endValueY; set => endValueY = value; }
     }
 }

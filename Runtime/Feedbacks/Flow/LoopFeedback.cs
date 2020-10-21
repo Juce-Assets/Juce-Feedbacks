@@ -10,11 +10,13 @@ namespace Juce.Feedbacks
     public class LoopFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty loop = default;
+        [SerializeField] private LoopProperty looping = default;
+
+        public LoopProperty Looping => looping;
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            LoopUtils.SetLoop(context.CurrentSequence, loop);
+            LoopUtils.SetLoop(context.CurrentSequence, looping);
 
             context.MainSequence.Join(context.CurrentSequence);
 

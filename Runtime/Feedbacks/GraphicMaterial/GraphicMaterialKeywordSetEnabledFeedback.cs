@@ -16,7 +16,10 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
-        [SerializeField] [Min(0)] private float duration = 1.0f;
+
+        public GraphicMaterialProperty Target => target;
+        public bool SetEnabled { get => setEnabled; set => setEnabled = value; }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -55,7 +58,7 @@ namespace Juce.Feedbacks
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
-            InfoUtils.GetTimingInfo(ref infoList, delay, duration);
+            InfoUtils.GetTimingInfo(ref infoList, delay);
             infoList.Add($"Enabled: {setEnabled}");
         }
 

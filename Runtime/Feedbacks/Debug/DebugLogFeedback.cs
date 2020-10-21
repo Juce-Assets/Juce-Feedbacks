@@ -15,6 +15,9 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        public string Log { get => log; set => log = value; }
+        public float Delay { get => delay; set => delay = Mathf.Max(0, delay); }
+
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);

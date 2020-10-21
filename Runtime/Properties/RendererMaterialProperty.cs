@@ -22,8 +22,8 @@ namespace Juce.Feedbacks
             this.materialPropertyType = materialPropertyType;
         }
 
-        public Renderer Renderer => renderer;
-        public int MaterialIndex => materialIndex;
-        public string Property => property;
+        public Renderer Renderer { get => renderer; set => renderer = value; }
+        public int MaterialIndex { get => materialIndex; set => materialIndex = value; }
+        public string Property { get => property; set => property = value; }
     }
 }
