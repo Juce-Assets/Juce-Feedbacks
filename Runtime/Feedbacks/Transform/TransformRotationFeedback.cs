@@ -103,17 +103,17 @@ namespace Juce.Feedbacks
                         {
                             if (value.UseStartX)
                             {
-                                startSequence.Join(target.TweenRotationX(value.StartValueX, 0.0f));
+                                startSequence.Join(target.TweenRotationX(value.StartValueX, 0.0f, rotationMode));
                             }
 
                             if (value.UseStartY)
                             {
-                                startSequence.Join(target.TweenRotationY(value.StartValueY, 0.0f));
+                                startSequence.Join(target.TweenRotationY(value.StartValueY, 0.0f, rotationMode));
                             }
 
                             if (value.UseStartZ)
                             {
-                                startSequence.Join(target.TweenRotationZ(value.StartValueZ, 0.0f));
+                                startSequence.Join(target.TweenRotationZ(value.StartValueZ, 0.0f, rotationMode));
                             }
                         }
                         break;
@@ -149,17 +149,17 @@ namespace Juce.Feedbacks
                     {
                         if (value.UseEndX)
                         {
-                            endSequence.Join(target.TweenRotationX(value.EndValueX, duration));
+                            endSequence.Join(target.TweenRotationX(value.EndValueX, duration, rotationMode));
                         }
 
                         if (value.UseEndY)
                         {
-                            endSequence.Join(target.TweenRotationY(value.EndValueY, duration));
+                            endSequence.Join(target.TweenRotationY(value.EndValueY, duration, rotationMode));
                         }
 
                         if (value.UseEndZ)
                         {
-                            endSequence.Join(target.TweenRotationZ(value.EndValueZ, duration));
+                            endSequence.Join(target.TweenRotationZ(value.EndValueZ, duration, rotationMode));
                         }
                     }
                     break;

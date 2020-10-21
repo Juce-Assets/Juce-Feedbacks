@@ -1,18 +1,22 @@
-﻿using System;
+﻿
+#if JUCE_TEXT_MESH_PRO_EXTENSIONS
+
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
-using System.Collections.Generic;
+using TMPro;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Reach Transform Scale", "Transform/")]
-    public class TransformReachTransformScale : Feedback
+    [FeedbackIdentifier("Color", "TextMeshPro/")]
+    public class TextMeshProColorFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private Transform target = default;
+        [SerializeField] private TextMeshProUGUI target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private StartEndTransformVector3Property value = default;
+        [SerializeField] private StartEndColorProperty value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -24,8 +28,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public Transform Target { get => target; set => target = value; }
-        public StartEndTransformVector3Property Value => value;
+        public TextMeshProUGUI Target { get => target; set => target = value; }
+        public StartEndColorProperty Value => value;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
@@ -51,7 +55,7 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
-            InfoUtils.GetStartEndTransformPropertyInfo(ref infoList, value);
+            InfoUtils.GetStartEndColorPropertyInfo(ref infoList, value);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -71,51 +75,31 @@ namespace Juce.Feedbacks
 
             if (value.UseStartValue)
             {
-                if (value.StartValue == null)
-                {
-                    return null;
-                }
-
                 SequenceTween startSequence = new SequenceTween();
 
-                if (value.UseStartX)
+                if (value.UseStartColor)
                 {
-                    startSequence.Join(target.TweenLocalScaleX(value.StartValue.localScale.x, 0.0f));
+                    sequenceTween.Join(target.TweenColorNoAlpha(value.StartColor, 0.0f));
                 }
 
-                if (value.UseStartY)
+                if (value.UseStartAlpha)
                 {
-                    startSequence.Join(target.TweenLocalScaleY(value.StartValue.localScale.y, 0.0f));
-                }
-
-                if (value.UseStartZ)
-                {
-                    startSequence.Join(target.TweenLocalScaleZ(value.StartValue.localScale.z, 0.0f));
+                    sequenceTween.Join(target.TweenColorAlpha(value.StartAlpha, 0.0f));
                 }
 
                 sequenceTween.Append(startSequence);
             }
 
-            if (value.EndValue == null)
-            {
-                return null;
-            }
-
             SequenceTween endSequence = new SequenceTween();
 
-            if (value.UseEndX)
+            if (value.UseEndColor)
             {
-                endSequence.Join(target.TweenLocalScaleX(value.EndValue.localScale.x, duration));
+                endSequence.Join(target.TweenColorNoAlpha(value.EndColor, duration));
             }
 
-            if (value.UseEndY)
+            if (value.UseEndAlpha)
             {
-                endSequence.Join(target.TweenLocalScaleY(value.EndValue.localScale.y, duration));
-            }
-
-            if (value.UseEndZ)
-            {
-                endSequence.Join(target.TweenLocalScaleZ(value.EndValue.localScale.z, duration));
+                endSequence.Join(target.TweenColorAlpha(value.EndAlpha, duration));
             }
 
             Tween.Tween progressTween = endSequence;
@@ -133,3 +117,5 @@ namespace Juce.Feedbacks
         }
     }
 }
+
+#endif

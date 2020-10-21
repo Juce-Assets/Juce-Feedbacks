@@ -1,18 +1,22 @@
-﻿using System;
+﻿
+#if JUCE_TEXT_MESH_PRO_EXTENSIONS
+
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
-using System.Collections.Generic;
+using TMPro;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Reach Transform Rotation", "Transform/")]
-    public class TransformReachTransformRotation : Feedback
+    [FeedbackIdentifier("Font Size", "TextMeshPro/")]
+    public class TextMeshProFontSizeFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private Transform target = default;
+        [SerializeField] private TextMeshProUGUI target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private StartEndTransformVector3Property value = default;
+        [SerializeField] private StartEndFloatProperty value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -24,8 +28,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public Transform Target { get => target; set => target = value; }
-        public StartEndTransformVector3Property Value => value;
+        public TextMeshProUGUI Target { get => target; set => target = value; }
+        public StartEndFloatProperty Value => value;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
@@ -51,7 +55,7 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
-            InfoUtils.GetStartEndTransformPropertyInfo(ref infoList, value);
+            InfoUtils.GetStartEndFloatPropertyInfo(ref infoList, value);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -71,56 +75,11 @@ namespace Juce.Feedbacks
 
             if (value.UseStartValue)
             {
-                if (value.StartValue == null)
-                {
-                    return null;
-                }
-
-                SequenceTween startSequence = new SequenceTween();
-
-                if (value.UseStartX)
-                {
-                    startSequence.Join(target.TweenRotationX(value.StartValue.eulerAngles.x, 0.0f));
-                }
-
-                if (value.UseStartY)
-                {
-                    startSequence.Join(target.TweenRotationY(value.StartValue.eulerAngles.y, 0.0f));
-                }
-
-                if (value.UseStartZ)
-                {
-                    startSequence.Join(target.TweenRotationZ(value.StartValue.eulerAngles.z, 0.0f));
-                }
-
-                sequenceTween.Append(startSequence);
+                sequenceTween.Append(target.TweenFontSize(value.StartValue, 0.0f));
             }
 
-            if (value.EndValue == null)
-            {
-                return null;
-            }
-
-            SequenceTween endSequence = new SequenceTween();
-
-            if (value.UseEndX)
-            {
-                endSequence.Join(target.TweenRotationX(value.EndValue.eulerAngles.x, duration));
-            }
-
-            if (value.UseEndY)
-            {
-                endSequence.Join(target.TweenRotationY(value.EndValue.eulerAngles.y, duration));
-            }
-
-            if (value.UseEndZ)
-            {
-                endSequence.Join(target.TweenRotationZ(value.EndValue.eulerAngles.z, duration));
-            }
-
-            Tween.Tween progressTween = endSequence;
-
-            sequenceTween.Append(endSequence);
+            Tween.Tween progressTween = target.TweenFontSize(value.EndValue, duration);
+            sequenceTween.Append(progressTween);
 
             EasingUtils.SetEasing(sequenceTween, easing);
             LoopUtils.SetLoop(sequenceTween, looping);
@@ -133,3 +92,5 @@ namespace Juce.Feedbacks
         }
     }
 }
+
+#endif

@@ -1,19 +1,19 @@
 ﻿using System;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using Juce.Tween;
+using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Color", "SpriteRenderer/")]
-    public class SpriteRendererColorFeedback : Feedback
+    [FeedbackIdentifier("Reach Transform Rotation", "Transform/")]
+    public class TransformReachTransformRotationFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private SpriteRenderer target = default;
+        [SerializeField] private Transform target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private StartEndColorProperty value = default;
+        [SerializeField] private RotationMode rotationMode = default;
+        [SerializeField] private StartEndTransformVector3Property value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -25,8 +25,9 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public SpriteRenderer Target { get => target; set => target = value; }
-        public StartEndColorProperty Value => value;
+        public Transform Target { get => target; set => target = value; }
+        public RotationMode RotationMode { get => rotationMode; set => rotationMode = value; }
+        public StartEndTransformVector3Property Value => value;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
@@ -37,6 +38,18 @@ namespace Juce.Feedbacks
             if (target == null)
             {
                 errors = ErrorUtils.TargetNullErrorMessage;
+                return true;
+            }
+
+            if (value.UseStartValue && value.StartValue == null)
+            {
+                errors = $"Start value {nameof(Transform)} is null";
+                return true;
+            }
+
+            if (value.EndValue == null)
+            {
+                errors = $"End value {nameof(Transform)} is null";
                 return true;
             }
 
@@ -52,7 +65,7 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
-            InfoUtils.GetStartEndColorPropertyInfo(ref infoList, value);
+            InfoUtils.GetStartEndTransformPropertyInfo(ref infoList, value);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -72,31 +85,51 @@ namespace Juce.Feedbacks
 
             if (value.UseStartValue)
             {
-                SequenceTween startSequence = new SequenceTween();
-
-                if (value.UseStartColor)
+                if (value.StartValue == null)
                 {
-                    sequenceTween.Join(target.TweenColorNoAlpha(value.StartColor, 0.0f));
+                    return null;
                 }
 
-                if(value.UseStartAlpha)
+                SequenceTween startSequence = new SequenceTween();
+
+                if (value.UseStartX)
                 {
-                    sequenceTween.Join(target.TweenColorAlpha(value.StartAlpha, 0.0f));
+                    startSequence.Join(target.TweenRotationX(value.StartValue.eulerAngles.x, 0.0f, rotationMode));
+                }
+
+                if (value.UseStartY)
+                {
+                    startSequence.Join(target.TweenRotationY(value.StartValue.eulerAngles.y, 0.0f, rotationMode));
+                }
+
+                if (value.UseStartZ)
+                {
+                    startSequence.Join(target.TweenRotationZ(value.StartValue.eulerAngles.z, 0.0f, rotationMode));
                 }
 
                 sequenceTween.Append(startSequence);
             }
 
-            SequenceTween endSequence = new SequenceTween();
-
-            if (value.UseEndColor)
+            if (value.EndValue == null)
             {
-                endSequence.Join(target.TweenColorNoAlpha(value.EndColor, duration));
+                return null;
             }
 
-            if (value.UseEndAlpha)
+            SequenceTween endSequence = new SequenceTween();
+
+            if (value.UseEndX)
             {
-                endSequence.Join(target.TweenColorAlpha(value.EndAlpha, duration));
+                endSequence.Join(target.TweenRotationX(value.EndValue.eulerAngles.x, duration, rotationMode));
+            }
+
+            if (value.UseEndY)
+            {
+                endSequence.Join(target.TweenRotationY(value.EndValue.eulerAngles.y, duration, rotationMode));
+            }
+
+            if (value.UseEndZ)
+            {
+                endSequence.Join(target.TweenRotationZ(value.EndValue.eulerAngles.z, duration, rotationMode));
             }
 
             Tween.Tween progressTween = endSequence;

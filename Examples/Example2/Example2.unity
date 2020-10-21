@@ -136,6 +136,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 0
@@ -152,7 +155,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -252,6 +255,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   setActive: 0
   delay: 0.63
@@ -270,6 +276,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   interactable: 0
   blocksRaycasts: 0
@@ -289,6 +298,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 0
@@ -305,7 +317,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -324,6 +336,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -346,7 +361,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -365,6 +380,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   delay: 0
   duration: 1
 --- !u!114 &655374134
@@ -382,7 +400,10 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
-  loop:
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -401,11 +422,14 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   audioClip: {fileID: 0}
   oneShot: 0
   delay: 0
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -424,8 +448,11 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 1053004116}
-  spriteToSet: {fileID: 21300000, guid: 116ba134f293bbd40a3484344df9fd56, type: 3}
+  sprite: {fileID: 0}
   delay: 0
 --- !u!114 &750254922
 MonoBehaviour:
@@ -442,6 +469,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 0
@@ -458,7 +488,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -477,6 +507,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   coordinatesSpace: 0
   value:
@@ -504,7 +537,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -622,6 +655,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: asdasdasd
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   log: 
   delay: 0
 --- !u!114 &980693468
@@ -639,6 +675,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 0
@@ -655,7 +694,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -674,6 +713,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -700,7 +742,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -719,6 +761,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     graphic: {fileID: 0}
     instantiateMaterial: 1
@@ -726,7 +771,6 @@ MonoBehaviour:
     materialPropertyType: 0
   setEnabled: 0
   delay: 0
-  duration: 1
 --- !u!1 &1053004114
 GameObject:
   m_ObjectHideFlags: 0
@@ -816,6 +860,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
 --- !u!114 &1071684755
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -831,6 +878,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -847,7 +897,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -866,6 +916,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     graphic: {fileID: 0}
     instantiateMaterial: 1
@@ -886,7 +939,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -905,6 +958,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     renderer: {fileID: 0}
     material: {fileID: 0}
@@ -926,7 +982,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -942,9 +998,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27bf55a51a5cd914ca5b0d7491456a72, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     graphic: {fileID: 1053004116}
     instantiateMaterial: 1
@@ -971,7 +1030,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -990,6 +1049,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     renderer: {fileID: 0}
     material: {fileID: 0}
@@ -1017,7 +1079,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1036,6 +1098,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -1052,7 +1117,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1071,6 +1136,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 0
@@ -1087,7 +1155,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1189,6 +1257,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   rotationMode: 0
   coordinatesSpace: 0
@@ -1217,7 +1288,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1236,6 +1307,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   flipX: 0
   flipY: 0
@@ -1255,6 +1329,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   withChildren: 1
   stopBehavior: 0
@@ -1274,6 +1351,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target:
     renderer: {fileID: 0}
     material: {fileID: 0}
@@ -1379,6 +1459,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
 --- !u!1 &1840037385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1460,8 +1543,11 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 198079637}
-  spriteToSet: {fileID: 21300000, guid: 714a79c5f1eaeee448800c5f3b436f12, type: 3}
+  sprite: {fileID: 0}
   delay: 0
 --- !u!114 &1989822034
 MonoBehaviour:
@@ -1478,9 +1564,12 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   delay: 0
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1499,6 +1588,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -1521,7 +1613,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1540,6 +1632,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   value:
     useStartValue: 1
@@ -1562,7 +1657,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1581,6 +1676,9 @@ MonoBehaviour:
   expanded: 0
   enabled: 1
   userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
   target: {fileID: 0}
   withChildren: 1
   delay: 0

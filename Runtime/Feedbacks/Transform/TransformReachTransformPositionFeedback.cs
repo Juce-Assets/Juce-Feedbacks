@@ -39,6 +39,18 @@ namespace Juce.Feedbacks
                 return true;
             }
 
+            if (value.UseStartValue && value.StartValue == null)
+            {
+                errors = $"Start value {nameof(Transform)} is null";
+                return true;
+            }
+
+            if (value.EndValue == null)
+            {
+                errors = $"End value {nameof(Transform)} is null";
+                return true;
+            }
+
             errors = string.Empty;
             return false;
         }
