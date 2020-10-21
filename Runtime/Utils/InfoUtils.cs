@@ -252,5 +252,21 @@ namespace Juce.Feedbacks
         {
             return $"r:{color.r} g:{color.g} b:{color.b}";
         }
+
+        public static void GetStartEndTransformPropertyInfo(ref List<string> infoList, StartEndTransformVector3Property startEndTransform)
+        {
+            if (startEndTransform.UseStartValue)
+            {
+                if (startEndTransform.StartValue != null)
+                {
+                    infoList.Add($"Start: {startEndTransform.StartValue.gameObject.name}");
+                }
+            }
+
+            if (startEndTransform.EndValue != null)
+            {
+                infoList.Add($"End: {startEndTransform.EndValue.gameObject.name}");
+            }
+        }
     }
 }

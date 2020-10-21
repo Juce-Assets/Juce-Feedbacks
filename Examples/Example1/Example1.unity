@@ -769,7 +769,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -949,7 +949,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -998,7 +998,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1347,7 +1347,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1433,7 +1433,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1556,7 +1556,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1634,6 +1634,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 704185286}
   m_CullTransparentMesh: 0
+--- !u!114 &834149777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04941693cb578f848a48fc3356214c04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 1
+  enabled: 1
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 0}
+  value:
+    useStartValue: 1
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 0
+    useEndZ: 0
+    startValue: {fileID: 0}
+    endValue: {fileID: 0}
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
 --- !u!1 &837951147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1715,7 +1759,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -1767,6 +1811,7 @@ MonoBehaviour:
   - {fileID: 1536350034}
   - {fileID: 973917919}
   - {fileID: 1251238409}
+  - {fileID: 834149777}
   executeOnAwake: 1
   loop:
     loopMode: 2
@@ -2016,7 +2061,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -2320,7 +2365,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -2369,7 +2414,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -2977,7 +3022,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3063,7 +3108,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3278,7 +3323,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3447,7 +3492,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3769,7 +3814,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3845,7 +3890,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3861,7 +3906,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   enabled: 1
   userData: 
   scriptUsage:
@@ -3894,7 +3939,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -3960,7 +4005,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -4047,7 +4092,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
@@ -4362,7 +4407,7 @@ MonoBehaviour:
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
-  loop:
+  looping:
     loopMode: 0
     loopResetMode: 0
     loops: 0
