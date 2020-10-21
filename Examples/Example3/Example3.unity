@@ -229,13 +229,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366574494}
-  m_LocalRotation: {x: 0, y: 0, z: -0.6491825, w: 0.7606327}
+  m_LocalRotation: {x: 0, y: 0, z: 0.65493864, w: 0.75568205}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981595644}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -80.96}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 81.83}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 34, y: -101.88649}
@@ -375,10 +375,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbacks:
   - {fileID: 1907548000}
-  executeOnAwake: 0
+  executeOnAwake: 1
   loop:
-    loopMode: 0
-    loopResetMode: 0
+    loopMode: 2
+    loopResetMode: 1
     loops: 0
 --- !u!4 &1725270594
 Transform:
@@ -412,7 +412,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
-  target: {fileID: 0}
+  target: {fileID: 2012807700}
   rotationMode: 0
   value:
     useStartValue: 0
@@ -421,7 +421,7 @@ MonoBehaviour:
     useStartZ: 0
     useEndX: 0
     useEndY: 0
-    useEndZ: 0
+    useEndZ: 1
     startValue: {fileID: 0}
     endValue: {fileID: 0}
   delay: 0
@@ -564,13 +564,13 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2012807699}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: -0.98366594, w: 0.1800041}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1981595644}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 560.74}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -116.01605, y: -101.88649}
