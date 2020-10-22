@@ -17,7 +17,7 @@ namespace Juce.Feedbacks
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Time: Time to wait", EditorStyles.wordWrappedLabel);
+                GenericsDocumentation.DurationDocumentation();
             }
 
             EditorGUILayout.Space(2);

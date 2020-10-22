@@ -11,22 +11,38 @@ namespace Juce.Feedbacks
 
         public void DrawDocumentation()
         {
-            GUILayout.Label("Rotates the target to the given value.", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Rotates the target Transform to a certain value", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Target: Transform component", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- Coordinates Space: Local/World, mapping Transform.localRotation or Transform.rotation", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Target: Transform component that is going to be rotated", EditorStyles.wordWrappedLabel);
+            }
+
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
                 RotationModeDocumentation();
-                GUILayout.Label("- Use Starting Value: Enables the starting rotation", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- Start: (If enabled) Rotation that is going to be set at the moment the feedback starts", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- End: Rotation to reach at the end of the time", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Coordinates Space: use local or world rotation to rotate the transform", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Use Starting Value: enables the starting rotation", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Start: (if enabled) starting rotation value", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- End: end rotation value to reach", EditorStyles.wordWrappedLabel);
+            }
+
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
                 GenericsDocumentation.DelayDocumentation();
                 GenericsDocumentation.DurationDocumentation();
-                GenericsDocumentation.LoopDocumentation();
+            }
+
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
                 GenericsDocumentation.EasingDocumentation();
+            }
+
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                GenericsDocumentation.LoopDocumentation();
             }
 
             EditorGUILayout.Space(2);

@@ -12,6 +12,7 @@ namespace Juce.Feedbacks
         [SerializeField] private Transform target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private CoordinatesSpace coordinatesSpace = default;
         [SerializeField] private StartEndTransformVector3Property value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
@@ -90,19 +91,47 @@ namespace Juce.Feedbacks
 
                 SequenceTween startSequence = new SequenceTween();
 
-                if (value.UseStartX)
-                {
-                    startSequence.Join(target.TweenPositionX(value.StartValue.position.x, 0.0f));
-                }
+                Vector3 startLocalValueToReach = target.transform.localPosition + (value.StartValue.position - target.transform.position);
 
-                if (value.UseStartY)
+                switch (coordinatesSpace)
                 {
-                    startSequence.Join(target.TweenPositionY(value.StartValue.position.y, 0.0f));
-                }
+                    case CoordinatesSpace.Local:
+                        {
+                            if (value.UseStartX)
+                            {
+                                startSequence.Join(target.TweenLocalPositionX(startLocalValueToReach.x, 0.0f));
+                            }
 
-                if (value.UseStartZ)
-                {
-                    startSequence.Join(target.TweenPositionZ(value.StartValue.position.z, 0.0f));
+                            if (value.UseStartY)
+                            {
+                                startSequence.Join(target.TweenLocalPositionY(startLocalValueToReach.y, 0.0f));
+                            }
+
+                            if (value.UseStartZ)
+                            {
+                                startSequence.Join(target.TweenLocalPositionZ(startLocalValueToReach.z, 0.0f));
+                            }
+                        }
+                        break;
+
+                    case CoordinatesSpace.World:
+                        {
+                            if (value.UseStartX)
+                            {
+                                startSequence.Join(target.TweenPositionX(value.StartValue.position.x, 0.0f));
+                            }
+
+                            if (value.UseStartY)
+                            {
+                                startSequence.Join(target.TweenPositionY(value.StartValue.position.y, 0.0f));
+                            }
+
+                            if (value.UseStartZ)
+                            {
+                                startSequence.Join(target.TweenPositionZ(value.StartValue.position.z, 0.0f));
+                            }
+                        }
+                        break;
                 }
 
                 sequenceTween.Append(startSequence);
@@ -115,19 +144,47 @@ namespace Juce.Feedbacks
 
             SequenceTween endSequence = new SequenceTween();
 
-            if (value.UseEndX)
-            {
-                endSequence.Join(target.TweenPositionX(value.EndValue.position.x, duration));
-            }
+            Vector3 endLocalValueToReach = target.transform.localPosition + (value.EndValue.position - target.transform.position);
 
-            if (value.UseEndY)
+            switch (coordinatesSpace)
             {
-                endSequence.Join(target.TweenPositionY(value.EndValue.position.y, duration));
-            }
+                case CoordinatesSpace.Local:
+                    {
+                        if (value.UseEndX)
+                        {
+                            endSequence.Join(target.TweenLocalPositionX(endLocalValueToReach.x, duration));
+                        }
 
-            if (value.UseEndZ)
-            {
-                endSequence.Join(target.TweenPositionZ(value.EndValue.position.z, duration));
+                        if (value.UseEndY)
+                        {
+                            endSequence.Join(target.TweenLocalPositionY(endLocalValueToReach.y, duration));
+                        }
+
+                        if (value.UseEndZ)
+                        {
+                            endSequence.Join(target.TweenLocalPositionZ(endLocalValueToReach.z, duration));
+                        }
+                    }
+                    break;
+
+                case CoordinatesSpace.World:
+                    {
+                        if (value.UseEndX)
+                        {
+                            endSequence.Join(target.TweenPositionX(value.EndValue.position.x, duration));
+                        }
+
+                        if (value.UseEndY)
+                        {
+                            endSequence.Join(target.TweenPositionY(value.EndValue.position.y, duration));
+                        }
+
+                        if (value.UseEndZ)
+                        {
+                            endSequence.Join(target.TweenPositionZ(value.EndValue.position.z, duration));
+                        }
+                    }
+                    break;
             }
 
             Tween.Tween progressTween = endSequence;

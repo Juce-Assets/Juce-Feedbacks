@@ -20,13 +20,10 @@ namespace Juce.Feedbacks
 
         public static void LoopDocumentation()
         {
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                GUILayout.Label("- Loop:", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("   Disabled: Does not loop", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("   X Times: Loops an x number of times", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("   Until Manually Stoped: Loops until Complete or Kill is called on the feedback", EditorStyles.wordWrappedLabel);
-            }
+            GUILayout.Label("- Loop:", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("   Disabled: Does not loop", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("   X Times: Loops an x number of times", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("   Until Manually Stoped: Loops until Complete or Kill is called on the feedback", EditorStyles.wordWrappedLabel);
         }
 
         public static void DelayDocumentation()

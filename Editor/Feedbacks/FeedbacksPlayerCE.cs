@@ -406,13 +406,13 @@ namespace Juce.Feedbacks
             }
             menu.AddSeparator("");
 
-            menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDescription(feedback));
+            menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDocumentation(feedback));
 
 
             menu.ShowAsContext();
         }
 
-        private void ShowFeedbackDescription(Feedback feedback)
+        private void ShowFeedbackDocumentation(Feedback feedback)
         {
             FeedbackTypeEditorData feedbackTypeEditorData = GetFeedbackEditorDataByType(feedback.GetType());
 
