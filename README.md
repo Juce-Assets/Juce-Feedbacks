@@ -1,6 +1,9 @@
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/Juce-Assets/Juce-Feedbacks/issues)
 [![HitCount](http://hits.dwyl.com/Juce-Assets/Juce-Feedbacks.svg)](http://hits.dwyl.com/Juce-Assets/Juce-Feedbacks)
 [![Twitter Follow](https://img.shields.io/badge/twitter-%406uillem-blue.svg?style=flat&label=Follow)](https://twitter.com/6uillem)
+[![Discord](https://img.shields.io/discord/343440455738064897.svg)](https://discord.gg/3gt4kJ)
+[![release](https://img.shields.io/github/release/vis2k/Mirror.svg)](https://github.com/Juce-Assets/Juce-Feedbacks/releases/latest)
+
 ## Juce-Feedbacks
 Welcome to **Juce-Feedbacks**, the open-source feedbacks library that's part of the Juce Unity tools framework.
  <br/>
