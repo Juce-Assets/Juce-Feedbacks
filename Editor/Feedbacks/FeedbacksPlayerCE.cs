@@ -158,6 +158,22 @@ namespace Juce.Feedbacks
             }
         }
 
+        private void CollapseAllFeedbacks()
+        {
+            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
+            {
+                cachedEditorFeedback[i].Feedback.Expanded = false;
+            }
+        }
+
+        private void ExpandAllFeedbacks()
+        {
+            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
+            {
+                cachedEditorFeedback[i].Feedback.Expanded = true;
+            }
+        }
+
         private void GatherFeedbackTypes()
         {
             feedbackTypes.Clear();
@@ -398,12 +414,17 @@ namespace Juce.Feedbacks
 
             if (CopyPasteHelper.Instance.CanPaste)
             {
-                menu.AddItem(new GUIContent("Paste as new"), false, () => CopyPasteHelper.Instance.PasteFeedbackAsNew(this));
+                menu.AddItem(new GUIContent("Paste As New"), false, () => CopyPasteHelper.Instance.PasteFeedbackAsNew(this));
             }
             else
             {
                 menu.AddDisabledItem(new GUIContent("Paste As New"), false);
             }
+            menu.AddSeparator("");
+
+            menu.AddItem(new GUIContent("Expand All"), false, () => ExpandAllFeedbacks());
+            menu.AddItem(new GUIContent("Collapse All"), false, () => CollapseAllFeedbacks());
+
             menu.AddSeparator("");
 
             menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDocumentation(feedback));
