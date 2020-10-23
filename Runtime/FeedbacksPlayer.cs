@@ -83,7 +83,7 @@ namespace Juce.Feedbacks
                 currFeedback.ExecuteResult = executeResult;
             }
 
-            context.MainSequence.Join(context.CurrentSequence);
+            context.MainSequence.Append(context.CurrentSequence);
 
             LoopUtils.SetLoop(context.MainSequence, loop);
 
