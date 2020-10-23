@@ -59,6 +59,19 @@ namespace Juce.Feedbacks
             feedbacksProperty = serializedObject.FindProperty("feedbacks");
         }
 
+        public int GetFeedbackIndex(Feedback feedback)
+        {
+            for(int i = 0; i < cachedEditorFeedback.Count; ++i)
+            {
+                if(cachedEditorFeedback[i].Feedback == feedback)
+                {
+                    return i;
+                }
+            }
+
+            return 0;
+        }
+
         private Feedback AddFeedback(Type type)
         {
             FeedbackTypeEditorData editorData = GetFeedbackEditorDataByType(type);
@@ -108,13 +121,13 @@ namespace Juce.Feedbacks
             CustomTarget.ReorderFeedback(startIndex, endIndex);
         }
 
-        public void PasteFeedbackAsNew(Feedback feedback)
+        public void PasteFeedbackAsNew(Feedback feedback, int index)
         {
             Feedback feedbackCopy = Instantiate(feedback) as Feedback;
 
-            CacheFeedbackEditor(feedbackCopy);
+            CacheFeedbackEditor(feedbackCopy, index);
 
-            CustomTarget.AddFeedback(feedbackCopy);
+            CustomTarget.AddFeedback(feedbackCopy, index);
         }
 
         private void ChacheAllFeedbacksEditor()
@@ -129,6 +142,11 @@ namespace Juce.Feedbacks
 
         private void CacheFeedbackEditor(Feedback feedback)
         {
+            CacheFeedbackEditor(feedback, cachedEditorFeedback.Count);
+        }
+
+        private void CacheFeedbackEditor(Feedback feedback, int index)
+        {
             RemoveCacheFeedbackEditor(feedback);
 
             if (feedback == null)
@@ -142,7 +160,7 @@ namespace Juce.Feedbacks
 
             FeedbackEditorData feedbackEditorData = new FeedbackEditorData(feedback, feedbackTypeEditorData, currEditor);
 
-            cachedEditorFeedback.Add(feedbackEditorData);
+            cachedEditorFeedback.Insert(index, feedbackEditorData);
         }
 
         private void RemoveCacheFeedbackEditor(Feedback feedback)
@@ -414,7 +432,12 @@ namespace Juce.Feedbacks
 
             if (CopyPasteHelper.Instance.CanPaste)
             {
-                menu.AddItem(new GUIContent("Paste As New"), false, () => CopyPasteHelper.Instance.PasteFeedbackAsNew(this));
+                menu.AddItem(new GUIContent("Paste As New"), false, () =>
+                {
+                    int feedbackIndex = GetFeedbackIndex(feedback);
+
+                    CopyPasteHelper.Instance.PasteFeedbackAsNew(this, feedbackIndex + 1);
+                });
             }
             else
             {

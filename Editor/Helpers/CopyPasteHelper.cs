@@ -14,14 +14,14 @@ namespace Juce.Feedbacks
             this.clipboardFeedback = clipboardFeedback;
         }
 
-        public void PasteFeedbackAsNew(FeedbacksPlayerCE feedbackPlayer)
+        public void PasteFeedbackAsNew(FeedbacksPlayerCE feedbackPlayer, int positionIndex)
         {
             if(clipboardFeedback == null)
             {
                 return;
             }
 
-            feedbackPlayer.PasteFeedbackAsNew(clipboardFeedback);
+            feedbackPlayer.PasteFeedbackAsNew(clipboardFeedback, positionIndex);
         }
     }
 }

@@ -22,7 +22,12 @@ namespace Juce.Feedbacks
 
         public void AddFeedback(Feedback feedback)
         {
-            feedbacks.Add(feedback);
+            AddFeedback(feedback, feedbacks.Count);
+        }
+
+        public void AddFeedback(Feedback feedback, int index)
+        {
+            feedbacks.Insert(index, feedback);
         }
 
         public void RemoveFeedback(Feedback feedback)
