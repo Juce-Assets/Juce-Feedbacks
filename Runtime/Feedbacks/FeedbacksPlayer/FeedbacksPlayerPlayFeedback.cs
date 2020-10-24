@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Complete Feedback", "Feedback/")]
-    public class CompleteFeedbackFeedback : Feedback
+    [FeedbackIdentifier("Play", "Feedbacks Player/")]
+    public class FeedbacksPlayerPlayFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private FeedbacksPlayer target = default;
@@ -58,7 +58,7 @@ namespace Juce.Feedbacks
 
             sequenceTween.AppendCallback(() =>
             {
-                target.Complete();
+                target.Play();
             });
 
             result.DelayTween = delayTween;

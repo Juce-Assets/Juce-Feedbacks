@@ -5,16 +5,20 @@ using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Kill Feedback", "Feedback/")]
-    public class KillFeedbackFeedback : Feedback
+    [FeedbackIdentifier("Instantiate", "GameObject/")]
+    public class GameObjectInstantiateFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private FeedbacksPlayer target = default;
+        [SerializeField] private GameObject target = default;
+
+        [Header(FeedbackSectionsUtils.ValuesSection)]
+        [SerializeField] private Transform parent = default;
+        [SerializeField] private bool worldPositionStays = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
-        public FeedbacksPlayer Target => target;
+        public GameObject Target { get => target; set => target = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
@@ -31,7 +35,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackTargetInfo()
         {
-            return target != null ? target.name : string.Empty;
+            return target != null ? target.gameObject.name : string.Empty;
         }
 
         public override void GetFeedbackInfo(ref List<string> infoList)
@@ -54,13 +58,12 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(delayTween);
             }
 
-            ExecuteResult result = new ExecuteResult();
-
             sequenceTween.AppendCallback(() =>
             {
-                target.Kill();
+                GameObject instance = MonoBehaviour.Instantiate(target, parent, worldPositionStays);
             });
 
+            ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;
 
             return result;
