@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
 using UnityEngine.UIElements;
+using System.Threading.Tasks;
 
 namespace Juce.Feedbacks
 {
@@ -13,7 +14,7 @@ namespace Juce.Feedbacks
         [SerializeField] private bool executeOnAwake = default;
         [SerializeField] private LoopProperty loop = default;
 
-        private SequenceTween currMainSequence;
+        internal SequenceTween CurrMainSequence { get; private set; }
 
         private void Start()
         {
@@ -59,7 +60,16 @@ namespace Juce.Feedbacks
             Play();
         }
 
-        public void Play()
+        public Task Play()
+        {
+            TaskCompletionSource<object> taskCompletionSource = new TaskCompletionSource<object>();
+
+            Play(() => taskCompletionSource.SetResult(null));
+
+            return taskCompletionSource.Task;
+        }
+
+        public void Play(Action onFinish = null)
         {
             Kill();
 
@@ -92,39 +102,41 @@ namespace Juce.Feedbacks
 
             LoopUtils.SetLoop(context.MainSequence, loop);
 
+            context.MainSequence.onCompleteOrKill += () => onFinish?.Invoke();
+
             context.MainSequence.Play();
 
-            currMainSequence = context.MainSequence;
+            CurrMainSequence = context.MainSequence;
         }
 
         public void Complete()
         {
-            if (currMainSequence == null)
+            if (CurrMainSequence == null)
             {
                 return;
             }
 ;
-            currMainSequence.Complete();
+            CurrMainSequence.Complete();
         }
 
         public void Kill()
         {
-            if (currMainSequence == null)
+            if (CurrMainSequence == null)
             {
                 return;
             }
 ;
-            currMainSequence.Kill();
+            CurrMainSequence.Kill();
         }
 
         public void Restart()
         {
-            if (currMainSequence == null)
+            if (CurrMainSequence == null)
             {
                 return;
             }
 ;
-            currMainSequence.Restart();
+            CurrMainSequence.Restart();
         }
 
         public T GetFeedback<T>(string id) where T : Feedback
