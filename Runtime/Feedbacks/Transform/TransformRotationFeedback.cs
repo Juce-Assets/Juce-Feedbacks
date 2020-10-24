@@ -167,14 +167,7 @@ namespace Juce.Feedbacks
 
             Tween.Tween progressTween = endSequence;
 
-            if (value.UseStartValue)
-            {
-                sequenceTween.Join(endSequence);
-            }
-            else
-            {
-                sequenceTween.Append(endSequence);
-            }
+            sequenceTween.Append(endSequence);
 
             EasingUtils.SetEasing(sequenceTween, easing);
             LoopUtils.SetLoop(sequenceTween, looping);
