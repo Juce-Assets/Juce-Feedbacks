@@ -5,9 +5,9 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Loop", "Flow/")]
+    [FeedbackIdentifier("New Sequence Loop", "Flow/")]
     [FeedbackColor(0.0f, 0.4f, 0.5f)]
-    public class LoopFeedback : Feedback
+    public class NewSequenceLoopFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
@@ -18,7 +18,7 @@ namespace Juce.Feedbacks
         {
             LoopUtils.SetLoop(context.CurrentSequence, looping);
 
-            context.MainSequence.Join(context.CurrentSequence);
+            context.MainSequence.Append(context.CurrentSequence);
 
             context.CurrentSequence = new SequenceTween();
 

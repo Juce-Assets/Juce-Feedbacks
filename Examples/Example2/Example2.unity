@@ -264,6 +264,24 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
+--- !u!114 &156866523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  enabled: 1
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
 --- !u!114 &221515353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +529,7 @@ MonoBehaviour:
   - {fileID: 221515353}
   - {fileID: 1143589342}
   - {fileID: 246231826}
-  - {fileID: 2109590036}
+  - {fileID: 156866523}
   - {fileID: 986358898}
   - {fileID: 1621887869}
   - {fileID: 1374138841}
@@ -712,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   enabled: 1
   userData: 
   scriptUsage:
@@ -732,7 +750,7 @@ MonoBehaviour:
     startValueY: 0
     startValueZ: 0
     endValueX: 0
-    endValueY: 0
+    endValueY: 0.1
     endValueZ: 0
   delay: 0
   duration: 1
@@ -1245,7 +1263,7 @@ MonoBehaviour:
   - {fileID: 755091321}
   - {fileID: 1278648076}
   - {fileID: 800132485}
-  - {fileID: 1897853122}
+  - {fileID: 1946490317}
   - {fileID: 58719060}
   - {fileID: 1600934760}
   - {fileID: 1406821579}
@@ -1773,28 +1791,6 @@ Transform:
   m_Father: {fileID: 1939099699}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1897853122
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52eeae8853cd354495891fe114716e8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  looping:
-    loopMode: 1
-    loopResetMode: 1
-    loops: 1
 --- !u!1 &1939099698
 GameObject:
   m_ObjectHideFlags: 0
@@ -1826,7 +1822,7 @@ Transform:
   m_Father: {fileID: 1768270839}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 16.5, y: -17.648, z: 0}
---- !u!114 &2109590036
+--- !u!114 &1946490317
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1835,10 +1831,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c52eeae8853cd354495891fe114716e8, type: 3}
+  m_Script: {fileID: 11500000, guid: c79034d922fa9c447ab73caf1753a92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 0
+  expanded: 1
   enabled: 1
   userData: 
   scriptUsage:
@@ -1847,4 +1843,4 @@ MonoBehaviour:
   looping:
     loopMode: 1
     loopResetMode: 1
-    loops: 0
+    loops: 1
