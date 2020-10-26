@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
 
         internal SequenceTween CurrMainSequence { get; private set; }
 
+        public IReadOnlyList<Feedback> Feedbacks => feedbacks;
+
         private void Start()
         {
             TryExecuteOnAwake(); 
@@ -34,6 +36,11 @@ namespace Juce.Feedbacks
         public void RemoveFeedback(Feedback feedback)
         {
             feedbacks.Remove(feedback);
+        }
+
+        public void RemoveAllFeedbacks()
+        {
+            feedbacks.Clear();
         }
 
         public void ReorderFeedback(int startIndex, int endIndex)

@@ -282,6 +282,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
+  delay: 0
 --- !u!114 &221515353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -300,26 +301,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
---- !u!114 &236882373
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585935bb46a639a4eb95e58cc66be10e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
   delay: 0
-  duration: 1
 --- !u!114 &246231826
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,6 +369,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
+  delay: 0
 --- !u!1 &387641261
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +516,6 @@ MonoBehaviour:
   - {fileID: 986358898}
   - {fileID: 1621887869}
   - {fileID: 1374138841}
-  - {fileID: 1420956724}
   executeOnAwake: 1
   loop:
     loopMode: 2
@@ -918,6 +900,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
+  delay: 1
 --- !u!114 &1406821579
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -936,26 +919,7 @@ MonoBehaviour:
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
---- !u!114 &1420956724
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 585935bb46a639a4eb95e58cc66be10e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 0
-  duration: 1
+  delay: 1
 --- !u!1 &1421732109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1267,7 +1231,6 @@ MonoBehaviour:
   - {fileID: 58719060}
   - {fileID: 1600934760}
   - {fileID: 1406821579}
-  - {fileID: 236882373}
   executeOnAwake: 1
   loop:
     loopMode: 2
@@ -1834,7 +1797,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79034d922fa9c447ab73caf1753a92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  expanded: 1
+  expanded: 0
   enabled: 1
   userData: 
   scriptUsage:

@@ -37,7 +37,7 @@ namespace Juce.Feedbacks
 
             DrawFeedbacksEditors();
 
-            DrawAddFeedbackInspector();
+            DrawBottomInspector();
 
             DrawFeedbackPlayerControls();
 
@@ -107,6 +107,12 @@ namespace Juce.Feedbacks
             CustomTarget.RemoveFeedback(feedback);
         }
 
+        public void RemoveAllFeedbacks()
+        {
+            cachedEditorFeedback.Clear();
+            CustomTarget.RemoveAllFeedbacks();
+        }
+
         private void ReorderFeedback(int startIndex, int endIndex)
         {
             if (startIndex == endIndex)
@@ -128,6 +134,11 @@ namespace Juce.Feedbacks
             CacheFeedbackEditor(feedbackCopy, index);
 
             CustomTarget.AddFeedback(feedbackCopy, index);
+        }
+
+        public void PasteFeedbackAsNew(Feedback feedback)
+        {
+            PasteFeedbackAsNew(feedback, cachedEditorFeedback.Count);
         }
 
         private void ChacheAllFeedbacksEditor()
@@ -379,9 +390,9 @@ namespace Juce.Feedbacks
             }
         }
 
-        private void DrawAddFeedbackInspector()
+        private void DrawBottomInspector()
         {
-            EditorGUILayout.Space(8);
+            EditorGUILayout.Space(4);
 
             Styling.DrawSplitter(2.0f);
 
@@ -391,6 +402,26 @@ namespace Juce.Feedbacks
             {
                 ShowFeedbacksMenu();
             }
+
+            EditorGUILayout.Space(4);
+
+            Styling.DrawSplitter(1.0f);
+
+            EditorGUILayout.Space(4);
+
+            EditorGUILayout.BeginHorizontal();
+            {
+                if (GUILayout.Button("Copy All"))
+                {
+                    CopyPasteHelper.Instance.CopyAllFeedbacks(CustomTarget.Feedbacks);
+                }
+
+                if (GUILayout.Button("Paste All"))
+                {
+                    CopyPasteHelper.Instance.PasteAllFeedbacks(this);
+                }
+            }
+            EditorGUILayout.EndHorizontal();
         }
 
         private void ShowFeedbacksMenu()

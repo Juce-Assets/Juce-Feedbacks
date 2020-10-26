@@ -10,8 +10,8 @@ namespace Juce.Feedbacks
 
         public void DrawDocumentation()
         { 
-            GUILayout.Label("Marks the start of a loop for LoopFeedback. It's not necessary for the LoopFeedback to work, " +
-                "but it can be usefull in some situations", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Marks the start of a loop for LoopFeedback. It's not necessary " +
+                "for the LoopFeedback to work, but it can be useful in some situations", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 

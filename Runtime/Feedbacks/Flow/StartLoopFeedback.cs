@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Juce.Feedbacks
 {
     [FeedbackIdentifier("Start Loop", "Flow/")]
-    [FeedbackColor(0.0f, 0.4f, 0.5f)]
+    [FeedbackColor(0.5f, 0.3f, 0.1f)]
     public class StartLoopFeedback : Feedback
     {
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

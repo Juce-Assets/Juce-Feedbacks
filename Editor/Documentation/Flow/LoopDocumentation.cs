@@ -11,7 +11,7 @@ namespace Juce.Feedbacks
         public void DrawDocumentation()
         {
             GUILayout.Label("Loops feedbacks that are over this feedback. If there is a LoopStartFeedback (not mandatory) " +
-                "on top, it will only loop the feedbacks that are in between the two. If there is a NewSequenceFeedback, " +
+                "on top, it will only loop the feedbacks that are in between the two. If there is a WaitAllAbove, " +
                 "it will only loop the feedbacks that are in between the two.", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);

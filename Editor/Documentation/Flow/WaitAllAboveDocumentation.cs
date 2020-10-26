@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class NewSequenceDocumentation : IFeedbackDocumentation
+    public class WaitAllAboveDocumentation : IFeedbackDocumentation
     {
-        public Type FeedbackType => typeof(NewSequenceFeedback);
+        public Type FeedbackType => typeof(WaitAllAboveFeedback);
 
         public void DrawDocumentation()
         {
@@ -18,8 +18,7 @@ namespace Juce.Feedbacks
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("Sequencing:");
-                GenericsDocumentation.SameTimeSequencingDocumentation();
+                GenericsDocumentation.DelayDocumentation();
             }
         }
     }
