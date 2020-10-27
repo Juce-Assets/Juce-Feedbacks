@@ -20,7 +20,7 @@ namespace Juce.Feedbacks
         private void Start()
         {
             TryExecuteOnAwake(); 
-        }
+        } 
 
         private void TryExecuteOnAwake()
         {

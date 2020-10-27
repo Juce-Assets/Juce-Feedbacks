@@ -25,8 +25,6 @@ namespace Juce.Feedbacks
             GatherProperties();
 
             CacheFeedbackTypes();
-
-            //ChacheAllFeedbacksEditor();
         }
 
         public override void OnInspectorGUI()
