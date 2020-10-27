@@ -1,9 +1,8 @@
 ﻿using System;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
-using UnityEngine.UIElements;
-using System.Threading.Tasks;
 
 namespace Juce.Feedbacks
 {
@@ -21,40 +20,6 @@ namespace Juce.Feedbacks
         private void Start()
         {
             TryExecuteOnAwake(); 
-        }
-
-        public void AddFeedback(Feedback feedback)
-        {
-            AddFeedback(feedback, feedbacks.Count);
-        }
-
-        public void AddFeedback(Feedback feedback, int index)
-        {
-            feedbacks.Insert(index, feedback);
-        }
-
-        public void RemoveFeedback(Feedback feedback)
-        {
-            feedbacks.Remove(feedback);
-        }
-
-        public void RemoveAllFeedbacks()
-        {
-            feedbacks.Clear();
-        }
-
-        public void ReorderFeedback(int startIndex, int endIndex)
-        {
-            if (startIndex == endIndex)
-            {
-                return;
-            }
-
-            Feedback item = feedbacks[startIndex];
-
-            feedbacks.RemoveAt(startIndex);
-
-            feedbacks.Insert(endIndex, item);
         }
 
         private void TryExecuteOnAwake()

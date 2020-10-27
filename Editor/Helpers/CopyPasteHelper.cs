@@ -10,6 +10,7 @@ namespace Juce.Feedbacks
         private List<Feedback> clipboardAllFeedbacks = new List<Feedback>();
 
         public bool CanPaste => clipboardFeedback != null;
+        public bool CanPasteAll => clipboardAllFeedbacks.Count > 0;
 
         public void CopyFeedback(Feedback clipboardFeedback)
         {

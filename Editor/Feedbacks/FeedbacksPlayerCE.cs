@@ -11,8 +11,8 @@ namespace Juce.Feedbacks
     {
         private FeedbacksPlayer CustomTarget => (FeedbacksPlayer)target;
 
-        private readonly List<FeedbackTypeEditorData> feedbackTypes = new List<FeedbackTypeEditorData>();
-        private readonly List<FeedbackEditorData> cachedEditorFeedback = new List<FeedbackEditorData>();
+        private readonly List<FeedbackTypeEditorData> cachedfeedbackTypes = new List<FeedbackTypeEditorData>();
+        private readonly Dictionary<Feedback, FeedbackEditorData> cachedEditorFeedback = new Dictionary<Feedback, FeedbackEditorData>();
 
         private readonly DragHelper dragHelper = new DragHelper();
 
@@ -24,9 +24,9 @@ namespace Juce.Feedbacks
         {
             GatherProperties();
 
-            GatherFeedbackTypes();
+            CacheFeedbackTypes();
 
-            ChacheAllFeedbacksEditor();
+            //ChacheAllFeedbacksEditor();
         }
 
         public override void OnInspectorGUI()
@@ -35,7 +35,7 @@ namespace Juce.Feedbacks
 
             base.DrawDefaultInspector();
 
-            DrawFeedbacksEditors();
+            DrawAllFeedbacks();
 
             DrawBottomInspector();
 
@@ -59,58 +59,77 @@ namespace Juce.Feedbacks
             feedbacksProperty = serializedObject.FindProperty("feedbacks");
         }
 
-        public int GetFeedbackIndex(Feedback feedback)
+        public Feedback AddFeedback(Type type)
         {
-            for(int i = 0; i < cachedEditorFeedback.Count; ++i)
-            {
-                if(cachedEditorFeedback[i].Feedback == feedback)
-                {
-                    return i;
-                }
-            }
+            FeedbackTypeEditorData feedbackTypeEditorData = GetFeedbackEditorDataByType(type);
 
-            return 0;
+            return AddFeedback(feedbackTypeEditorData);
         }
 
-        private Feedback AddFeedback(Type type)
-        {
-            FeedbackTypeEditorData editorData = GetFeedbackEditorDataByType(type);
-
-            return AddFeedback(editorData);
-        }
-
-        private Feedback AddFeedback(FeedbackTypeEditorData feedbackTypeEditorData)
+        public Feedback AddFeedback(FeedbackTypeEditorData feedbackTypeEditorData)
         {
             Feedback newFeedback = ScriptableObject.CreateInstance(feedbackTypeEditorData.Type) as Feedback;
 
             if (newFeedback == null)
             {
-                Debug.LogError($"Could not create {nameof(Feedback)} instance, {nameof(feedbackTypeEditorData.Type)} does not inherit from {nameof(Feedback)}");
+                Debug.LogError($"Could not create {nameof(Feedback)} instance, " +
+                    $"{nameof(feedbackTypeEditorData.Type)} does not inherit from {nameof(Feedback)}");
             }
 
-            CacheFeedbackEditor(newFeedback);
+            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(AddFeedback)}");
 
-            CustomTarget.AddFeedback(newFeedback);
+            int index = feedbacksProperty.arraySize;
+
+            feedbacksProperty.arraySize++;
+            feedbacksProperty.GetArrayElementAtIndex(index).objectReferenceValue = newFeedback;
+
+            feedbacksProperty.serializedObject.ApplyModifiedProperties();
 
             return newFeedback;
         }
 
-        private void RemoveFeedback(Feedback feedback)
+        public void PasteFeedbackAsNew(Feedback feedback)
         {
-            if (feedback == null)
+            PasteFeedbackAsNew(feedback, feedbacksProperty.arraySize);
+        }
+
+        public void PasteFeedbackAsNew(Feedback feedback, int index)
+        {
+            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(PasteFeedbackAsNew)}");
+
+            Feedback feedbackCopy = Instantiate(feedback) as Feedback;
+
+            feedbacksProperty.InsertArrayElementAtIndex(index);
+            feedbacksProperty.GetArrayElementAtIndex(index).objectReferenceValue = feedbackCopy;
+
+            feedbacksProperty.serializedObject.ApplyModifiedProperties();
+        }
+
+        public void RemoveFeedback(Feedback feedback)
+        {
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
-                throw new Exception();
+                if(feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue == feedback)
+                {
+                    Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveFeedback)}");
+
+                    feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue = null;
+                    feedbacksProperty.DeleteArrayElementAtIndex(i);
+
+                    feedbacksProperty.serializedObject.ApplyModifiedProperties();
+
+                    break;
+                }
             }
-
-            RemoveCacheFeedbackEditor(feedback);
-
-            CustomTarget.RemoveFeedback(feedback);
         }
 
         public void RemoveAllFeedbacks()
         {
-            cachedEditorFeedback.Clear();
-            CustomTarget.RemoveAllFeedbacks();
+            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveAllFeedbacks)}");
+
+            feedbacksProperty.ClearArray();
+
+            feedbacksProperty.serializedObject.ApplyModifiedProperties();
         }
 
         private void ReorderFeedback(int startIndex, int endIndex)
@@ -120,92 +139,64 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            FeedbackEditorData item = cachedEditorFeedback[startIndex];
-            cachedEditorFeedback.RemoveAt(startIndex);
-            cachedEditorFeedback.Insert(endIndex, item);
+            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(ReorderFeedback)}");
 
-            CustomTarget.ReorderFeedback(startIndex, endIndex);
+            Feedback feedbackToReorder = feedbacksProperty.GetArrayElementAtIndex(startIndex).objectReferenceValue as Feedback;
+
+            feedbacksProperty.GetArrayElementAtIndex(startIndex).objectReferenceValue = null;
+            feedbacksProperty.DeleteArrayElementAtIndex(startIndex);
+
+            feedbacksProperty.InsertArrayElementAtIndex(endIndex);
+            feedbacksProperty.GetArrayElementAtIndex(endIndex).objectReferenceValue = feedbackToReorder;
+
+            feedbacksProperty.serializedObject.ApplyModifiedProperties();
         }
 
-        public void PasteFeedbackAsNew(Feedback feedback, int index)
-        {
-            Feedback feedbackCopy = Instantiate(feedback) as Feedback;
-
-            CacheFeedbackEditor(feedbackCopy, index);
-
-            CustomTarget.AddFeedback(feedbackCopy, index);
-        }
-
-        public void PasteFeedbackAsNew(Feedback feedback)
-        {
-            PasteFeedbackAsNew(feedback, cachedEditorFeedback.Count);
-        }
-
-        private void ChacheAllFeedbacksEditor()
+        public int GetFeedbackIndex(Feedback feedback)
         {
             for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
-                Feedback currFeedback = (Feedback)feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue;
-
-                CacheFeedbackEditor(currFeedback);
+                if (feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue == feedback)
+                {
+                    return i;
+                }
             }
+
+            return 0;
         }
 
-        private void CacheFeedbackEditor(Feedback feedback)
+        private FeedbackEditorData GetOrCreateFeedbackeEditor(Feedback feedback)
         {
-            CacheFeedbackEditor(feedback, cachedEditorFeedback.Count);
-        }
+            cachedEditorFeedback.TryGetValue(feedback, out FeedbackEditorData feedbackEditorData);
 
-        private void CacheFeedbackEditor(Feedback feedback, int index)
-        {
-            RemoveCacheFeedbackEditor(feedback);
-
-            if (feedback == null)
+            if(feedbackEditorData != null)
             {
-                return;
+                return feedbackEditorData;
             }
 
             FeedbackTypeEditorData feedbackTypeEditorData = GetFeedbackEditorDataByType(feedback.GetType());
+            Editor feedbackEditor = Editor.CreateEditor(feedback);
 
-            Editor currEditor = Editor.CreateEditor(feedback);
+            FeedbackEditorData newFeedbackEditorData = new FeedbackEditorData(feedback, feedbackTypeEditorData, feedbackEditor);
 
-            FeedbackEditorData feedbackEditorData = new FeedbackEditorData(feedback, feedbackTypeEditorData, currEditor);
+            cachedEditorFeedback.Add(feedback, newFeedbackEditorData);
 
-            cachedEditorFeedback.Insert(index, feedbackEditorData);
+            return newFeedbackEditorData;
         }
 
-        private void RemoveCacheFeedbackEditor(Feedback feedback)
+        private void FeedbacksSetExpanded(bool set)
         {
-            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
-                if (cachedEditorFeedback[i].Feedback == feedback)
-                {
-                    cachedEditorFeedback.RemoveAt(i);
+                Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
 
-                    break;
-                }
+                currFeedback.Expanded = set;
             }
         }
 
-        private void CollapseAllFeedbacks()
+        private void CacheFeedbackTypes()
         {
-            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
-            {
-                cachedEditorFeedback[i].Feedback.Expanded = false;
-            }
-        }
-
-        private void ExpandAllFeedbacks()
-        {
-            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
-            {
-                cachedEditorFeedback[i].Feedback.Expanded = true;
-            }
-        }
-
-        private void GatherFeedbackTypes()
-        {
-            feedbackTypes.Clear();
+            cachedfeedbackTypes.Clear();
 
             foreach (Assembly assembly in System.AppDomain.CurrentDomain.GetAssemblies())
             {
@@ -231,7 +222,7 @@ namespace Juce.Feedbacks
 
                         FeedbackTypeEditorData data = new FeedbackTypeEditorData(currType, identifier.Name, identifier.Path, fullName, color);
 
-                        feedbackTypes.Add(data);
+                        cachedfeedbackTypes.Add(data);
                     }
                 }
             }
@@ -239,9 +230,9 @@ namespace Juce.Feedbacks
 
         private FeedbackTypeEditorData GetFeedbackEditorDataByType(Type type)
         {
-            for (int i = 0; i < feedbackTypes.Count; ++i)
+            for (int i = 0; i < cachedfeedbackTypes.Count; ++i)
             {
-                FeedbackTypeEditorData currFeedbackEditorData = feedbackTypes[i];
+                FeedbackTypeEditorData currFeedbackEditorData = cachedfeedbackTypes[i];
 
                 if (currFeedbackEditorData.Type == type)
                 {
@@ -289,7 +280,7 @@ namespace Juce.Feedbacks
             }
         }
 
-        private void DrawFeedbacksEditors()
+        private void DrawAllFeedbacks()
         {
             Event e = Event.current;
 
@@ -297,86 +288,13 @@ namespace Juce.Feedbacks
 
             EditorGUILayout.LabelField("Feedbacks", EditorStyles.boldLabel);
 
-            for (int i = 0; i < cachedEditorFeedback.Count; ++i)
+            for(int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
-                FeedbackEditorData currFeedback = cachedEditorFeedback[i];
+                Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
 
-                FeedbackTypeEditorData feedbackTypeEditorData = currFeedback.FeedbackTypeEditorData;
+                FeedbackEditorData feedbackEditorData = GetOrCreateFeedbackeEditor(currFeedback);
 
-                bool expanded = currFeedback.Feedback.Expanded;
-                bool enabled = currFeedback.Feedback.Enabled;
-
-                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-                {
-                    string name = feedbackTypeEditorData.FullName;
-
-                    string targetInfo = currFeedback.Feedback.GetFeedbackTargetInfo();
-
-                    if (!string.IsNullOrEmpty(targetInfo))
-                    {
-                        name += $" [{targetInfo}]";
-                    }
-
-                    Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, feedbackTypeEditorData.Color, 
-                        () => ShowFeedbackContextMenu(currFeedback.Feedback));
-
-                    dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, i);
-
-                    currFeedback.Feedback.Expanded = expanded;
-                    currFeedback.Feedback.Enabled = enabled;
-
-                    string errors;
-                    bool hasErrors = currFeedback.Feedback.GetFeedbackErrors(out errors);
-
-                    if(hasErrors || !string.IsNullOrEmpty(currFeedback.Feedback.UserData))
-                    {
-                        EditorGUILayout.Space(2);
-                    }
-
-                    if (hasErrors)
-                    {
-                        GUIStyle s = new GUIStyle(EditorStyles.label);
-                        s.normal.textColor = new Color(0.8f, 0.2f, 0.2f);
-
-                        EditorGUILayout.LabelField($"Warning: {errors}", s);
-                    }
-
-                    if (!string.IsNullOrEmpty(currFeedback.Feedback.UserData))
-                    {
-                        GUILayout.Label($"{currFeedback.Feedback.UserData}", EditorStyles.wordWrappedLabel);
-                    }
-
-                    if (!expanded)
-                    {
-                        feedbacksInfo.Clear();
-                        currFeedback.Feedback.GetFeedbackInfo(ref feedbacksInfo);
-
-                        string infoString = InfoUtils.FormatInfo(ref feedbacksInfo);
-
-                        if (!string.IsNullOrEmpty(infoString))
-                        {
-                            EditorGUILayout.LabelField(infoString);
-                        }
-                    }
-
-                    if(expanded)
-                    {
-                        EditorGUILayout.Space(2);
-                    }
-
-                    DrawProgress(currFeedback.Feedback);
-
-                    if (expanded)
-                    {
-                        EditorGUILayout.Space(2);
-
-                        Styling.DrawSplitter(1, -4, 4);
-
-                        EditorGUILayout.Space(5);
-
-                        currFeedback.Editor.OnInspectorGUI();
-                    }
-                }
+                DrawFeedback(feedbackEditorData, i, e);
             }
 
             // Finish dragging
@@ -387,6 +305,87 @@ namespace Juce.Feedbacks
             if (dragged)
             {
                 ReorderFeedback(startIndex, endIndex);
+            }
+        }
+
+        private void DrawFeedback(FeedbackEditorData feedbackEditorData, int index, Event e)
+        {
+            Feedback feedback = feedbackEditorData.Feedback;
+            FeedbackTypeEditorData feedbackTypeEditorData = feedbackEditorData.FeedbackTypeEditorData;
+
+            bool expanded = feedback.Expanded;
+            bool enabled = feedback.Enabled;
+
+            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
+            {
+                string name = feedbackTypeEditorData.FullName;
+
+                string targetInfo = feedback.GetFeedbackTargetInfo();
+
+                if (!string.IsNullOrEmpty(targetInfo))
+                {
+                    name += $" [{targetInfo}]";
+                }
+
+                Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, feedbackTypeEditorData.Color,
+                    () => ShowFeedbackContextMenu(feedback));
+
+                dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, index);
+
+                feedback.Expanded = expanded;
+                feedback.Enabled = enabled;
+
+                string errors;
+                bool hasErrors = feedback.GetFeedbackErrors(out errors);
+
+                if (hasErrors || !string.IsNullOrEmpty(feedback.UserData))
+                {
+                    EditorGUILayout.Space(2);
+                }
+
+                if (hasErrors)
+                {
+                    GUIStyle s = new GUIStyle(EditorStyles.label);
+                    s.normal.textColor = new Color(0.8f, 0.2f, 0.2f);
+
+                    EditorGUILayout.LabelField($"Warning: {errors}", s);
+                }
+
+                if (!string.IsNullOrEmpty(feedback.UserData))
+                {
+                    GUILayout.Label($"{feedback.UserData}", EditorStyles.wordWrappedLabel);
+                }
+
+                if (!expanded)
+                {
+                    feedbacksInfo.Clear();
+                    feedback.GetFeedbackInfo(ref feedbacksInfo);
+
+                    string infoString = InfoUtils.FormatInfo(ref feedbacksInfo);
+
+                    if (!string.IsNullOrEmpty(infoString))
+                    {
+                        EditorGUILayout.LabelField(infoString);
+                    }
+                }
+
+                if (expanded)
+                {
+                    EditorGUILayout.Space(2);
+                }
+
+                DrawProgress(feedback);
+
+                if (expanded)
+                {
+                    EditorGUILayout.Space(2);
+
+                    Styling.DrawSplitter(1, -4, 4);
+
+                    EditorGUILayout.Space(5);
+
+                    feedbackEditorData.Editor.OnInspectorGUI();
+                }
             }
         }
 
@@ -416,10 +415,14 @@ namespace Juce.Feedbacks
                     CopyPasteHelper.Instance.CopyAllFeedbacks(CustomTarget.Feedbacks);
                 }
 
-                if (GUILayout.Button("Paste All"))
+                EditorGUI.BeginDisabledGroup(!CopyPasteHelper.Instance.CanPasteAll);
                 {
-                    CopyPasteHelper.Instance.PasteAllFeedbacks(this);
+                    if (GUILayout.Button("Paste All"))
+                    {
+                        CopyPasteHelper.Instance.PasteAllFeedbacks(this);
+                    }
                 }
+                EditorGUI.EndDisabledGroup();
             }
             EditorGUILayout.EndHorizontal();
         }
@@ -428,9 +431,9 @@ namespace Juce.Feedbacks
         {
             GenericMenu menu = new GenericMenu();
 
-            for (int i = 0; i < feedbackTypes.Count; ++i)
+            for (int i = 0; i < cachedfeedbackTypes.Count; ++i)
             {
-                FeedbackTypeEditorData currFeedbackEditorData = feedbackTypes[i];
+                FeedbackTypeEditorData currFeedbackEditorData = cachedfeedbackTypes[i];
 
                 menu.AddItem(new GUIContent($"{currFeedbackEditorData.Path}{currFeedbackEditorData.Name}"),
                     false, OnFeedbacksMenuPressed, currFeedbackEditorData);
@@ -476,8 +479,8 @@ namespace Juce.Feedbacks
             }
             menu.AddSeparator("");
 
-            menu.AddItem(new GUIContent("Expand All"), false, () => ExpandAllFeedbacks());
-            menu.AddItem(new GUIContent("Collapse All"), false, () => CollapseAllFeedbacks());
+            menu.AddItem(new GUIContent("Expand All"), false, () => FeedbacksSetExpanded(true));
+            menu.AddItem(new GUIContent("Collapse All"), false, () => FeedbacksSetExpanded(false));
 
             menu.AddSeparator("");
 
