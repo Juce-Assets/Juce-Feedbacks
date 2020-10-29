@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class TextMeshProFontSizeDocumentation : IFeedbackDocumentation
+    internal class TextMeshProFontSizeDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(TextMeshProFontSizeFeedback);
 

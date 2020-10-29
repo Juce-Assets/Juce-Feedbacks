@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class WaitTimeFeedbackDocumentation : IFeedbackDocumentation
+    internal class WaitTimeFeedbackDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(WaitTimeFeedback);
 

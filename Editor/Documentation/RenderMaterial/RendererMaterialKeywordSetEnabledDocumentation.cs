@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class RendererMaterialKeywordSetEnabledDocumentation : IFeedbackDocumentation
+    internal class RendererMaterialKeywordSetEnabledDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(RendererMaterialKeywordSetEnabledFeedback);
 

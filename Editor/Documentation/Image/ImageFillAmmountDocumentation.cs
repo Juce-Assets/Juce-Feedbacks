@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class ImageFillAmmountDocumentation : IFeedbackDocumentation
+    internal class ImageFillAmmountDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(ImageFillAmmountFeedback);
 

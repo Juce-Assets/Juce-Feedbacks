@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class AudioSourceStopDocumentation : IFeedbackDocumentation
+    internal class AudioSourceStopDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(AudioSourceStopFeedback);
 

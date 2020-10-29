@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class WaitAllAboveDocumentation : IFeedbackDocumentation
+    internal class WaitAllAboveDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(WaitAllAboveFeedback);
 

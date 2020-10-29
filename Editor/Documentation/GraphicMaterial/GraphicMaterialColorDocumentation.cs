@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class GraphicMaterialColorDocumentation : IFeedbackDocumentation
+    internal class GraphicMaterialColorDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(GraphicMaterialColorFeedback);
 

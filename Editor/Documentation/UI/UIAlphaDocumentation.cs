@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class UIAlphaDocumentation : IFeedbackDocumentation
+    internal class UIAlphaDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(UIAlphaFeedback);
 

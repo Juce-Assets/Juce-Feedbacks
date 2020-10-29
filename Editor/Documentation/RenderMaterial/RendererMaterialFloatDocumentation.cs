@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class RendererMaterialFloatDocumentation : IFeedbackDocumentation
+    internal class RendererMaterialFloatDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(RendererMaterialFloatFeedback);
 

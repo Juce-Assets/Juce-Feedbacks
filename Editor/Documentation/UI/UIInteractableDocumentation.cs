@@ -1,11 +1,10 @@
 ﻿using System;
 using UnityEditor;
-using Juce.Feedbacks;
 using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class UIInteractableDocumentation : IFeedbackDocumentation
+    internal class UIInteractableDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(UIInteractableFeedback);
 

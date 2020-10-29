@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class TransformRotationDocumentation : IFeedbackDocumentation
+    internal class TransformRotationDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(TransformRotationFeedback);
 

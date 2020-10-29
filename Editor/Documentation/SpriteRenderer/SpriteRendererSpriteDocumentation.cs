@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class SpriteRendererSpriteDocumentation : IFeedbackDocumentation
+    internal class SpriteRendererSpriteDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(SpriteRendererSpriteFeedback);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class DebugLogDocumentation : IFeedbackDocumentation
+    internal class DebugLogDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(DebugLogFeedback);
 

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class LightShadowStrenghtDocumentation : IFeedbackDocumentation
+    internal class LightShadowStrenghtDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(LightShadowStrenghtFeedback);
 

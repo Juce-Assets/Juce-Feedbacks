@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class RectTransformSizeDeltaDocumentation : IFeedbackDocumentation
+    internal class RectTransformSizeDeltaDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(RectTransformSizeDeltaFeedback);
 

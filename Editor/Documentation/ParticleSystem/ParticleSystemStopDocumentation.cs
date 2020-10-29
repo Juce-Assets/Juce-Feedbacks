@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class ParticleSystemStopDocumentation : IFeedbackDocumentation
+    internal class ParticleSystemStopDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(ParticleSystemStopFeedback);
 

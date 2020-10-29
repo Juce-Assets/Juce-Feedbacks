@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class TextMeshProColorDocumentation : IFeedbackDocumentation
+    internal class TextMeshProColorDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(TextMeshProColorFeedback);
 

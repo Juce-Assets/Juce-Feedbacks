@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class FeedbacksPlayerCompleteDocumentation : IFeedbackDocumentation
+    internal class FeedbacksPlayerCompleteDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(FeedbacksPlayerCompleteFeedback);
 

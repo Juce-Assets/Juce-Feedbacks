@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class GameObjectDestroyDocumentation : IFeedbackDocumentation
+    internal class GameObjectDestroyDocumentation : IFeedbackDocumentation
     {
         public Type FeedbackType => typeof(GameObjectDestroyFeedback);
 
