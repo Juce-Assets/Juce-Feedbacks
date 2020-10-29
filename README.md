@@ -6,6 +6,10 @@
 
 ## Juce-Feedbacks
 Welcome to **Juce-Feedbacks**, the open-source feedbacks library that's part of the Juce Unity tools framework.
+
+Juce-Feedbacks is a solution to provide on-demand game feel to your Unity game, with as little friction or setup as possible.
+
+It's modular, user friendly, and very easy to extend and build upon.
  <br/>
  <br/>
 ![](https://github.com/Juce-Assets/Juce-Feedbacks/blob/develop/Misc/LogoShortHeight.png)
