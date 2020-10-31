@@ -7,6 +7,22 @@ namespace Juce.Feedbacks
     [CustomPropertyDrawer(typeof(StartEndColorNoAlphaProperty))]
     public class StartEndColorNoAlphaPropertyCE : PropertyDrawer
     {
+        private readonly PropertyLayoutHelper layoutHelper = new PropertyLayoutHelper();
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            int elementsCount = 2;
+
+            SerializedProperty useStartValueProperty = property.FindPropertyRelative("useStartValue");
+
+            if (useStartValueProperty.boolValue)
+            {
+                ++elementsCount;
+            }
+
+            return layoutHelper.GetHeightOfElements(elementsCount);
+        }
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -15,30 +31,16 @@ namespace Juce.Feedbacks
             SerializedProperty startColorProperty = property.FindPropertyRelative("startColor");
             SerializedProperty endColorProperty = property.FindPropertyRelative("endColor");
 
-            EditorGUI.PropertyField(position, useStartValueProperty);
+            layoutHelper.Init(position);
+
+            EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), useStartValueProperty);
 
             if (useStartValueProperty.boolValue)
             {
-                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    {
-                        EditorGUILayout.LabelField("Start Color");
-                        EditorGUILayout.PropertyField(startColorProperty, GUIContent.none);
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
+                EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), startColorProperty);
             }
 
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUILayout.BeginHorizontal();
-                {
-                    EditorGUILayout.LabelField("End Color");
-                    EditorGUILayout.PropertyField(endColorProperty, GUIContent.none);
-                }
-                EditorGUILayout.EndHorizontal();
-            }
+            EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), endColorProperty);
 
             EditorGUI.EndProperty();
         }

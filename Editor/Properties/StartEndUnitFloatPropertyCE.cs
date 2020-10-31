@@ -7,6 +7,22 @@ namespace Juce.Feedbacks
     [CustomPropertyDrawer(typeof(StartEndUnitFloatProperty))]
     public class StartEndUnitFloatPropertyCE : PropertyDrawer
     {
+        private readonly PropertyLayoutHelper layoutHelper = new PropertyLayoutHelper();
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            int elementsCount = 2;
+
+            SerializedProperty useStartValueProperty = property.FindPropertyRelative("useStartValue");
+
+            if (useStartValueProperty.boolValue)
+            {
+                ++elementsCount;
+            }
+
+            return layoutHelper.GetHeightOfElements(elementsCount);
+        }
+
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EditorGUI.BeginProperty(position, label, property);
@@ -15,30 +31,16 @@ namespace Juce.Feedbacks
             SerializedProperty startValueProperty = property.FindPropertyRelative("startValue");
             SerializedProperty endValueProperty = property.FindPropertyRelative("endValue");
 
-            EditorGUI.PropertyField(position, useStartValueProperty);
+            layoutHelper.Init(position);
+
+            EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), useStartValueProperty);
 
             if (useStartValueProperty.boolValue)
             {
-                using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-                {
-                    EditorGUILayout.BeginHorizontal();
-                    {
-                        EditorGUILayout.LabelField("Start");
-                        EditorGUILayout.PropertyField(startValueProperty, GUIContent.none);
-                    }
-                    EditorGUILayout.EndHorizontal();
-                }
+                EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), startValueProperty, new GUIContent("Start"));
             }
 
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                EditorGUILayout.BeginHorizontal();
-                {
-                    EditorGUILayout.LabelField("End");
-                    EditorGUILayout.PropertyField(endValueProperty, GUIContent.none);
-                }
-                EditorGUILayout.EndHorizontal();
-            }
+            EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), endValueProperty, new GUIContent("End"));
 
             EditorGUI.EndProperty();
         }

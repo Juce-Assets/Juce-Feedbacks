@@ -9,7 +9,28 @@ namespace Juce.Feedbacks
     [CustomPropertyDrawer(typeof(GraphicMaterialProperty), true)]
     public class GraphicMaterialPropertyCE : PropertyDrawer
     {
+        private readonly PropertyLayoutHelper layoutHelper = new PropertyLayoutHelper();
+
         private int propertyIndex = -1;
+
+        public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
+        {
+            int elementsCount = 1;
+
+            SerializedProperty graphicProperty = property.FindPropertyRelative("graphic");
+
+            if(graphicProperty != null)
+            {
+                Graphic graphic = (Graphic)graphicProperty.objectReferenceValue;
+
+                if(graphic != null)
+                {
+                    elementsCount += 2;
+                }
+            }
+
+            return layoutHelper.GetHeightOfElements(elementsCount);
+        }
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
@@ -20,7 +41,9 @@ namespace Juce.Feedbacks
             SerializedProperty propertyProperty = property.FindPropertyRelative("property");
             SerializedProperty materialPropertyTypeProperty = property.FindPropertyRelative("materialPropertyType");
 
-            EditorGUI.PropertyField(position, graphicProperty);
+            layoutHelper.Init(position);
+
+            EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), graphicProperty);
 
             if (graphicProperty.objectReferenceValue != null)
             {
@@ -28,7 +51,7 @@ namespace Juce.Feedbacks
 
                 if (graphic != null)
                 {
-                    EditorGUILayout.PropertyField(instantiateMaterialProperty);
+                    EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), instantiateMaterialProperty);
 
                     Material material = graphic.materialForRendering;
 
@@ -50,7 +73,7 @@ namespace Juce.Feedbacks
                         }
                     }
 
-                    propertyIndex = EditorGUILayout.Popup("Properties", propertyIndex, properties.ToArray());
+                    propertyIndex = EditorGUI.Popup(layoutHelper.NextVerticalRect(), "Properties", propertyIndex, properties.ToArray());
 
                     if (propertyIndex > -1)
                     {

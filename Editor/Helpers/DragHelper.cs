@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class DragHelper
+    internal class DragHelper
     {
         private int draggedStartID = -1;
         private int draggedEndID = -1;
