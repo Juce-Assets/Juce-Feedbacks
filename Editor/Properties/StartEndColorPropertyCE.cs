@@ -46,12 +46,10 @@ namespace Juce.Feedbacks
                 EditorGUI.LabelField(layoutHelper.NextVerticalRect(), "Start");
 
                 Rect totalStartColorRect = layoutHelper.NextVerticalRect();
-
                 Rect useStartColorRect = new Rect(totalStartColorRect.x + 10, totalStartColorRect.y, 10, totalStartColorRect.height);
                 Rect startColorRect = new Rect(totalStartColorRect.x + 30, totalStartColorRect.y, totalStartColorRect.width - 30, totalStartColorRect.height);
 
                 Rect totalStartAlphaRect = layoutHelper.NextVerticalRect();
-
                 Rect useStartAlphaRect = new Rect(totalStartAlphaRect.x + 10, totalStartAlphaRect.y, 10, totalStartAlphaRect.height);
                 Rect startAlphaRect = new Rect(totalStartAlphaRect.x + 30, totalStartAlphaRect.y, totalStartAlphaRect.width - 30, totalStartAlphaRect.height);
 
@@ -75,12 +73,10 @@ namespace Juce.Feedbacks
             EditorGUI.LabelField(layoutHelper.NextVerticalRect(), "End");
 
             Rect totalEndColorRect = layoutHelper.NextVerticalRect();
-
             Rect useEndColorRect = new Rect(totalEndColorRect.x + 10, totalEndColorRect.y, 10, totalEndColorRect.height);
             Rect endColorRect = new Rect(totalEndColorRect.x + 30, totalEndColorRect.y, totalEndColorRect.width - 30, totalEndColorRect.height);
 
             Rect totalEndAlphaRect = layoutHelper.NextVerticalRect();
-
             Rect useEndAlphaRect = new Rect(totalEndAlphaRect.x + 10, totalEndAlphaRect.y, 10, totalEndAlphaRect.height);
             Rect endAlphaRect = new Rect(totalEndAlphaRect.x + 30, totalEndAlphaRect.y, totalEndAlphaRect.width - 30, totalEndAlphaRect.height);
 
