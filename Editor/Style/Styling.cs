@@ -24,6 +24,8 @@ namespace Juce.Feedbacks
         static readonly Color reorderLight = new Color(0.1f, 0.1f, 0.1f, 0.2f);
         public static Color Reorder { get { return EditorGUIUtility.isProSkin ? reorderDark : reorderLight; } }
 
+        public static Color ProgressComplete { get; } = new Color(0.3f, 0.9f, 0.5f);
+
         public static void DrawSplitter(float height = 1.0f, float leftOffset = 0.0f, float rightOffset = 0.0f)
         {
             Rect rect = GUILayoutUtility.GetRect(1f, height);

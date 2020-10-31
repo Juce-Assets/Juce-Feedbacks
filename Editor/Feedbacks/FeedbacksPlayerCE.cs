@@ -259,7 +259,7 @@ namespace Juce.Feedbacks
                 {
                     if (feedback.ExecuteResult.ProgresTween.IsCompleted)
                     {
-                        EditorGUI.DrawRect(progressRect, Color.green);
+                        EditorGUI.DrawRect(progressRect, Styling.ProgressComplete);
                     }
                     else
                     {
