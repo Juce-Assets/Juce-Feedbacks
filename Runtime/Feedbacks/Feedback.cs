@@ -5,10 +5,10 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
-    public abstract class Feedback : ScriptableObject
+    public abstract class Feedback : MonoBehaviour
     {
         [SerializeField] [HideInInspector] private bool expanded = true;
-        [SerializeField] [HideInInspector] private bool enabled = true;
+        [SerializeField] [HideInInspector] private bool disabled = default;
 
         [SerializeField] private string userData = default;
 
@@ -16,7 +16,7 @@ namespace Juce.Feedbacks
         [SerializeField] private ScriptUsageProperty scriptUsage = default;
 
         public bool Expanded { get => expanded; set => expanded = value; }
-        public bool Enabled { get => enabled; set => enabled = value; }
+        public bool Disabled { get => disabled; set => disabled = value; }
         public string UserData { get => userData; set => userData = value; }
         public ScriptUsageProperty ScriptUsage => scriptUsage;
 

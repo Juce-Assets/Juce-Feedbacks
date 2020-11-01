@@ -6,12 +6,15 @@ using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
+    [DisallowMultipleComponent]
     public class FeedbacksPlayer : MonoBehaviour
     {
         [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
 
         [SerializeField] private bool executeOnAwake = default;
         [SerializeField] private LoopProperty loop = default;
+
+        public bool IsPlaying { get; private set; }
 
         internal SequenceTween CurrMainSequence { get; private set; }
 
@@ -20,7 +23,29 @@ namespace Juce.Feedbacks
         private void Start()
         {
             TryExecuteOnAwake(); 
-        } 
+        }
+
+        protected virtual void OnDestroy()
+        {
+            CleanUp();
+        }
+
+        private void CleanUp()
+        {
+            foreach (Feedback feedback in feedbacks)
+            {
+
+#if UNITY_EDITOR
+                if (!Application.isPlaying)
+                {
+                    DestroyImmediate(feedback);
+                }
+#else
+                Destroy(feedback);
+#endif
+
+            }
+        }
 
         private void TryExecuteOnAwake()
         {
@@ -45,13 +70,15 @@ namespace Juce.Feedbacks
         {
             Kill();
 
+            IsPlaying = true;
+
             FlowContext context = new FlowContext();
 
             for (int i = 0; i < feedbacks.Count; ++i)
             {
                 Feedback currFeedback = feedbacks[i];
 
-                if(!currFeedback.Enabled)
+                if(currFeedback.Disabled)
                 {
                     continue;
                 }
@@ -74,7 +101,12 @@ namespace Juce.Feedbacks
 
             LoopUtils.SetLoop(context.MainSequence, loop);
 
-            context.MainSequence.onCompleteOrKill += () => onFinish?.Invoke();
+            context.MainSequence.onCompleteOrKill += () =>
+            {
+                IsPlaying = false;
+
+                onFinish?.Invoke();
+            };
 
             context.MainSequence.Play();
 

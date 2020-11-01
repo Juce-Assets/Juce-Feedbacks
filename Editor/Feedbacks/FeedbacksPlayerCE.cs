@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Juce.Utils;
+using System;
 using System.Collections.Generic;
 using System.Reflection;
 using UnityEditor;
@@ -9,7 +10,7 @@ namespace Juce.Feedbacks
     [CustomEditor(typeof(FeedbacksPlayer))]
     public class FeedbacksPlayerCE : Editor
     {
-        private FeedbacksPlayer CustomTarget => (FeedbacksPlayer)target;
+        public FeedbacksPlayer CustomTarget => (FeedbacksPlayer)target;
 
         private readonly List<FeedbackTypeEditorData> cachedfeedbackTypes = new List<FeedbackTypeEditorData>();
         private readonly Dictionary<Feedback, FeedbackEditorData> cachedEditorFeedback = new Dictionary<Feedback, FeedbackEditorData>();
@@ -30,6 +31,8 @@ namespace Juce.Feedbacks
         public override void OnInspectorGUI()
         {
             EditorGUI.BeginChangeCheck();
+
+            DrawDisclaimer();
 
             base.DrawDefaultInspector();
 
@@ -66,7 +69,13 @@ namespace Juce.Feedbacks
 
         public Feedback AddFeedback(FeedbackTypeEditorData feedbackTypeEditorData)
         {
-            Feedback newFeedback = ScriptableObject.CreateInstance(feedbackTypeEditorData.Type) as Feedback;
+            if(feedbackTypeEditorData == null)
+            {
+                Debug.LogError($"{nameof(FeedbackTypeEditorData)} was null on {nameof(AddFeedback)} at {nameof(FeedbacksPlayerCE)}");
+                return null;
+            }
+
+            Feedback newFeedback = CustomTarget.gameObject.AddComponent(feedbackTypeEditorData.Type) as Feedback;
 
             if (newFeedback == null)
             {
@@ -75,6 +84,7 @@ namespace Juce.Feedbacks
             }
 
             Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(AddFeedback)}");
+            Undo.RegisterCreatedObjectUndo(newFeedback, $"{nameof(AddFeedback)}");
 
             int index = feedbacksProperty.arraySize;
 
@@ -86,16 +96,47 @@ namespace Juce.Feedbacks
             return newFeedback;
         }
 
+        public void PasteFeedbackValues(Feedback origin, Feedback destination)
+        {
+            if (origin == null)
+            {
+                Debug.LogError($"Origin {nameof(Feedback)} was null on {nameof(PasteFeedbackValues)} at {nameof(FeedbacksPlayerCE)}");
+                return;
+            }
+
+            if (destination == null)
+            {
+                Debug.LogError($"Destination {nameof(Feedback)} was null on {nameof(PasteFeedbackValues)} at {nameof(FeedbacksPlayerCE)}");
+                return;
+            }
+
+            if (origin.GetType() != destination.GetType())
+            {
+                return;
+            }
+
+            EditorUtility.CopySerialized(origin, destination);
+        }
+
         public void PasteFeedbackAsNew(Feedback feedback)
         {
             PasteFeedbackAsNew(feedback, feedbacksProperty.arraySize);
         }
 
-        public void PasteFeedbackAsNew(Feedback feedback, int index)
+        public void PasteFeedbackAsNew(Feedback origin, int index)
         {
-            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(PasteFeedbackAsNew)}");
+            if (origin == null)
+            {
+                Debug.LogError($"Origin {nameof(Feedback)} was null on {nameof(PasteFeedbackAsNew)} at {nameof(FeedbacksPlayerCE)}");
+                return;
+            }
 
-            Feedback feedbackCopy = Instantiate(feedback) as Feedback;
+            Feedback feedbackCopy = CustomTarget.gameObject.AddComponent(origin.GetType()) as Feedback;
+
+            Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(PasteFeedbackAsNew)}");
+            Undo.RegisterCreatedObjectUndo(feedbackCopy, $"{nameof(PasteFeedbackAsNew)}");
+
+            EditorUtility.CopySerialized(origin, feedbackCopy);
 
             feedbacksProperty.InsertArrayElementAtIndex(index);
             feedbacksProperty.GetArrayElementAtIndex(index).objectReferenceValue = feedbackCopy;
@@ -110,6 +151,7 @@ namespace Juce.Feedbacks
                 if(feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue == feedback)
                 {
                     Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveFeedback)}");
+                    Undo.DestroyObjectImmediate(feedback);
 
                     feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue = null;
                     feedbacksProperty.DeleteArrayElementAtIndex(i);
@@ -124,6 +166,11 @@ namespace Juce.Feedbacks
         public void RemoveAllFeedbacks()
         {
             Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveAllFeedbacks)}");
+
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
+            {
+                Undo.DestroyObjectImmediate(feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue);
+            }
 
             feedbacksProperty.ClearArray();
 
@@ -278,6 +325,12 @@ namespace Juce.Feedbacks
             }
         }
 
+        private void DrawDisclaimer()
+        {
+            EditorGUILayout.LabelField("Due to Unity limitations, this component does not support Paste Component As New or Paste Component Values. " +
+                "You can use Copy All or Paste All to bypass this.", EditorStyles.helpBox);
+        }
+
         private void DrawAllFeedbacks()
         {
             Event e = Event.current;
@@ -309,10 +362,25 @@ namespace Juce.Feedbacks
         private void DrawFeedback(FeedbackEditorData feedbackEditorData, int index, Event e)
         {
             Feedback feedback = feedbackEditorData.Feedback;
+
+            if(feedback == null)
+            {
+                return;
+            }
+
             FeedbackTypeEditorData feedbackTypeEditorData = feedbackEditorData.FeedbackTypeEditorData;
 
             bool expanded = feedback.Expanded;
-            bool enabled = feedback.Enabled;
+            bool enabled = !feedback.Disabled;
+
+            if(JuceConfiguration.Instance.DeveloperMode)
+            {
+                feedback.hideFlags = HideFlags.None;
+            }
+            else
+            {
+                feedback.hideFlags = HideFlags.HideInInspector;
+            }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
@@ -331,7 +399,7 @@ namespace Juce.Feedbacks
                 dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, index);
 
                 feedback.Expanded = expanded;
-                feedback.Enabled = enabled;
+                feedback.Disabled = !enabled;
 
                 string errors;
                 bool hasErrors = feedback.GetFeedbackErrors(out errors);
@@ -413,11 +481,13 @@ namespace Juce.Feedbacks
                     CopyPasteHelper.Instance.CopyAllFeedbacks(CustomTarget.Feedbacks);
                 }
 
-                EditorGUI.BeginDisabledGroup(!CopyPasteHelper.Instance.CanPasteAll);
+                EditorGUI.BeginDisabledGroup(!CopyPasteHelper.Instance.CanPasteAll(this));
                 {
                     if (GUILayout.Button("Paste All"))
                     {
+                        UndoHelper.Instance.BeginUndo("PasteAll");
                         CopyPasteHelper.Instance.PasteAllFeedbacks(this);
+                        UndoHelper.Instance.EndUndo();
                     }
                 }
                 EditorGUI.EndDisabledGroup();
@@ -456,19 +526,41 @@ namespace Juce.Feedbacks
         {
             GenericMenu menu = new GenericMenu();
 
-            menu.AddItem(new GUIContent("Remove"), false, () => RemoveFeedback(feedback));
+            menu.AddItem(new GUIContent("Remove"), false, 
+                () =>
+                {
+                    UndoHelper.Instance.BeginUndo("Remove");
+                    RemoveFeedback(feedback);
+                    UndoHelper.Instance.EndUndo();
+                });
 
             menu.AddSeparator("");
 
             menu.AddItem(new GUIContent("Copy"), false, () => CopyPasteHelper.Instance.CopyFeedback(feedback));
 
-            if (CopyPasteHelper.Instance.CanPaste)
+            if (CopyPasteHelper.Instance.CanPasteValues(feedback))
+            {
+                menu.AddItem(new GUIContent("Paste values"), false, () =>
+                {
+                    UndoHelper.Instance.BeginUndo("PasteValues");
+                    CopyPasteHelper.Instance.PasteFeedbackValues(this, feedback);
+                    UndoHelper.Instance.EndUndo();
+                });
+            }
+            else
+            {
+                menu.AddDisabledItem(new GUIContent("Paste values"), false);
+            }
+
+            if (CopyPasteHelper.Instance.CanPasteAsNew())
             {
                 menu.AddItem(new GUIContent("Paste As New"), false, () =>
                 {
                     int feedbackIndex = GetFeedbackIndex(feedback);
 
+                    UndoHelper.Instance.BeginUndo("PasteAsNew");
                     CopyPasteHelper.Instance.PasteFeedbackAsNew(this, feedbackIndex + 1);
+                    UndoHelper.Instance.EndUndo();
                 });
             }
             else
