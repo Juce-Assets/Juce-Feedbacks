@@ -56,6 +56,7 @@ namespace Juce.Feedbacks
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
             InfoUtils.GetStartEndVector3PropertyInfo(ref infoList, value);
+            infoList.Add($"{rotationMode}");
             InfoUtils.GetCoordinatesSpaceInfo(ref infoList, coordinatesSpace);
         }
 
