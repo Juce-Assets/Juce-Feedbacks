@@ -121,255 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!114 &58719060
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 387641262}
-  rotationMode: 2
-  coordinatesSpace: 0
-  value:
-    useStartValue: 0
-    useStartX: 0
-    useStartY: 0
-    useStartZ: 0
-    useEndX: 0
-    useEndY: 1
-    useEndZ: 0
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 0
-    endValueY: 150
-    endValueZ: 0
-  delay: 0
-  duration: 0.4
-  easing:
-    useAnimationCurve: 0
-    easing: 0
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0.047853895
-        outSlope: 0.047853895
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.07047872
-      - serializedVersion: 3
-        time: 1
-        value: 2
-        inSlope: 2.9641745
-        outSlope: 2.9641745
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.056915104
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &79609617
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 387641262}
-  value:
-    useStartValue: 1
-    useStartX: 1
-    useStartY: 0
-    useStartZ: 1
-    useEndX: 1
-    useEndY: 0
-    useEndZ: 1
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 0.9
-    endValueY: 1
-    endValueZ: 0.9
-  delay: 0
-  duration: 1
-  easing:
-    useAnimationCurve: 1
-    easing: 6
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 2.8131537
-        outSlope: 2.8131537
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0.103603065
-      - serializedVersion: 3
-        time: 0.539087
-        value: 1.2763116
-        inSlope: -0.022769928
-        outSlope: -0.022769928
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.33333334
-        outWeight: 0.33333334
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.03590429
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &156866523
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 0
---- !u!114 &221515353
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 0
---- !u!114 &246231826
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 1851585486}
-  coordinatesSpace: 0
-  value:
-    useStartValue: 0
-    useStartX: 0
-    useStartY: 0
-    useStartZ: 0
-    useEndX: 0
-    useEndY: 1
-    useEndZ: 0
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 0
-    endValueY: -0.2
-    endValueZ: 0
-  delay: 1
-  duration: 1
-  easing:
-    useAnimationCurve: 0
-    easing: 6
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &347493396
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 0
 --- !u!1 &387641261
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,50 +152,6 @@ Transform:
   m_Father: {fileID: 1768270839}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &393017590
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 1777912411}
-  value:
-    useStartValue: 1
-    useStartColor: 0
-    useStartAlpha: 1
-    useEndColor: 0
-    useEndAlpha: 1
-    startColor: {r: 1, g: 1, b: 1, a: 1}
-    startAlpha: 0
-    endColor: {r: 1, g: 1, b: 1, a: 1}
-    endAlpha: 1
-  delay: 0
-  duration: 1
-  easing:
-    useAnimationCurve: 0
-    easing: 6
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
 --- !u!1 &503976767
 GameObject:
   m_ObjectHideFlags: 0
@@ -487,6 +194,15 @@ GameObject:
   m_Component:
   - component: {fileID: 715967408}
   - component: {fileID: 715967407}
+  - component: {fileID: 715967417}
+  - component: {fileID: 715967416}
+  - component: {fileID: 715967415}
+  - component: {fileID: 715967414}
+  - component: {fileID: 715967413}
+  - component: {fileID: 715967412}
+  - component: {fileID: 715967411}
+  - component: {fileID: 715967410}
+  - component: {fileID: 715967409}
   m_Layer: 0
   m_Name: HeadTargetFeedback
   m_TagString: Untagged
@@ -507,15 +223,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbacks:
-  - {fileID: 1268173785}
-  - {fileID: 1849266336}
-  - {fileID: 221515353}
-  - {fileID: 1143589342}
-  - {fileID: 246231826}
-  - {fileID: 156866523}
-  - {fileID: 986358898}
-  - {fileID: 1621887869}
-  - {fileID: 1374138841}
+  - {fileID: 715967417}
+  - {fileID: 715967416}
+  - {fileID: 715967415}
+  - {fileID: 715967414}
+  - {fileID: 715967413}
+  - {fileID: 715967412}
+  - {fileID: 715967411}
+  - {fileID: 715967410}
+  - {fileID: 715967409}
   executeOnAwake: 1
   loop:
     loopMode: 2
@@ -535,109 +251,56 @@ Transform:
   m_Father: {fileID: 503976768}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &755091321
+--- !u!114 &715967409
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
-  target: {fileID: 387641262}
-  rotationMode: 2
-  coordinatesSpace: 0
-  value:
-    useStartValue: 0
-    useStartX: 0
-    useStartY: 0
-    useStartZ: 0
-    useEndX: 0
-    useEndY: 1
-    useEndZ: 0
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 0
-    endValueY: 150
-    endValueZ: 0
-  delay: 0
-  duration: 1
-  easing:
-    useAnimationCurve: 0
-    easing: 0
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 1
-        outSlope: 1
-        tangentMode: 34
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &800132485
+  delay: 1
+--- !u!114 &715967410
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
-  m_Name: (Clone)
+  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
+  m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
-  target: {fileID: 387641262}
+  target: {fileID: 1851585485}
   value:
     useStartValue: 0
-    useStartX: 0
-    useStartY: 0
-    useStartZ: 0
-    useEndX: 1
-    useEndY: 0
-    useEndZ: 1
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 0.9
-    endValueY: 0
-    endValueZ: 0.9
-  delay: 0.5
-  duration: 0.5
+    useStartColor: 0
+    useStartAlpha: 0
+    useEndColor: 0
+    useEndAlpha: 1
+    startColor: {r: 1, g: 1, b: 1, a: 1}
+    startAlpha: 0
+    endColor: {r: 1, g: 1, b: 1, a: 1}
+    endAlpha: 0
+  delay: 0
+  duration: 0.4
   easing:
     useAnimationCurve: 0
     easing: 6
@@ -651,20 +314,20 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
---- !u!114 &986358898
+--- !u!114 &715967411
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
@@ -700,20 +363,88 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
---- !u!114 &1143589342
+--- !u!114 &715967412
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  delay: 0
+--- !u!114 &715967413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 1851585486}
+  coordinatesSpace: 0
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 1
+    useEndZ: 0
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0
+    endValueY: -0.2
+    endValueZ: 0
+  delay: 1
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &715967414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
@@ -767,20 +498,83 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 2
---- !u!114 &1268173785
+--- !u!114 &715967415
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  delay: 0
+--- !u!114 &715967416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 1851585485}
+  value:
+    useStartValue: 1
+    useStartColor: 0
+    useStartAlpha: 1
+    useEndColor: 0
+    useEndAlpha: 1
+    startColor: {r: 1, g: 1, b: 1, a: 1}
+    startAlpha: 0
+    endColor: {r: 1, g: 1, b: 1, a: 1}
+    endAlpha: 1
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 0
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &715967417
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 715967406}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bc630803284fe644f887c01a674fd9ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
@@ -816,110 +610,6 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
---- !u!114 &1278648076
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 387641262}
-  value:
-    useStartValue: 0
-    useStartX: 0
-    useStartY: 0
-    useStartZ: 0
-    useEndX: 1
-    useEndY: 0
-    useEndZ: 1
-    startValueX: 0
-    startValueY: 0
-    startValueZ: 0
-    endValueX: 1.1
-    endValueY: 0
-    endValueZ: 1.1
-  delay: 0
-  duration: 0.5
-  easing:
-    useAnimationCurve: 1
-    easing: 6
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &1374138841
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 1
---- !u!114 &1406821579
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  delay: 1
 --- !u!1 &1421732109
 GameObject:
   m_ObjectHideFlags: 0
@@ -1186,6 +876,17 @@ GameObject:
   m_Component:
   - component: {fileID: 1596156463}
   - component: {fileID: 1596156464}
+  - component: {fileID: 1596156475}
+  - component: {fileID: 1596156474}
+  - component: {fileID: 1596156473}
+  - component: {fileID: 1596156472}
+  - component: {fileID: 1596156471}
+  - component: {fileID: 1596156470}
+  - component: {fileID: 1596156469}
+  - component: {fileID: 1596156468}
+  - component: {fileID: 1596156467}
+  - component: {fileID: 1596156466}
+  - component: {fileID: 1596156465}
   m_Layer: 0
   m_Name: FloatingTargetFeedback
   m_TagString: Untagged
@@ -1220,36 +921,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   feedbacks:
-  - {fileID: 79609617}
-  - {fileID: 393017590}
-  - {fileID: 1818401844}
-  - {fileID: 347493396}
-  - {fileID: 755091321}
-  - {fileID: 1278648076}
-  - {fileID: 800132485}
-  - {fileID: 1946490317}
-  - {fileID: 58719060}
-  - {fileID: 1600934760}
-  - {fileID: 1406821579}
+  - {fileID: 1596156475}
+  - {fileID: 1596156474}
+  - {fileID: 1596156473}
+  - {fileID: 1596156472}
+  - {fileID: 1596156471}
+  - {fileID: 1596156470}
+  - {fileID: 1596156469}
+  - {fileID: 1596156468}
+  - {fileID: 1596156467}
+  - {fileID: 1596156466}
+  - {fileID: 1596156465}
   executeOnAwake: 1
   loop:
     loopMode: 2
     loopResetMode: 0
     loops: 0
---- !u!114 &1600934760
+--- !u!114 &1596156465
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  delay: 1
+--- !u!114 &1596156466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
@@ -1311,43 +1031,477 @@ MonoBehaviour:
     loopMode: 0
     loopResetMode: 0
     loops: 0
---- !u!114 &1621887869
+--- !u!114 &1596156467
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
+  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   expanded: 0
-  enabled: 1
+  disabled: 0
   userData: 
   scriptUsage:
     usedByScript: 0
     idUsedByScript: 
-  target: {fileID: 1851585485}
+  target: {fileID: 387641262}
+  rotationMode: 2
+  coordinatesSpace: 0
   value:
     useStartValue: 0
-    useStartColor: 0
-    useStartAlpha: 0
-    useEndColor: 0
-    useEndAlpha: 1
-    startColor: {r: 1, g: 1, b: 1, a: 1}
-    startAlpha: 0
-    endColor: {r: 1, g: 1, b: 1, a: 1}
-    endAlpha: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 1
+    useEndZ: 0
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0
+    endValueY: 150
+    endValueZ: 0
   delay: 0
   duration: 0.4
+  easing:
+    useAnimationCurve: 0
+    easing: 0
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0.047853895
+        outSlope: 0.047853895
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.07047872
+      - serializedVersion: 3
+        time: 1
+        value: 2
+        inSlope: 2.9641745
+        outSlope: 2.9641745
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.056915104
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79034d922fa9c447ab73caf1753a92e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  looping:
+    loopMode: 1
+    loopResetMode: 1
+    loops: 1
+--- !u!114 &1596156469
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
+  m_Name: (Clone)
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 387641262}
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 1
+    useEndY: 0
+    useEndZ: 1
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0.9
+    endValueY: 0
+    endValueZ: 0.9
+  delay: 0.5
+  duration: 0.5
   easing:
     useAnimationCurve: 0
     easing: 6
     animationCurveEasing:
       serializedVersion: 2
       m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 387641262}
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 1
+    useEndY: 0
+    useEndZ: 1
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 1.1
+    endValueY: 0
+    endValueZ: 1.1
+  delay: 0
+  duration: 0.5
+  easing:
+    useAnimationCurve: 1
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 387641262}
+  rotationMode: 2
+  coordinatesSpace: 0
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 0
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 1
+    useEndZ: 0
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0
+    endValueY: 150
+    endValueZ: 0
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 0
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 1
+        outSlope: 1
+        tangentMode: 34
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156472
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d2bfe98211e2e347aaf2579a99e3dd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  delay: 0
+--- !u!114 &1596156473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 387641262}
+  rotationMode: 2
+  coordinatesSpace: 0
+  value:
+    useStartValue: 0
+    useStartX: 0
+    useStartY: 1
+    useStartZ: 0
+    useEndX: 0
+    useEndY: 1
+    useEndZ: 0
+    startValueX: 0
+    startValueY: -150
+    startValueZ: 0
+    endValueX: 0
+    endValueY: 150
+    endValueZ: 0
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 0
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0.9991321
+        outSlope: 0.9991321
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.043882966
+        outWeight: 0
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 1777912411}
+  value:
+    useStartValue: 1
+    useStartColor: 0
+    useStartAlpha: 1
+    useEndColor: 0
+    useEndAlpha: 1
+    startColor: {r: 1, g: 1, b: 1, a: 1}
+    startAlpha: 0
+    endColor: {r: 1, g: 1, b: 1, a: 1}
+    endAlpha: 1
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 0
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve: []
+      m_PreInfinity: 2
+      m_PostInfinity: 2
+      m_RotationOrder: 4
+  looping:
+    loopMode: 0
+    loopResetMode: 0
+    loops: 0
+--- !u!114 &1596156475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1596156462}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 502983948ca029e45bfd3e2693da5b38, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  target: {fileID: 387641262}
+  value:
+    useStartValue: 1
+    useStartX: 1
+    useStartY: 0
+    useStartZ: 1
+    useEndX: 1
+    useEndY: 0
+    useEndZ: 1
+    startValueX: 0
+    startValueY: 0
+    startValueZ: 0
+    endValueX: 0.9
+    endValueY: 1
+    endValueZ: 0.9
+  delay: 0
+  duration: 1
+  easing:
+    useAnimationCurve: 1
+    easing: 6
+    animationCurveEasing:
+      serializedVersion: 2
+      m_Curve:
+      - serializedVersion: 3
+        time: 0
+        value: 0
+        inSlope: 2.8131537
+        outSlope: 2.8131537
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0
+        outWeight: 0.103603065
+      - serializedVersion: 3
+        time: 0.539087
+        value: 1.2763116
+        inSlope: -0.022769928
+        outSlope: -0.022769928
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.33333334
+        outWeight: 0.33333334
+      - serializedVersion: 3
+        time: 1
+        value: 1
+        inSlope: 0
+        outSlope: 0
+        tangentMode: 0
+        weightedMode: 0
+        inWeight: 0.03590429
+        outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
       m_RotationOrder: 4
@@ -1561,118 +1715,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 387.55, y: 2, z: -221.2}
---- !u!114 &1818401844
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b8ab3e88b7791514c9ac007014fa6527, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 387641262}
-  rotationMode: 2
-  coordinatesSpace: 0
-  value:
-    useStartValue: 0
-    useStartX: 0
-    useStartY: 1
-    useStartZ: 0
-    useEndX: 0
-    useEndY: 1
-    useEndZ: 0
-    startValueX: 0
-    startValueY: -150
-    startValueZ: 0
-    endValueX: 0
-    endValueY: 150
-    endValueZ: 0
-  delay: 0
-  duration: 1
-  easing:
-    useAnimationCurve: 0
-    easing: 0
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve:
-      - serializedVersion: 3
-        time: 0
-        value: 0
-        inSlope: 0
-        outSlope: 0
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0
-        outWeight: 0
-      - serializedVersion: 3
-        time: 1
-        value: 1
-        inSlope: 0.9991321
-        outSlope: 0.9991321
-        tangentMode: 0
-        weightedMode: 0
-        inWeight: 0.043882966
-        outWeight: 0
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
---- !u!114 &1849266336
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0a5294b80c022884386b520a4ca9cbef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  target: {fileID: 1851585485}
-  value:
-    useStartValue: 1
-    useStartColor: 0
-    useStartAlpha: 1
-    useEndColor: 0
-    useEndAlpha: 1
-    startColor: {r: 1, g: 1, b: 1, a: 1}
-    startAlpha: 0
-    endColor: {r: 1, g: 1, b: 1, a: 1}
-    endAlpha: 1
-  delay: 0
-  duration: 1
-  easing:
-    useAnimationCurve: 0
-    easing: 0
-    animationCurveEasing:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  looping:
-    loopMode: 0
-    loopResetMode: 0
-    loops: 0
 --- !u!1 &1851585484
 GameObject:
   m_ObjectHideFlags: 0
@@ -1785,25 +1827,3 @@ Transform:
   m_Father: {fileID: 1768270839}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 16.5, y: -17.648, z: 0}
---- !u!114 &1946490317
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c79034d922fa9c447ab73caf1753a92e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  expanded: 0
-  enabled: 1
-  userData: 
-  scriptUsage:
-    usedByScript: 0
-    idUsedByScript: 
-  looping:
-    loopMode: 1
-    loopResetMode: 1
-    loops: 1

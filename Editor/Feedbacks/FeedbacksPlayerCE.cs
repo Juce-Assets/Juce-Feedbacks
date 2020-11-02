@@ -21,6 +21,8 @@ namespace Juce.Feedbacks
 
         private SerializedProperty feedbacksProperty;
 
+        private bool developerMode;
+
         private void OnEnable()
         {
             GatherProperties();
@@ -43,6 +45,7 @@ namespace Juce.Feedbacks
             DrawFeedbackPlayerControls();
 
             serializedObject.ApplyModifiedProperties();
+
 
             if (EditorGUI.EndChangeCheck())
             {
@@ -339,7 +342,7 @@ namespace Juce.Feedbacks
 
             EditorGUILayout.LabelField("Feedbacks", EditorStyles.boldLabel);
 
-            for(int i = 0; i < feedbacksProperty.arraySize; ++i)
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
                 Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
 
@@ -372,15 +375,6 @@ namespace Juce.Feedbacks
 
             bool expanded = feedback.Expanded;
             bool enabled = !feedback.Disabled;
-
-            if(JuceConfiguration.Instance.DeveloperMode)
-            {
-                feedback.hideFlags = HideFlags.None;
-            }
-            else
-            {
-                feedback.hideFlags = HideFlags.HideInInspector;
-            }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
@@ -452,6 +446,18 @@ namespace Juce.Feedbacks
 
                     feedbackEditorData.Editor.OnInspectorGUI();
                 }
+
+
+                //if (developerMode)
+                //{
+                //    feedback.hideFlags |= HideFlags.HideInInspector;
+                //}
+                //else
+                //{
+                //    feedback.hideFlags = HideFlags.None;
+                //}
+
+                feedback.hideFlags = HideFlags.None;
             }
         }
 
