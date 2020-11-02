@@ -448,16 +448,14 @@ namespace Juce.Feedbacks
                 }
 
 
-                //if (developerMode)
-                //{
-                //    feedback.hideFlags |= HideFlags.HideInInspector;
-                //}
-                //else
-                //{
-                //    feedback.hideFlags = HideFlags.None;
-                //}
-
-                feedback.hideFlags = HideFlags.None;
+                if (!JuceConfiguration.Instance.DeveloperMode)
+                {
+                    feedback.hideFlags |= HideFlags.HideInInspector;
+                }
+                else
+                {
+                    feedback.hideFlags = HideFlags.None;
+                }
             }
         }
 
