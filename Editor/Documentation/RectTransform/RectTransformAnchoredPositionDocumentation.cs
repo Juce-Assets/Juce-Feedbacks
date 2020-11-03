@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    internal class RectTransformSizeDeltaDocumentation : IFeedbackDocumentation
+    internal class RectTransformAnchoredPositionDocumentation : IFeedbackDocumentation
     {
-        public Type FeedbackType => typeof(RectTransformSizeDeltaFeedback);
+        public Type FeedbackType => typeof(RectTransformAnchoredPositionFeedback);
 
         public void DrawDocumentation()
         {
-            GUILayout.Label("Changes the target RectTransform sizeDelta property to a certain value", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Changes the target RectTransform anchoredPosition property to a certain value", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
@@ -22,8 +22,8 @@ namespace Juce.Feedbacks
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 GUILayout.Label("- Use Starting Value: enables the starting value", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- Start: (if enabled) starting sizeDelta value", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- End: end sizeDelta value to reach", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Start: (if enabled) starting anchoredPosition value", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- End: end anchoredPosition value to reach", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))

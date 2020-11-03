@@ -11,7 +11,7 @@ namespace Juce.Feedbacks
         [SerializeField] private GameObject target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] [HideInInspector] private bool setActive = default;
+        [SerializeField] private bool setActive = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
