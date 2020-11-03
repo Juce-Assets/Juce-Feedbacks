@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Juce.Feedbacks
@@ -15,7 +14,7 @@ namespace Juce.Feedbacks
 
             SerializedProperty useStartValueProperty = property.FindPropertyRelative("useStartValue");
 
-            if(useStartValueProperty.boolValue)
+            if (useStartValueProperty.boolValue)
             {
                 ++elementsCount;
             }

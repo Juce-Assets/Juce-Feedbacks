@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Juce.Feedbacks
 {
@@ -32,7 +30,7 @@ namespace Juce.Feedbacks
 
                 Material material = materialProperty.objectReferenceValue as Material;
 
-                if(material != null)
+                if (material != null)
                 {
                     ++elementsCount;
                 }
@@ -71,13 +69,13 @@ namespace Juce.Feedbacks
                     }
                 }
 
-                if(materialIndex == -1)
+                if (materialIndex == -1)
                 {
                     for (int i = 0; i < renderer.sharedMaterials.Length; ++i)
                     {
                         Material currMaterial = renderer.sharedMaterials[i];
 
-                        if(currMaterial == (Material)materialProperty.objectReferenceValue)
+                        if (currMaterial == (Material)materialProperty.objectReferenceValue)
                         {
                             materialIndex = i;
                             break;
@@ -85,7 +83,7 @@ namespace Juce.Feedbacks
                     }
                 }
 
-                if(materialIndex < 0 || materialIndex > materials.Length)
+                if (materialIndex < 0 || materialIndex > materials.Length)
                 {
                     materialIndex = 0;
                 }

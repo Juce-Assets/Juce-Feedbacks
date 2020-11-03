@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Juce.Feedbacks
+﻿namespace Juce.Feedbacks
 {
     public enum MaterialPropertyType
     {

@@ -1,6 +1,5 @@
-﻿using System;
+﻿using Juce.Utils.Singletons;
 using System.Collections.Generic;
-using Juce.Utils.Singletons;
 
 namespace Juce.Feedbacks
 {
@@ -16,7 +15,7 @@ namespace Juce.Feedbacks
                 return false;
             }
 
-            if(clipboardFeedback.GetType() != destination.GetType())
+            if (clipboardFeedback.GetType() != destination.GetType())
             {
                 return false;
             }
@@ -31,16 +30,16 @@ namespace Juce.Feedbacks
 
         public bool CanPasteAll(FeedbacksPlayerCE destination)
         {
-            if(clipboardAllFeedbacks.Count <= 0)
+            if (clipboardAllFeedbacks.Count <= 0)
             {
                 return false;
             }
 
-            for(int i = 0; i < clipboardAllFeedbacks.Count; ++i)
+            for (int i = 0; i < clipboardAllFeedbacks.Count; ++i)
             {
                 Feedback currClipboardFeedback = clipboardAllFeedbacks[i];
 
-                if(currClipboardFeedback == null)
+                if (currClipboardFeedback == null)
                 {
                     continue;
                 }
@@ -77,7 +76,7 @@ namespace Juce.Feedbacks
 
         public void PasteFeedbackAsNew(FeedbacksPlayerCE feedbackPlayer, int positionIndex)
         {
-            if(clipboardFeedback == null)
+            if (clipboardFeedback == null)
             {
                 return;
             }

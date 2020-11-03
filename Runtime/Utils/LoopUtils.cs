@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace Juce.Feedbacks
+﻿namespace Juce.Feedbacks
 {
     public static class LoopUtils
     {
         public static void SetLoop(Tween.Tween tween, LoopProperty loopProperty)
         {
-            switch(loopProperty.LoopMode)
+            switch (loopProperty.LoopMode)
             {
                 case LoopMode.XTimes:
                     {

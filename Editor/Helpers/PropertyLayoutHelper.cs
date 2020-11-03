@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEditor;
+﻿using UnityEditor;
 using UnityEngine;
 
 namespace Juce.Feedbacks
@@ -19,7 +18,7 @@ namespace Juce.Feedbacks
 
         public Rect NextVerticalRect()
         {
-            if(firstNext)
+            if (firstNext)
             {
                 firstNext = false;
 
@@ -47,7 +46,7 @@ namespace Juce.Feedbacks
 
         public float GetHeightOfElements(int elementsCount)
         {
-            if(elementsCount <= 0)
+            if (elementsCount <= 0)
             {
                 return 0.0f;
             }

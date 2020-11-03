@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using Juce.Tween;
 
@@ -10,6 +11,11 @@ namespace Juce.Feedbacks
     {
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
+        public override void GetFeedbackInfo(ref List<string> infoList)
+        {
+            InfoUtils.GetTimingInfo(ref infoList, delay);
+        }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {

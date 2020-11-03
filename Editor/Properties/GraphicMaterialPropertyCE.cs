@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,11 +18,11 @@ namespace Juce.Feedbacks
 
             SerializedProperty graphicProperty = property.FindPropertyRelative("graphic");
 
-            if(graphicProperty != null)
+            if (graphicProperty != null)
             {
                 Graphic graphic = (Graphic)graphicProperty.objectReferenceValue;
 
-                if(graphic != null)
+                if (graphic != null)
                 {
                     elementsCount += 2;
                 }

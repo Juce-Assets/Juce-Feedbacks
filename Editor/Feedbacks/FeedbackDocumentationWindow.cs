@@ -21,9 +21,9 @@ namespace Juce.Feedbacks
             GatherDocumentations();
         }
 
-        void OnGUI()
+        private void OnGUI()
         {
-            if(currentDocumentation == null)
+            if (currentDocumentation == null)
             {
                 return;
             }
@@ -71,11 +71,11 @@ namespace Juce.Feedbacks
             }
         }
 
-        public IFeedbackDocumentation GetDocumentation(Type type) 
+        public IFeedbackDocumentation GetDocumentation(Type type)
         {
             foreach (IFeedbackDocumentation documentation in documentations)
             {
-                if(documentation.FeedbackType == type)
+                if (documentation.FeedbackType == type)
                 {
                     return documentation;
                 }

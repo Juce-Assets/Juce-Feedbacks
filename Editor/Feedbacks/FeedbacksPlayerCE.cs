@@ -383,7 +383,6 @@ namespace Juce.Feedbacks
 
             menu.AddItem(new GUIContent("Documentation"), false, () => ShowFeedbackDocumentation(feedback));
 
-
             menu.ShowAsContext();
         }
 
@@ -407,7 +406,7 @@ namespace Juce.Feedbacks
 
         public Feedback AddFeedback(FeedbackTypeEditorData feedbackTypeEditorData)
         {
-            if(feedbackTypeEditorData == null)
+            if (feedbackTypeEditorData == null)
             {
                 Debug.LogError($"{nameof(FeedbackTypeEditorData)} was null on {nameof(AddFeedback)} at {nameof(FeedbacksPlayerCE)}");
                 return null;
@@ -486,8 +485,10 @@ namespace Juce.Feedbacks
         {
             for (int i = 0; i < feedbacksProperty.arraySize; ++i)
             {
-                if(feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue == feedback)
+                if (feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue == feedback)
                 {
+                    RemoveFeedbackEditor(feedback);
+
                     Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveFeedback)}");
 
                     if (feedback != null && destroyComponent)
@@ -507,6 +508,8 @@ namespace Juce.Feedbacks
 
         public void RemoveAllFeedbacks()
         {
+            cachedEditorFeedback.Clear();
+
             Undo.RegisterCompleteObjectUndo(CustomTarget, $"{nameof(RemoveAllFeedbacks)}");
 
             for (int i = 0; i < feedbacksProperty.arraySize; ++i)
@@ -552,6 +555,16 @@ namespace Juce.Feedbacks
             return 0;
         }
 
+        private void FeedbacksSetExpanded(bool set)
+        {
+            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
+            {
+                Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
+
+                currFeedback.Expanded = set;
+            }
+        }
+
         private void TryRepareFeedbacks()
         {
             toRepare.Clear();
@@ -565,7 +578,7 @@ namespace Juce.Feedbacks
             {
                 Feedback currFeedback = toRepare[i];
 
-                if(currFeedback == null)
+                if (currFeedback == null)
                 {
                     Debug.LogError($"{nameof(Feedback)} is null and could not be repared");
 
@@ -574,7 +587,7 @@ namespace Juce.Feedbacks
 
                 bool needsToBeRecreated = currFeedback.gameObject == null;
 
-                if(needsToBeRecreated)
+                if (needsToBeRecreated)
                 {
                     PasteFeedbackAsNew(currFeedback);
                     RemoveFeedback(currFeedback);
@@ -598,7 +611,7 @@ namespace Juce.Feedbacks
         {
             cachedEditorFeedback.TryGetValue(feedback, out FeedbackEditorData feedbackEditorData);
 
-            if(feedbackEditorData != null)
+            if (feedbackEditorData != null)
             {
                 return feedbackEditorData;
             }
@@ -613,14 +626,9 @@ namespace Juce.Feedbacks
             return newFeedbackEditorData;
         }
 
-        private void FeedbacksSetExpanded(bool set)
+        private void RemoveFeedbackEditor(Feedback feedback)
         {
-            for (int i = 0; i < feedbacksProperty.arraySize; ++i)
-            {
-                Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
-
-                currFeedback.Expanded = set;
-            }
+            cachedEditorFeedback.Remove(feedback);
         }
 
         private void CacheFeedbackTypes()

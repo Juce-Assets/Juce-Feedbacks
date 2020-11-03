@@ -1,5 +1,4 @@
-﻿using System;
-using Juce.Utils.Singletons;
+﻿using Juce.Utils.Singletons;
 using UnityEditor;
 
 namespace Juce.Feedbacks
