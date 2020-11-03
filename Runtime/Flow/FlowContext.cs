@@ -1,5 +1,4 @@
 ﻿using Juce.Tween;
-using System;
 
 namespace Juce.Feedbacks
 {

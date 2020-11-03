@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -16,6 +15,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]
@@ -56,7 +56,7 @@ namespace Juce.Feedbacks
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            if(target == null)
+            if (target == null)
             {
                 return null;
             }

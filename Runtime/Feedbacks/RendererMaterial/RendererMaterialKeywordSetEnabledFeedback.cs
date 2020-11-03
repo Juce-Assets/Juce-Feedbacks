@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -44,7 +42,7 @@ namespace Juce.Feedbacks
         {
             string targetInfo = string.Empty;
 
-            if(target.Renderer != null)
+            if (target.Renderer != null)
             {
                 targetInfo += target.Renderer.gameObject.name;
             }

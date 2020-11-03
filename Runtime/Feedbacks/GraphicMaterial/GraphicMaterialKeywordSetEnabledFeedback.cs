@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -29,7 +28,7 @@ namespace Juce.Feedbacks
                 return true;
             }
 
-            if(string.IsNullOrEmpty(target.Property))
+            if (string.IsNullOrEmpty(target.Property))
             {
                 errors = ErrorUtils.MaterialPropertyNotSelected;
                 return true;

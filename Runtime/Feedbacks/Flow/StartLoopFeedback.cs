@@ -1,6 +1,4 @@
 ﻿using Juce.Tween;
-using System;
-using UnityEngine;
 
 namespace Juce.Feedbacks
 {

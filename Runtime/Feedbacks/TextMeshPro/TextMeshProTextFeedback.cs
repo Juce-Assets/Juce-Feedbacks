@@ -1,11 +1,9 @@
-﻿
-#if JUCE_TEXT_MESH_PRO_EXTENSIONS
+﻿#if JUCE_TEXT_MESH_PRO_EXTENSIONS
 
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Juce.Tween;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {

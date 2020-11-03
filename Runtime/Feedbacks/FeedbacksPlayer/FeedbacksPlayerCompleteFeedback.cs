@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {

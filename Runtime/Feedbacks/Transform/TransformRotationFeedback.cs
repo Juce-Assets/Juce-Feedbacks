@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -13,11 +12,13 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private RotationMode rotationMode = default;
+
         [SerializeField] private CoordinatesSpace coordinatesSpace = default;
         [SerializeField] private StartEndVector3Property value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]

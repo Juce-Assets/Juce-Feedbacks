@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -13,6 +12,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private AudioClip audioClip = default;
+
         [SerializeField] private bool oneShot = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
@@ -51,7 +51,7 @@ namespace Juce.Feedbacks
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            if(target == null)
+            if (target == null)
             {
                 return null;
             }

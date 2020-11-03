@@ -1,8 +1,8 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using Juce.Tween;
+using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
-using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
@@ -22,7 +22,7 @@ namespace Juce.Feedbacks
 
         private void Start()
         {
-            TryExecuteOnAwake(); 
+            TryExecuteOnAwake();
         }
 
         protected virtual void OnDestroy()
@@ -34,7 +34,6 @@ namespace Juce.Feedbacks
         {
             foreach (Feedback feedback in feedbacks)
             {
-
 #if UNITY_EDITOR
                 if (!Application.isPlaying)
                 {
@@ -43,13 +42,12 @@ namespace Juce.Feedbacks
 #else
                 Destroy(feedback);
 #endif
-
             }
         }
 
         private void TryExecuteOnAwake()
         {
-            if(!executeOnAwake)
+            if (!executeOnAwake)
             {
                 return;
             }
@@ -78,7 +76,7 @@ namespace Juce.Feedbacks
             {
                 Feedback currFeedback = feedbacks[i];
 
-                if(currFeedback.Disabled)
+                if (currFeedback.Disabled)
                 {
                     continue;
                 }
@@ -87,7 +85,7 @@ namespace Juce.Feedbacks
 
                 ExecuteResult executeResult = currFeedback.OnExecute(context, sequenceTween);
 
-                if(executeResult == null)
+                if (executeResult == null)
                 {
                     continue;
                 }
@@ -147,18 +145,18 @@ namespace Juce.Feedbacks
         {
             Type lookingForType = typeof(T);
 
-            for(int i = 0; i < feedbacks.Count; ++i)
+            for (int i = 0; i < feedbacks.Count; ++i)
             {
                 Feedback currFeedback = feedbacks[i];
 
-                if(!currFeedback.ScriptUsage.UsedByScript)
+                if (!currFeedback.ScriptUsage.UsedByScript)
                 {
                     continue;
                 }
 
-                if(currFeedback.GetType() == lookingForType)
+                if (currFeedback.GetType() == lookingForType)
                 {
-                    if(string.Equals(currFeedback.ScriptUsage.IdUsedByScript, id))
+                    if (string.Equals(currFeedback.ScriptUsage.IdUsedByScript, id))
                     {
                         return currFeedback as T;
                     }

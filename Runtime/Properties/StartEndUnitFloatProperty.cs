@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -10,7 +9,7 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] [Range(0, 1)] private float startValue = default;
         [SerializeField] [HideInInspector] [Range(0, 1)] private float endValue = default;
 
-        public bool UseStartValue { get => useStartValue; set =>  useStartValue = value; }
+        public bool UseStartValue { get => useStartValue; set => useStartValue = value; }
 
         public float StartValue { get => startValue; set => startValue = Mathf.Max(0, value); }
         public float EndValue { get => endValue; set => endValue = Mathf.Max(0, value); }

@@ -1,8 +1,6 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.UI;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -17,6 +15,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]
@@ -75,7 +74,7 @@ namespace Juce.Feedbacks
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            if(target.Renderer == null)
+            if (target.Renderer == null)
             {
                 return null;
             }
@@ -84,7 +83,7 @@ namespace Juce.Feedbacks
 
             bool hasProperty = material.HasProperty(target.Property);
 
-            if(!hasProperty)
+            if (!hasProperty)
             {
                 Debug.Log("");
                 return null;

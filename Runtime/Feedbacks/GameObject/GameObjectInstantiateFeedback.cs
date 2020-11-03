@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
-using Juce.Tween;
+﻿using Juce.Tween;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -13,6 +12,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private Transform parent = default;
+
         [SerializeField] private bool worldPositionStays = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]

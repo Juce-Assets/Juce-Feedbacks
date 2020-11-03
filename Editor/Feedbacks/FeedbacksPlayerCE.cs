@@ -293,12 +293,12 @@ namespace Juce.Feedbacks
                 }
                 else
                 {
-                    EditorGUI.DrawRect(progressRect, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+                    EditorGUI.DrawRect(progressRect, Color.clear);
                 }
             }
             else
             {
-                EditorGUI.DrawRect(progressRect, new Color(0.0f, 0.0f, 0.0f, 0.0f));
+                EditorGUI.DrawRect(progressRect, Color.clear);
             }
         }
 

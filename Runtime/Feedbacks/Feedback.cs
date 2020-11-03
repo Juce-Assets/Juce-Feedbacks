@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Juce.Tween;
 using System.Collections.Generic;
 using UnityEngine;
-using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
@@ -22,9 +21,19 @@ namespace Juce.Feedbacks
 
         public ExecuteResult ExecuteResult { get; set; }
 
-        public virtual string GetFeedbackTargetInfo() { return string.Empty; }
-        public virtual bool GetFeedbackErrors(out string errors) { errors = string.Empty; return false; }
-        public virtual void GetFeedbackInfo(ref List<string> infoList) {}
+        public virtual string GetFeedbackTargetInfo()
+        {
+            return string.Empty;
+        }
+
+        public virtual bool GetFeedbackErrors(out string errors)
+        {
+            errors = string.Empty; return false;
+        }
+
+        public virtual void GetFeedbackInfo(ref List<string> infoList)
+        {
+        }
 
         public abstract ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween);
     }

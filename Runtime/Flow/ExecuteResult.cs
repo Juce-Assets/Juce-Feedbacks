@@ -1,7 +1,4 @@
-﻿using System;
-using Juce.Tween;
-
-namespace Juce.Feedbacks
+﻿namespace Juce.Feedbacks
 {
     public class ExecuteResult
     {

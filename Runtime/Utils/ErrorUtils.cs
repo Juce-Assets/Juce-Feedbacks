@@ -1,7 +1,4 @@
-﻿using System;
-using UnityEngine;
-
-namespace Juce.Feedbacks
+﻿namespace Juce.Feedbacks
 {
     public static class ErrorUtils
     {

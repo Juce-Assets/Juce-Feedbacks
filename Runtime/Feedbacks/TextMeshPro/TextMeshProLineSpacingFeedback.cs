@@ -1,11 +1,9 @@
-﻿
-#if JUCE_TEXT_MESH_PRO_EXTENSIONS
+﻿#if JUCE_TEXT_MESH_PRO_EXTENSIONS
 
-using System;
-using System.Collections.Generic;
-using UnityEngine;
 using Juce.Tween;
+using System.Collections.Generic;
 using TMPro;
+using UnityEngine;
 
 namespace Juce.Feedbacks
 {
@@ -20,6 +18,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]

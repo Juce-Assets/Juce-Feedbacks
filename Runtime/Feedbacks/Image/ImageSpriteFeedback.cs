@@ -1,8 +1,7 @@
-﻿using System;
+﻿using Juce.Tween;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Juce.Tween;
-using System.Collections.Generic;
 
 namespace Juce.Feedbacks
 {
@@ -51,7 +50,7 @@ namespace Juce.Feedbacks
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
-            if(target == null)
+            if (target == null)
             {
                 return null;
             }

@@ -1,8 +1,6 @@
-﻿using System;
+﻿using Juce.Tween;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using Juce.Tween;
 
 namespace Juce.Feedbacks
 {
@@ -17,6 +15,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
+
         [SerializeField] [Min(0)] private float duration = 1.0f;
 
         [Header(FeedbackSectionsUtils.EasingSection)]
@@ -79,7 +78,7 @@ namespace Juce.Feedbacks
                     sequenceTween.Join(target.TweenColorNoAlpha(value.StartColor, 0.0f));
                 }
 
-                if(value.UseStartAlpha)
+                if (value.UseStartAlpha)
                 {
                     sequenceTween.Join(target.TweenColorAlpha(value.StartAlpha, 0.0f));
                 }

@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Text;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace Juce.Feedbacks
         {
             StringBuilder stringBuilder = new StringBuilder();
 
-            for(int i = 0; i < infoList.Count; ++i)
+            for (int i = 0; i < infoList.Count; ++i)
             {
                 if (i > 0)
                 {
@@ -26,9 +25,9 @@ namespace Juce.Feedbacks
             return stringBuilder.ToString();
         }
 
-        public static void GetTimingInfo(ref List<string> infoList,  float delay, float duration)
+        public static void GetTimingInfo(ref List<string> infoList, float delay, float duration)
         {
-            if(delay > 0)
+            if (delay > 0)
             {
                 infoList.Add($"Delay: {delay}s");
             }
@@ -59,12 +58,12 @@ namespace Juce.Feedbacks
         {
             string startString = string.Empty;
 
-            if(startEndVector3.UseStartX || startEndVector3.UseStartY || startEndVector3.UseStartZ)
+            if (startEndVector3.UseStartX || startEndVector3.UseStartY || startEndVector3.UseStartZ)
             {
                 startString += $"Start [";
             }
 
-            if(startEndVector3.UseStartX)
+            if (startEndVector3.UseStartX)
             {
                 startString += $" x:{startEndVector3.StartValueX}";
             }
@@ -187,7 +186,7 @@ namespace Juce.Feedbacks
             infoList.Add($"End: {startEndUnitFloat.EndValue}");
         }
 
-        public static void GetStartEndColorPropertyInfo(ref List<string> infoList, StartEndColorProperty startEndColorProperty) 
+        public static void GetStartEndColorPropertyInfo(ref List<string> infoList, StartEndColorProperty startEndColorProperty)
         {
             string startString = string.Empty;
 
