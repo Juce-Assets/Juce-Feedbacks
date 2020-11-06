@@ -29,14 +29,6 @@ namespace Juce.Feedbacks
             {
                 GenericsDocumentation.DelayDocumentation();
             }
-
-            EditorGUILayout.Space(2);
-
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                GUILayout.Label("Sequencing:");
-                GenericsDocumentation.SameTimeSequencingDocumentation();
-            }
         }
     }
 }

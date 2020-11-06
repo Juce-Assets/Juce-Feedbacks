@@ -23,19 +23,11 @@ namespace Juce.Feedbacks
             {
                 GUILayout.Label("- FlipX: enable or disable flip x value", EditorStyles.wordWrappedLabel);
                 GUILayout.Label("- FlipY: enable or disable flip y value", EditorStyles.wordWrappedLabel);
-              }
+            }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
                 GenericsDocumentation.DelayDocumentation();
-            }
-
-            EditorGUILayout.Space(2);
-
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                GUILayout.Label("Sequencing:");
-                GenericsDocumentation.SameTimeSequencingDocumentation();
             }
         }
     }

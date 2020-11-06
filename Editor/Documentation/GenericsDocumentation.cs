@@ -6,11 +6,6 @@ namespace Juce.Feedbacks
 {
     public static class GenericsDocumentation
     {
-        public static void SameTimeSequencingDocumentation()
-        {
-            GUILayout.Label("It will play at the same time as the other feedbacks of the sequence.", EditorStyles.wordWrappedLabel);
-        }
-
         public static void EasingDocumentation()
         {
             GUILayout.Label("- Use Animation Curve: allows for the choosing of a predefined Easing, or to use an Animation Curve", EditorStyles.wordWrappedLabel);

@@ -43,14 +43,6 @@ namespace Juce.Feedbacks
             {
                 GenericsDocumentation.LoopDocumentation();
             }
-
-            EditorGUILayout.Space(2);
-
-            using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
-            {
-                GUILayout.Label("Sequencing:");
-                GenericsDocumentation.SameTimeSequencingDocumentation();
-            }
         }
     }
 }
