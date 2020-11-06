@@ -4,23 +4,24 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    internal class ParticleSystemPlayDocumentation : IFeedbackDocumentation
+    internal class ParticleSystemSimulateDocumentation : IFeedbackDocumentation
     {
-        public Type FeedbackType => typeof(ParticleSystemPlayFeedback);
+        public Type FeedbackType => typeof(ParticleSystemSimulateFeedback);
 
         public void DrawDocumentation()
         {
-            GUILayout.Label("Plays the target ParticleSystem", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Fast-forwards the ParticleSystem by simulating particles over the given period of time, then pauses it.", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Target: ParticleSystem that is going to be played", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Target: ParticleSystem that is going to be affected", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
+                GUILayout.Label("- Time: time period in seconds to advance the ParticleSystem simulation by", EditorStyles.wordWrappedLabel);
                 GUILayout.Label("- With Children: play all child ParticleSystem aswell", EditorStyles.wordWrappedLabel);
             }
 

@@ -21,8 +21,8 @@ namespace Juce.Feedbacks
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- With Children: stop all child ParticleSystem aswell", EditorStyles.wordWrappedLabel);
                 GUILayout.Label("- Stop Behavior: stop emitting or stop emitting and clear the system.", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- With Children: stop all child ParticleSystem aswell", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))

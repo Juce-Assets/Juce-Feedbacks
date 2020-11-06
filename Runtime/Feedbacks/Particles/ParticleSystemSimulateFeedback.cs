@@ -4,15 +4,14 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Stop", "ParticleSystem/")]
-    public class ParticleSystemStopFeedback : Feedback
+    [FeedbackIdentifier("Simulate", "ParticleSystem/")]
+    public class ParticleSystemSimulateFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private ParticleSystem target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private ParticleSystemStopBehavior stopBehavior = default;
-
+        [SerializeField] private float time = default;
         [SerializeField] private bool withChildren = true;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
@@ -20,7 +19,6 @@ namespace Juce.Feedbacks
 
         public ParticleSystem Target { get => target; set => target = value; }
         public bool WithChildren { get => withChildren; set => withChildren = value; }
-        public ParticleSystemStopBehavior SopBehavior { get => stopBehavior; set => stopBehavior = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
@@ -62,7 +60,7 @@ namespace Juce.Feedbacks
 
             sequenceTween.AppendCallback(() =>
             {
-                target.Stop(withChildren, stopBehavior);
+                target.Simulate(time, withChildren);
             });
 
             ExecuteResult result = new ExecuteResult();
