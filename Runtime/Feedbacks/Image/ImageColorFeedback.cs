@@ -25,7 +25,7 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public Image Target => target;
+        public Image Target { get => target; set => target = value; }
         public StartEndColorProperty Value => value;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
