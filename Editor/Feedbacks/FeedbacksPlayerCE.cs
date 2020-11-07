@@ -258,7 +258,7 @@ namespace Juce.Feedbacks
                 }
                 else
                 {
-                    feedback.hideFlags = HideFlags.None;
+                    feedback.hideFlags &= ~HideFlags.HideInInspector;
                 }
             }
         }
