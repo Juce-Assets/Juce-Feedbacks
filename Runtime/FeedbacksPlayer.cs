@@ -40,7 +40,17 @@ namespace Juce.Feedbacks
             {
 #if UNITY_EDITOR
 
-                DestroyImmediate(feedback);
+                if (Application.isPlaying)
+                {
+                    Destroy(feedback);
+                }
+                else
+                {
+                    UnityEditor.EditorApplication.delayCall += () =>
+                    {
+                        DestroyImmediate(feedback);
+                    };
+                }
 
 #else
 
