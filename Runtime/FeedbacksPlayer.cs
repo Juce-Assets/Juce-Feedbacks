@@ -7,6 +7,7 @@ using UnityEngine;
 namespace Juce.Feedbacks
 {
     [DisallowMultipleComponent]
+    [ExecuteInEditMode]
     public class FeedbacksPlayer : MonoBehaviour
     {
         [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
@@ -22,10 +23,13 @@ namespace Juce.Feedbacks
 
         private void Start()
         {
-            TryExecuteOnAwake();
+            if (Application.isPlaying)
+            {
+                TryExecuteOnAwake();
+            }
         }
 
-        protected virtual void OnDestroy()
+        private void OnDestroy()
         {
             CleanUp();
         }
@@ -35,14 +39,17 @@ namespace Juce.Feedbacks
             foreach (Feedback feedback in feedbacks)
             {
 #if UNITY_EDITOR
-                if (!Application.isPlaying)
-                {
-                    DestroyImmediate(feedback);
-                }
+
+                DestroyImmediate(feedback);
+
 #else
+
                 Destroy(feedback);
+
 #endif
             }
+
+            feedbacks.Clear();
         }
 
         private void TryExecuteOnAwake()
