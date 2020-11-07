@@ -260,8 +260,6 @@ namespace Juce.Feedbacks
                 {
                     feedback.hideFlags = HideFlags.None;
                 }
-
-                feedback.hideFlags = HideFlags.None;
             }
         }
 
