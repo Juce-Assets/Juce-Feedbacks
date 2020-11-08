@@ -30,6 +30,10 @@ namespace Juce.Feedbacks
             GatherProperties();
 
             CacheFeedbackTypes();
+
+            TryRepareFeedbacks();
+
+            SetStartingFeedbacksVisibility();
         }
 
         public override void OnInspectorGUI()
@@ -659,6 +663,25 @@ namespace Juce.Feedbacks
 
                         cachedfeedbackTypes.Add(data);
                     }
+                }
+            }
+        }
+
+        private void SetStartingFeedbacksVisibility()
+        {
+            Feedback[] feedbacks = CustomTarget.GetComponents<Feedback>();
+
+            for (int i = 0; i < feedbacks.Length; ++i)
+            {
+                Feedback currFeedback = feedbacks[i];
+
+                if (!JuceConfiguration.Instance.DeveloperMode)
+                {
+                    currFeedback.hideFlags |= HideFlags.HideInInspector;
+                }
+                else
+                {
+                    currFeedback.hideFlags &= ~HideFlags.HideInInspector;
                 }
             }
         }
