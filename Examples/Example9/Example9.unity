@@ -133,6 +133,7 @@ GameObject:
   - component: {fileID: 276040263}
   - component: {fileID: 276040266}
   - component: {fileID: 276040264}
+  - component: {fileID: 276040267}
   m_Layer: 0
   m_Name: FeedbacksPlayer
   m_TagString: Untagged
@@ -232,11 +233,32 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   feedbacks:
   - {fileID: 276040264}
+  - {fileID: 276040267}
   executeOnAwake: 0
   loop:
     loopMode: 0
     loopResetMode: 0
     loops: 0
+--- !u!114 &276040267
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 276040262}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403f471aec342414482a51f5c0c318cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expanded: 0
+  disabled: 0
+  userData: 
+  scriptUsage:
+    usedByScript: 0
+    idUsedByScript: 
+  eventTrigger: asdsd
+  delay: 0
 --- !u!1 &1239977318
 GameObject:
   m_ObjectHideFlags: 0

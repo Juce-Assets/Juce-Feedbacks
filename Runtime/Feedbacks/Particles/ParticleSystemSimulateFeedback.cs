@@ -41,6 +41,7 @@ namespace Juce.Feedbacks
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
+            infoList.Add($"Simulate: {time}s");
             InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
