@@ -1,4 +1,6 @@
-﻿using System;
+﻿#if JUCE_TEXT_MESH_PRO_EXTENSIONS
+
+using System;
 using UnityEditor;
 using Juce.Feedbacks;
 using UnityEngine;
@@ -32,3 +34,5 @@ namespace Juce.Feedbacks
         }
     }
 }
+
+#endif

@@ -94,6 +94,12 @@ namespace Juce.Feedbacks
             {
                 Feedback currFeedback = feedbacks[i];
 
+                if(currFeedback == null)
+                {
+                    UnityEngine.Debug.LogError($"There is a null {nameof(Feedback)} on the GameObject {gameObject.name}", gameObject);
+                    continue;
+                }
+
                 if (currFeedback.Disabled)
                 {
                     continue;
