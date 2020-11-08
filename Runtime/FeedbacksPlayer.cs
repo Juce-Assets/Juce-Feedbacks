@@ -15,11 +15,12 @@ namespace Juce.Feedbacks
         [SerializeField] private bool executeOnAwake = default;
         [SerializeField] private LoopProperty loop = default;
 
+        private SequenceTween currMainSequence;
+
         public bool IsPlaying { get; private set; }
-
-        internal SequenceTween CurrMainSequence { get; private set; }
-
         public IReadOnlyList<Feedback> Feedbacks => feedbacks;
+
+        public event Action<string> OnEventTrigger;
 
         private void Start()
         {
@@ -87,7 +88,7 @@ namespace Juce.Feedbacks
 
             IsPlaying = true;
 
-            FlowContext context = new FlowContext();
+            FlowContext context = new FlowContext(OnEventTrigger);
 
             for (int i = 0; i < feedbacks.Count; ++i)
             {
@@ -125,37 +126,37 @@ namespace Juce.Feedbacks
 
             context.MainSequence.Play();
 
-            CurrMainSequence = context.MainSequence;
+            currMainSequence = context.MainSequence;
         }
 
         public void Complete()
         {
-            if (CurrMainSequence == null)
+            if (currMainSequence == null)
             {
                 return;
             }
 ;
-            CurrMainSequence.Complete();
+            currMainSequence.Complete();
         }
 
         public void Kill()
         {
-            if (CurrMainSequence == null)
+            if (currMainSequence == null)
             {
                 return;
             }
 ;
-            CurrMainSequence.Kill();
+            currMainSequence.Kill();
         }
 
         public void Restart()
         {
-            if (CurrMainSequence == null)
+            if (currMainSequence == null)
             {
                 return;
             }
 ;
-            CurrMainSequence.Restart();
+            currMainSequence.Restart();
         }
 
         public T GetFeedback<T>(string id) where T : Feedback

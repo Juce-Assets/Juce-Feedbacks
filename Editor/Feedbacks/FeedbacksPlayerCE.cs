@@ -230,7 +230,7 @@ namespace Juce.Feedbacks
 
                     if (!string.IsNullOrEmpty(infoString))
                     {
-                        EditorGUILayout.LabelField(infoString);
+                        EditorGUILayout.LabelField(infoString, EditorStyles.wordWrappedLabel);
                     }
                 }
 

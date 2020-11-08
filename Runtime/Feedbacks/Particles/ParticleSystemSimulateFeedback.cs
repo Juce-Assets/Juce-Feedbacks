@@ -12,6 +12,7 @@ namespace Juce.Feedbacks
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
         [SerializeField] private float time = default;
+
         [SerializeField] private bool withChildren = true;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
