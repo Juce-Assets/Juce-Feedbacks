@@ -1,11 +1,11 @@
 {
   "name": "com.juce.feedbacks",
-  "version": "0.0.1",
+  "version": "1.0.0",
   "displayName": "Juce-Feedbacks",
-  "description": "This is an example package",
+  "description": "Feedbacks library",
   "dependencies": {
-    "com.juce.tween": "0.0.1",
-	"com.juce.utils": "0.0.1"
+    "com.juce.tween": "1.0.0",
+	"com.juce.utils": "1.0.0"
   },
   "keywords": [
     "Juce",
@@ -13,8 +13,8 @@
   ],
   "author": {
     "name": "Guillem Sunyer",
-    "email": "gsunyercaldu@gmail.com",
-    "url": "https://github.com/Guillemsc/Juce-Feedbacks"
+    "email": "juce.unity@gmail.com",
+    "url": "https://github.com/Juce-Assets/Juce-Feedbacks"
   },
   "type": "template",
   "hideInEditor": false
