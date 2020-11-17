@@ -80,6 +80,11 @@ namespace Juce.Feedbacks
             {
                 Feedback currFeedback = feedbacksProperty.GetArrayElementAtIndex(i).objectReferenceValue as Feedback;
 
+                if (currFeedback == null)
+                {
+                    continue;
+                }
+
                 FeedbackEditorData feedbackEditorData = GetOrCreateFeedbackeEditor(currFeedback);
 
                 DrawFeedback(feedbackEditorData, i, e);
@@ -584,7 +589,7 @@ namespace Juce.Feedbacks
                 {
                     Debug.LogError($"{nameof(Feedback)} is null and could not be repared");
 
-                    RemoveFeedback(currFeedback);
+                    continue;
                 }
 
                 bool needsToBeRecreated = currFeedback.gameObject == null;
@@ -630,6 +635,11 @@ namespace Juce.Feedbacks
 
         private void RemoveFeedbackEditor(Feedback feedback)
         {
+            if (feedback == null)
+            {
+                return;
+            }
+
             cachedEditorFeedback.Remove(feedback);
         }
 
