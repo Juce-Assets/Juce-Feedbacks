@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public static class Styling
+    internal static class Styling
     {
         static readonly Color splitterDark = new Color(0.12f, 0.12f, 0.12f, 1.333f);
         static readonly Color splitterLight = new Color(0.6f, 0.6f, 0.6f, 1.333f);

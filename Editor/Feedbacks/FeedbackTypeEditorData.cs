@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class FeedbackTypeEditorData
+    internal class FeedbackTypeEditorData
     {
         public Type Type { get; }
         public string Name { get; }

@@ -8,7 +8,7 @@ using UnityEngine;
 namespace Juce.Feedbacks
 {
     [CustomEditor(typeof(FeedbacksPlayer))]
-    public class FeedbacksPlayerCE : Editor
+    internal class FeedbacksPlayerCE : Editor
     {
         public FeedbacksPlayer CustomTarget => (FeedbacksPlayer)target;
 

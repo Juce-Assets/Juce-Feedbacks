@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class FeedbackDocumentationWindow : EditorWindow
+    internal class FeedbackDocumentationWindow : EditorWindow
     {
         private Vector2 scrollPos;
 
