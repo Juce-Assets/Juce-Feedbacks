@@ -24,6 +24,9 @@ Read the [Contribution Guide](https://github.com/Juce-Assets/Juce-Feedbacks/wiki
 ## Minimum Requirements
 - Unity 2019.3.2
 
+## Installing via UnityPackage
+Download the latest [release](https://github.com/Juce-Assets/Juce-Feedbacks/releases/latest).
+
 ## Installing via Github
 ### Dependences
 First of all, you will need to download the following dependences
