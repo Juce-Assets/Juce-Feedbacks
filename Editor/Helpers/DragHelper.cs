@@ -5,29 +5,22 @@ namespace Juce.Feedbacks
 {
     internal class DragHelper
     {
-        private int draggedStartID = -1;
-        private int draggedEndID = -1;
+        private int draggedStartId = -1;
+        private int draggedEndId = -1;
 
         public void CheckDraggingItem(Event e, Rect rect, Color rectColor, int index)
         {
-            switch (e.type)
+            if (e.type == EventType.MouseDown)
             {
-                case EventType.MouseDown:
-                    {
-                        if (rect.Contains(e.mousePosition))
-                        {
-                            draggedStartID = index;
-                            e.Use();
-                        }
-                    }
-                    break;
-
-                default:
-                    break;
+                if (rect.Contains(e.mousePosition))
+                {
+                    draggedStartId = index;
+                    e.Use();
+                }
             }
 
             // Draw rect if feedback is being dragged
-            if (draggedStartID == index && rect != Rect.zero)
+            if (draggedStartId == index && rect != Rect.zero)
             {
                 EditorGUI.DrawRect(rect, rectColor);
             }
@@ -36,12 +29,12 @@ namespace Juce.Feedbacks
             // the feedback should be dropped: top or bottom
             bool rectContainsMousePosition = rect.Contains(e.mousePosition);
 
-            if (!rectContainsMousePosition || draggedStartID < 0)
+            if (!rectContainsMousePosition || draggedStartId < 0)
             {
                 return;
             }
 
-            draggedEndID = index;
+            draggedEndId = index;
 
             Rect headerSplit = rect;
             headerSplit.height *= 0.5f;
@@ -49,7 +42,7 @@ namespace Juce.Feedbacks
 
             if (headerSplit.Contains(e.mousePosition))
             {
-                draggedEndID = index + 1;
+                draggedEndId = index + 1;
             }
         }
 
@@ -60,38 +53,31 @@ namespace Juce.Feedbacks
             startIndex = -1;
             endIndex = -1;
 
-            if (draggedStartID >= 0 && draggedEndID >= 0)
+            if (draggedStartId >= 0 && draggedEndId >= 0)
             {
-                if (draggedEndID != draggedStartID)
+                if (draggedEndId != draggedStartId)
                 {
-                    if (draggedEndID > draggedStartID)
+                    if (draggedEndId > draggedStartId)
                     {
-                        draggedEndID--;
+                        draggedEndId--;
                     }
 
-                    startIndex = draggedStartID;
-                    endIndex = draggedEndID;
+                    startIndex = draggedStartId;
+                    endIndex = draggedEndId;
 
-                    draggedStartID = draggedEndID;
+                    draggedStartId = draggedEndId;
 
                     ret = true;
                 }
             }
 
-            if (draggedStartID >= 0 || draggedEndID >= 0)
+            if (draggedStartId >= 0 || draggedEndId >= 0)
             {
-                switch (e.type)
+                if (e.type == EventType.MouseUp)
                 {
-                    case EventType.MouseUp:
-                        {
-                            draggedStartID = -1;
-                            draggedEndID = -1;
-                            e.Use();
-                        }
-                        break;
-
-                    default:
-                        break;
+                    draggedStartId = -1;
+                    draggedEndId = -1;
+                    e.Use();
                 }
             }
 

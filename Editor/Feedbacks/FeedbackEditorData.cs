@@ -2,7 +2,7 @@
 
 namespace Juce.Feedbacks
 {
-    public class FeedbackEditorData
+    internal class FeedbackEditorData
     {
         public Feedback Feedback { get; }
         public FeedbackTypeEditorData FeedbackTypeEditorData { get; }

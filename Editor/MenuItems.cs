@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public static class MenuItems
+    internal static class MenuItems
     {
         [MenuItem("Tools/Juce/Feedbacks/Create Feedbacks Player", false, 1)]
         private static void CreateFeedbackPlayer()

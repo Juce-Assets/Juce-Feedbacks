@@ -4,27 +4,25 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    public class Styling
+    internal static class Styling
     {
-        public static readonly GUIStyle SmallTickbox = new GUIStyle("ShurikenToggle");
-
         static readonly Color splitterDark = new Color(0.12f, 0.12f, 0.12f, 1.333f);
         static readonly Color splitterLight = new Color(0.6f, 0.6f, 0.6f, 1.333f);
-        public static Color Splitter { get { return EditorGUIUtility.isProSkin ? splitterDark : splitterLight; } }
 
         static readonly Color headerBackgroundDark = new Color(0.1f, 0.1f, 0.1f, 0.2f);
         static readonly Color headerBackgroundLight = new Color(1f, 1f, 1f, 0.4f);
-        public static Color HeaderBackground { get { return EditorGUIUtility.isProSkin ? headerBackgroundDark : headerBackgroundLight; } }
-
-        static readonly Color reorderRectDark = new Color(0.8f, 0.8f, 0.8f, 0.5f);
-        static readonly Color reorderRectLight = new Color(0.2f, 0.2f, 0.2f, 0.5f);
-        public static Color ReorderRect { get { return EditorGUIUtility.isProSkin ? reorderRectDark : reorderRectLight; } }
 
         static readonly Color reorderDark = new Color(1f, 1f, 1f, 0.2f);
         static readonly Color reorderLight = new Color(0.1f, 0.1f, 0.1f, 0.2f);
-        public static Color Reorder { get { return EditorGUIUtility.isProSkin ? reorderDark : reorderLight; } }
 
-        public static Color ProgressComplete { get; } = new Color(0.3f, 0.9f, 0.5f);
+        static readonly Color reorderRectDark = new Color(0.8f, 0.8f, 0.8f, 0.5f);
+        static readonly Color reorderRectLight = new Color(0.2f, 0.2f, 0.2f, 0.5f);
+        public static Color SplitterColor { get { return EditorGUIUtility.isProSkin ? splitterDark : splitterLight; } }
+        public static Color HeaderBackgroundColor { get { return EditorGUIUtility.isProSkin ? headerBackgroundDark : headerBackgroundLight; } }
+        public static Color ReorderColor { get { return EditorGUIUtility.isProSkin ? reorderDark : reorderLight; } }
+        public static Color ReorderRectColor { get { return EditorGUIUtility.isProSkin ? reorderRectDark : reorderRectLight; } }
+        public static Color ProgressCompleteColor { get; } = new Color(0.3f, 0.9f, 0.5f);
+        public static GUIStyle SmallTickbox { get; } = new GUIStyle("ShurikenToggle");
 
         public static void DrawSplitter(float height = 1.0f, float leftOffset = 0.0f, float rightOffset = 0.0f)
         {
@@ -33,7 +31,7 @@ namespace Juce.Feedbacks
             rect.x += leftOffset;
             rect.width += (-leftOffset) + rightOffset;
 
-            EditorGUI.DrawRect(rect, Splitter);
+            EditorGUI.DrawRect(rect, SplitterColor);
         }
 
         public static Rect DrawHeader(ref bool expanded, ref bool activeField, string title, Color color, Action showGenericMenu)
@@ -69,7 +67,7 @@ namespace Juce.Feedbacks
 
             Rect menuRect = new Rect(labelRect.xMax + 4f, labelRect.y - 5f, 16, 20);
 
-            // Background rect should be full-width
+            // Background rect should be full width
             backgroundRect.xMin -= 3f;
             backgroundRect.yMin -= 2f;
             backgroundRect.width += 3f;
@@ -94,12 +92,12 @@ namespace Juce.Feedbacks
                 Rect r = reorderRect;
                 r.height = 1;
                 r.y = reorderRect.y + reorderRect.height * (i / 3.0f);
-                EditorGUI.DrawRect(r, Reorder);
+                EditorGUI.DrawRect(r, ReorderColor);
             }
 
+            // Generic menu
             EditorGUI.LabelField(menuRect, "...", EditorStyles.boldLabel);
 
-            // Handle events
             if (e.type == EventType.MouseDown)
             {
                 if (menuRect.Contains(e.mousePosition))
