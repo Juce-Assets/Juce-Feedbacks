@@ -9,5 +9,5 @@ All notable changes to this project will be documented in this file.
 
 ### Bug Fixes
 
-- Replaced font with unclear license, for one that has a free license
+- Removed copyrighted fonts used on examples, and used default text mesh pro font
 - [issue: 3] Removed missing scripts on examples
