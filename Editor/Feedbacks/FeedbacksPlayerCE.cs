@@ -204,7 +204,7 @@ namespace Juce.Feedbacks
                 Rect headerRect = Styling.DrawHeader(ref expanded, ref enabled, name, feedbackTypeEditorData.Color,
                     () => ShowFeedbackContextMenu(feedback));
 
-                dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRect, index);
+                dragHelper.CheckDraggingItem(e, headerRect, Styling.ReorderRectColor, index);
 
                 feedback.Expanded = expanded;
                 feedback.Disabled = !enabled;
@@ -290,7 +290,7 @@ namespace Juce.Feedbacks
                 {
                     if (feedback.ExecuteResult.ProgresTween.IsCompleted)
                     {
-                        EditorGUI.DrawRect(progressRect, Styling.ProgressComplete);
+                        EditorGUI.DrawRect(progressRect, Styling.ProgressCompleteColor);
                     }
                     else
                     {

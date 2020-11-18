@@ -10,20 +10,13 @@ namespace Juce.Feedbacks
 
         public void CheckDraggingItem(Event e, Rect rect, Color rectColor, int index)
         {
-            switch (e.type)
+            if (e.type == EventType.MouseDown)
             {
-                case EventType.MouseDown:
-                    {
-                        if (rect.Contains(e.mousePosition))
-                        {
-                            draggedStartID = index;
-                            e.Use();
-                        }
-                    }
-                    break;
-
-                default:
-                    break;
+                if (rect.Contains(e.mousePosition))
+                {
+                    draggedStartID = index;
+                    e.Use();
+                }
             }
 
             // Draw rect if feedback is being dragged
@@ -80,18 +73,11 @@ namespace Juce.Feedbacks
 
             if (draggedStartID >= 0 || draggedEndID >= 0)
             {
-                switch (e.type)
+                if (e.type == EventType.MouseUp)
                 {
-                    case EventType.MouseUp:
-                        {
-                            draggedStartID = -1;
-                            draggedEndID = -1;
-                            e.Use();
-                        }
-                        break;
-
-                    default:
-                        break;
+                    draggedStartID = -1;
+                    draggedEndID = -1;
+                    e.Use();
                 }
             }
 
