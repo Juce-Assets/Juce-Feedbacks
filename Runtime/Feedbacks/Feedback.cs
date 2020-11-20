@@ -11,7 +11,7 @@ namespace Juce.Feedbacks
 
         [SerializeField] private string userData = default;
 
-        [Header("Scripting")]
+        [Header(FeedbackSectionsUtils.ScriptingSection)]
         [SerializeField] private ScriptUsageProperty scriptUsage = default;
 
         public bool Expanded { get => expanded; set => expanded = value; }

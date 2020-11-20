@@ -2,6 +2,7 @@
 {
     public static class FeedbackSectionsUtils
     {
+        public const string ScriptingSection = "Scripting";
         public const string TargetSection = "Target";
         public const string ValuesSection = "Values";
         public const string TimingSection = "Timing";

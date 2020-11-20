@@ -6,6 +6,7 @@ All notable changes to this project will be documented in this file.
 ## [Unreleased]
 
 ### Features
+- Global acces to FeedbackPlayers through a singleton and an id
 
 ### Bug Fixes
 
