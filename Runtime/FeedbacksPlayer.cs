@@ -28,17 +28,29 @@ namespace Juce.Feedbacks
 
         public event Action<string> OnEventTrigger;
 
-        private void Start()
+        private void Awake()
         {
             if (Application.isPlaying)
             {
                 TryRegister();
+            }
+        }
+
+        private void Start()
+        {
+            if (Application.isPlaying)
+            {
                 TryExecuteOnAwake();
             }
         }
 
         private void OnDestroy()
         {
+            if (Application.isPlaying)
+            {
+                TryUnregister();
+            }
+
             CleanUp();
         }
 
@@ -47,7 +59,6 @@ namespace Juce.Feedbacks
             foreach (Feedback feedback in feedbacks)
             {
 #if UNITY_EDITOR
-
                 if (Application.isPlaying)
                 {
                     Destroy(feedback);
@@ -59,11 +70,8 @@ namespace Juce.Feedbacks
                         DestroyImmediate(feedback);
                     };
                 }
-
 #else
-
                 Destroy(feedback);
-
 #endif
             }
 
@@ -204,6 +212,11 @@ namespace Juce.Feedbacks
             currMainSequence.Restart();
         }
 
+
+        /// <summary>
+        /// Returns the <typeparamref name="Feedback"/> found, which has the Used By Script toggled, and the Id Used By Script defined on the editor.
+        /// Returns null if not found.
+        /// </summary>
         public T GetFeedback<T>(string id) where T : Feedback
         {
             Type lookingForType = typeof(T);

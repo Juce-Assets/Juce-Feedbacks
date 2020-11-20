@@ -43,13 +43,23 @@ namespace Juce.Feedbacks
         }
 
         /// <summary>
-        /// Returns a <typeparamref name="FeedbacksPlayer"/> which has the Used By Script toggle, and the Id Used By Script selected on the editor
+        /// Returns the <typeparamref name="FeedbacksPlayer"/> found, which has the Used By Script toggled, and the Id Used By Script defined on the editor.
+        /// Returns null if not found.
         /// </summary>
-        public FeedbacksPlayer GetFeedbacksPlayer(string id)
+        public static FeedbacksPlayer GetFeedbacksPlayer(string id)
         {
-            feedbackPlayersUsedByScript.TryGetValue(id, out FeedbacksPlayer feedbacksPlayer);
+            Instance.feedbackPlayersUsedByScript.TryGetValue(id, out FeedbacksPlayer feedbacksPlayer);
 
             return feedbacksPlayer;
+        }
+
+        /// <summary>
+        /// Outs the <typeparamref name="FeedbacksPlayer"/> found, which has the Used By Script toggled, and the Id Used By Script defined on the editor.
+        /// Returns false if not found.
+        /// </summary>
+        public static bool TryGetFeedbacksPlayer(string id, out FeedbacksPlayer feedbacksPlayer)
+        {
+            return Instance.feedbackPlayersUsedByScript.TryGetValue(id, out feedbacksPlayer);
         }
     }
 }
