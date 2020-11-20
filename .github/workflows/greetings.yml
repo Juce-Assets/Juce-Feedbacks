@@ -10,4 +10,4 @@ jobs:
       with:
         repo-token: ${{ secrets.GITHUB_TOKEN }}
         issue-message: 'Thanks for contributing to Juce-Feedbacks'' first issue'
-        pr-message: 'Hey, this is your fist contribuition to Juce-Feedbacks! Thank you very much, as you help making a better tool for everyone :)'' first pr'
+        pr-message: 'Hey, this is your fist contribuition to Juce-Feedbacks! Thank you very much, as you help making a better tool for everyone :). If you want to chat or discuss anything more in-depth, feel free to join the Discord: https://discord.gg/dbG7zKA'' first pr'
