@@ -13,12 +13,18 @@ namespace Juce.Feedbacks
         [SerializeField] [HideInInspector] private List<Feedback> feedbacks = new List<Feedback>();
 
         [SerializeField] private bool executeOnAwake = default;
+        [SerializeField] private ScriptUsageProperty scriptUsage = default;
         [SerializeField] private LoopProperty loop = default;
 
         private SequenceTween currMainSequence;
 
+        internal ScriptUsageProperty RegisteredScriptUsage;
+
         public bool IsPlaying { get; private set; }
         public IReadOnlyList<Feedback> Feedbacks => feedbacks;
+
+        public ScriptUsageProperty ScriptUsage => scriptUsage;
+        public LoopProperty Loop => loop;
 
         public event Action<string> OnEventTrigger;
 
@@ -26,6 +32,7 @@ namespace Juce.Feedbacks
         {
             if (Application.isPlaying)
             {
+                TryRegister();
                 TryExecuteOnAwake();
             }
         }
@@ -63,6 +70,38 @@ namespace Juce.Feedbacks
             feedbacks.Clear();
         }
 
+        private void TryRegister()
+        {
+            if (!scriptUsage.UsedByScript)
+            {
+                return;
+            }
+
+            bool success = JuceFeedbacks.Instance.RegisterFeedbacksPlayerUsedByScript(this);
+
+            if (success)
+            {
+                RegisteredScriptUsage = scriptUsage;
+            }
+        }
+
+        private void TryUnregister()
+        {
+            if (RegisteredScriptUsage == null)
+            {
+                return;
+            }
+
+            if (!RegisteredScriptUsage.UsedByScript)
+            {
+                return;
+            }
+
+            JuceFeedbacks.Instance.UnregisterFeedbacksPlayerUsedByScript(RegisteredScriptUsage.IdUsedByScript);
+
+            RegisteredScriptUsage = null;
+        }
+
         private void TryExecuteOnAwake()
         {
             if (!executeOnAwake)
@@ -94,7 +133,7 @@ namespace Juce.Feedbacks
             {
                 Feedback currFeedback = feedbacks[i];
 
-                if(currFeedback == null)
+                if (currFeedback == null)
                 {
                     UnityEngine.Debug.LogError($"There is a null {nameof(Feedback)} on the GameObject {gameObject.name}", gameObject);
                     continue;
