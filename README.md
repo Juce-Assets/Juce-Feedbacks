@@ -44,3 +44,6 @@ And that's all, with that you should be ready to go!
 
 ## Usage
 Read the [Usage Guide](https://github.com/Juce-Assets/Juce-Feedbacks/wiki/Usage-Guide) for more information.
+
+## Upcoming features
+- [On Development] Global acces to FeedbackPlayers through a singleton and an id. (Estimated Release: 27-11-2020)
