@@ -2,6 +2,7 @@
 [![Twitter Follow](https://img.shields.io/badge/twitter-%406uillem-blue.svg?style=flat&label=Follow)](https://twitter.com/6uillem)
 [![Discord](https://img.shields.io/discord/768962092296044614.svg)](https://discord.gg/dbG7zKA)
 [![release](https://img.shields.io/github/release/Juce-Assets/Juce-Feedbacks.svg)](https://github.com/Juce-Assets/Juce-Feedbacks/releases/latest)
+[![openupm](https://img.shields.io/npm/v/com.juce.feedbacks?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.juce.feedbacks/)
 
 ## Juce-Feedbacks
 Welcome to **Juce-Feedbacks**, the open-source feedbacks library that's part of the Juce Unity tools framework.
@@ -46,4 +47,4 @@ And that's all, with that you should be ready to go!
 Read the [Usage Guide](https://github.com/Juce-Assets/Juce-Feedbacks/wiki/Usage-Guide) for more information.
 
 ## Upcoming features
-- [On Development (Progress: 0%)] Global acces to FeedbackPlayers through a singleton and an id. (Estimated Release: 27-11-2020)
+- [On Development (Progress: 80%)] Global acces to FeedbackPlayers through a singleton and an id. (Estimated Release: 27-11-2020)
