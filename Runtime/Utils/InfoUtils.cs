@@ -131,7 +131,7 @@ namespace Juce.Feedbacks
 
             if (startEndVector2.UseStartY)
             {
-                startString += $" y:{startEndVector2.StartValueX}";
+                startString += $" y:{startEndVector2.StartValueY}";
             }
 
             if (startEndVector2.UseStartX || startEndVector2.UseStartY)
