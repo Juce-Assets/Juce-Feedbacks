@@ -14,7 +14,7 @@ namespace Juce.Feedbacks
 
             SerializedProperty loopModeProperty = property.FindPropertyRelative("loopMode");
 
-            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStoped)
+            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStopped)
             {
                 ++elementsCount;
             }
@@ -39,7 +39,7 @@ namespace Juce.Feedbacks
 
             EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), loopModeProperty);
 
-            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStoped)
+            if ((LoopMode)loopModeProperty.enumValueIndex == LoopMode.XTimes || (LoopMode)loopModeProperty.enumValueIndex == LoopMode.UntilManuallyStopped)
             {
                 EditorGUI.PropertyField(layoutHelper.NextVerticalRect(), loopResetModeProperty);
             }

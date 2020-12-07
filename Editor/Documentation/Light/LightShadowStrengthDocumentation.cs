@@ -4,26 +4,26 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    internal class ImageFillAmmountDocumentation : IFeedbackDocumentation
+    internal class LightShadowStrengthDocumentation : IFeedbackDocumentation
     {
-        public Type FeedbackType => typeof(ImageFillAmmountFeedback);
+        public Type FeedbackType => typeof(LightShadowStrengthFeedback);
 
         public void DrawDocumentation()
         {
-            GUILayout.Label("Changes the target Image fill ammount value", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Changes the target Light shadow strength", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Target: Image component that is going to be affected", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Target: Light component that is going to be affected", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Use Starting Value: enables the starting fill ammount", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- Start: (if enabled) starting fill ammount value", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- End: end fill ammount value to reach", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Use Starting Value: enables the starting shadow strength", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Start: (if enabled) starting shadow strength value", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- End: end shadow strength value to reach", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))

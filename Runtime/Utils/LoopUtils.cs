@@ -12,7 +12,7 @@
                     }
                     break;
 
-                case LoopMode.UntilManuallyStoped:
+                case LoopMode.UntilManuallyStopped:
                     {
                         tween.SetLoops(int.MaxValue, loopProperty.LoopResetMode);
                     }

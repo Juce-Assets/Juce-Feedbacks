@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("AnchoredPoistion", "RectTransform/")]
+    [FeedbackIdentifier("AnchoredPosition", "RectTransform/")]
     public class RectTransformAnchoredPositionFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
