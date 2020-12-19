@@ -381,6 +381,15 @@ namespace Juce.Feedbacks
             {
                 menu.AddDisabledItem(new GUIContent("Paste As New"), false);
             }
+            menu.AddItem(new GUIContent("Duplicate As New"), false, () =>
+            {
+                int feedbackIndex = GetFeedbackIndex(feedback);
+
+                UndoHelper.Instance.BeginUndo("Duplicate");
+                CopyPasteHelper.Instance.CopyFeedback(feedback);
+                CopyPasteHelper.Instance.PasteFeedbackAsNew(this, feedbackIndex + 1);
+                UndoHelper.Instance.EndUndo();
+            });
             menu.AddSeparator("");
 
             menu.AddItem(new GUIContent("Expand All"), false, () => FeedbacksSetExpanded(true));

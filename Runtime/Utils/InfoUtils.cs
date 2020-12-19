@@ -152,6 +152,12 @@ namespace Juce.Feedbacks
 
             string endString = string.Empty;
 
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                endString += $"{propertyName}: ";
+            }
+
+
             if (startEndVector2.UseEndX || startEndVector2.UseEndY)
             {
                 endString += $"End [";
