@@ -115,9 +115,18 @@ namespace Juce.Feedbacks
             }
         }
 
-        public static void GetStartEndVector2PropertyInfo(ref List<string> infoList, StartEndVector2Property startEndVector2)
+        public static void GetStartEndVector2PropertyInfo(
+            ref List<string> infoList, 
+            StartEndVector2Property startEndVector2, 
+            string propertyName = ""
+            )
         {
             string startString = string.Empty;
+
+            if(!string.IsNullOrEmpty(propertyName))
+            {
+                startString += $"{propertyName}: ";
+            }
 
             if (startEndVector2.UseStartX || startEndVector2.UseStartY)
             {
@@ -131,7 +140,7 @@ namespace Juce.Feedbacks
 
             if (startEndVector2.UseStartY)
             {
-                startString += $" y:{startEndVector2.StartValueX}";
+                startString += $" y:{startEndVector2.StartValueY}";
             }
 
             if (startEndVector2.UseStartX || startEndVector2.UseStartY)
@@ -142,6 +151,12 @@ namespace Juce.Feedbacks
             }
 
             string endString = string.Empty;
+
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                endString += $"{propertyName}: ";
+            }
+
 
             if (startEndVector2.UseEndX || startEndVector2.UseEndY)
             {

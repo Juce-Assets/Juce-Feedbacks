@@ -23,8 +23,6 @@ namespace Juce.Feedbacks
 
         private SerializedProperty feedbacksProperty;
 
-        private bool developerMode;
-
         private void OnEnable()
         {
             GatherProperties();
@@ -169,6 +167,11 @@ namespace Juce.Feedbacks
                         if (GUILayout.Button("Restart"))
                         {
                             CustomTarget.Restart();
+                        }
+
+                        if (GUILayout.Button("Reset"))
+                        {
+                            CustomTarget.KillAndReset();
                         }
                     }
                     GUILayout.EndHorizontal();
@@ -381,6 +384,15 @@ namespace Juce.Feedbacks
             {
                 menu.AddDisabledItem(new GUIContent("Paste As New"), false);
             }
+            menu.AddItem(new GUIContent("Duplicate As New"), false, () =>
+            {
+                int feedbackIndex = GetFeedbackIndex(feedback);
+
+                UndoHelper.Instance.BeginUndo("Duplicate");
+                CopyPasteHelper.Instance.CopyFeedback(feedback);
+                CopyPasteHelper.Instance.PasteFeedbackAsNew(this, feedbackIndex + 1);
+                UndoHelper.Instance.EndUndo();
+            });
             menu.AddSeparator("");
 
             menu.AddItem(new GUIContent("Expand All"), false, () => FeedbacksSetExpanded(true));

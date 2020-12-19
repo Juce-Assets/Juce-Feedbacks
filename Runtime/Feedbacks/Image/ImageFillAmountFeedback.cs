@@ -1,17 +1,18 @@
 ﻿using Juce.Tween;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Shadow Strenght", "Light/")]
-    public class LightShadowStrenghtFeedback : Feedback
+    [FeedbackIdentifier("Fill Amount", "Image/")]
+    public class ImageFillAmountFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private Light target = default;
+        [SerializeField] private Image target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private StartEndFloatProperty value = default;
+        [SerializeField] private StartEndUnitFloatProperty value = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -24,8 +25,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public Light Target => target;
-        public StartEndFloatProperty Value => value;
+        public Image Target => target;
+        public StartEndUnitFloatProperty Value => value;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
@@ -51,7 +52,7 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
-            InfoUtils.GetStartEndFloatPropertyInfo(ref infoList, value);
+            InfoUtils.GetStartEndUnitFloatPropertyInfo(ref infoList, value);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -71,11 +72,11 @@ namespace Juce.Feedbacks
 
             if (value.UseStartValue)
             {
-                sequenceTween.Append(target.TweenShadowStrenght(value.StartValue, 0.0f));
+                sequenceTween.Append(target.TweenFillAmount(value.StartValue, 0.0f));
             }
 
-            Tween.Tween progressTween = target.TweenShadowStrenght(value.EndValue, duration);
-            sequenceTween.Append(target.TweenShadowStrenght(value.EndValue, duration));
+            Tween.Tween progressTween = target.TweenFillAmount(value.EndValue, duration);
+            sequenceTween.Append(progressTween);
 
             EasingUtils.SetEasing(sequenceTween, easing);
             LoopUtils.SetLoop(sequenceTween, looping);

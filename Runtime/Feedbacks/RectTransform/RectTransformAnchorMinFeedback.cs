@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("AnchoredPosition", "RectTransform/")]
-    public class RectTransformAnchoredPositionFeedback : Feedback
+    [FeedbackIdentifier("Anchor Min", "RectTransform/")]
+    public class RectTransformAnchorMinFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private RectTransform target = default;
@@ -75,12 +75,12 @@ namespace Juce.Feedbacks
 
                 if (value.UseStartX)
                 {
-                    startSequence.Join(target.TweenAnchoredPositionX(value.StartValueX, 0.0f));
+                    startSequence.Join(target.TweenAnchorMinX(value.StartValueX, 0.0f));
                 }
 
                 if (value.UseStartY)
                 {
-                    startSequence.Join(target.TweenAnchoredPositionY(value.StartValueY, 0.0f));
+                    startSequence.Join(target.TweenAnchorMinY(value.StartValueY, 0.0f));
                 }
 
                 sequenceTween.Append(startSequence);
@@ -90,12 +90,12 @@ namespace Juce.Feedbacks
 
             if (value.UseEndX)
             {
-                endSequence.Join(target.TweenAnchoredPositionX(value.EndValueX, duration));
+                endSequence.Join(target.TweenAnchorMinX(value.EndValueX, duration));
             }
 
             if (value.UseEndY)
             {
-                endSequence.Join(target.TweenAnchoredPositionY(value.EndValueY, duration));
+                endSequence.Join(target.TweenAnchorMinY(value.EndValueY, duration));
             }
 
             Tween.Tween progressTween = endSequence;

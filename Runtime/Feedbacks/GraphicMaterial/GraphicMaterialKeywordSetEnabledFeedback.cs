@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        private bool initialEnabledValue;
+
         public GraphicMaterialProperty Target => target;
         public bool SetEnabled { get => setEnabled; set => setEnabled = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
@@ -59,6 +61,55 @@ namespace Juce.Feedbacks
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
             infoList.Add($"Enabled: {setEnabled}");
+        }
+
+        public override void OnFirstTimeExecute()
+        {
+            if (target.Graphic == null)
+            {
+                return;
+            }
+
+            GraphicMaterialUtils.TryInstantiateGraphicMaterial(target);
+
+            Material material = target.Graphic.materialForRendering;
+
+            bool hasProperty = material.HasProperty(target.Property);
+
+            if (!hasProperty)
+            {
+                return;
+            }
+
+            initialEnabledValue = material.IsKeywordEnabled(target.Property);
+        }
+
+        public override void OnReset()
+        {
+            if (target.Graphic == null)
+            {
+                return;
+            }
+
+            GraphicMaterialUtils.TryInstantiateGraphicMaterial(target);
+
+            Material material = target.Graphic.materialForRendering;
+
+            bool hasProperty = material.HasProperty(target.Property);
+
+            if (!hasProperty)
+            {
+                return;
+            }
+
+            if (initialEnabledValue)
+            {
+                material.EnableKeyword(target.Property);
+            }
+            else
+            {
+                material.DisableKeyword(target.Property);
+            }
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

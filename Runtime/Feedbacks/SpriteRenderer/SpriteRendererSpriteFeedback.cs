@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        private Sprite initialSpriteValue;
+
         public SpriteRenderer Target { get => target; set => target = value; }
         public Sprite Sprite { get => sprite; set => sprite = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
@@ -45,6 +47,26 @@ namespace Juce.Feedbacks
             {
                 infoList.Add($"Sprite: { sprite.name }");
             }
+        }
+
+        public override void OnFirstTimeExecute()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            initialSpriteValue = target.sprite;
+        }
+
+        public override void OnReset()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            target.sprite = initialSpriteValue;
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

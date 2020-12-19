@@ -49,6 +49,16 @@ namespace Juce.Feedbacks
             InfoUtils.GetTimingInfo(ref infoList, delay);
         }
 
+        public override void OnReset()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            target.Stop();
+        }
+
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
         {
             if (target == null)

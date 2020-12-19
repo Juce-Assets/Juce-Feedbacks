@@ -16,6 +16,7 @@ namespace Juce.Feedbacks
         [SerializeField] private ScriptUsageProperty scriptUsage = default;
         [SerializeField] private LoopProperty loop = default;
 
+        private bool firstTimeExecute = true;
         private SequenceTween currMainSequence;
 
         internal ScriptUsageProperty RegisteredScriptUsage;
@@ -135,6 +136,23 @@ namespace Juce.Feedbacks
 
             IsPlaying = true;
 
+            if (firstTimeExecute)
+            {
+                firstTimeExecute = false;
+
+                for (int i = 0; i < feedbacks.Count; ++i)
+                {
+                    Feedback currFeedback = feedbacks[i];
+
+                    if (currFeedback == null)
+                    {
+                        continue;
+                    }
+
+                    currFeedback.OnFirstTimeExecute();
+                }
+            }
+
             FlowContext context = new FlowContext(OnEventTrigger);
 
             for (int i = 0; i < feedbacks.Count; ++i)
@@ -202,6 +220,29 @@ namespace Juce.Feedbacks
             currMainSequence.Kill();
         }
 
+        public void KillAndReset()
+        {
+            if (currMainSequence == null)
+            {
+                return;
+            }
+
+            currMainSequence.Kill();
+            currMainSequence.Reset(ResetMode.RestartValues);
+
+            for (int i = 0; i < feedbacks.Count; ++i)
+            {
+                Feedback currFeedback = feedbacks[i];
+
+                if (currFeedback == null)
+                {
+                    continue;
+                }
+
+                currFeedback.OnReset();
+            }
+        }
+
         public void Restart()
         {
             if (currMainSequence == null)
@@ -209,7 +250,9 @@ namespace Juce.Feedbacks
                 return;
             }
 ;
-            currMainSequence.Restart();
+            KillAndReset();
+
+            Play();
         }
 
 

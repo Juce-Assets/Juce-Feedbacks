@@ -4,13 +4,13 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    internal class LightShadowStrenghtDocumentation : IFeedbackDocumentation
+    internal class LightShadowStrengthDocumentation : IFeedbackDocumentation
     {
-        public Type FeedbackType => typeof(LightShadowStrenghtFeedback);
+        public Type FeedbackType => typeof(LightShadowStrengthFeedback);
 
         public void DrawDocumentation()
         {
-            GUILayout.Label("Changes the target Light shadow strenght", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("Changes the target Light shadow strength", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
@@ -21,9 +21,9 @@ namespace Juce.Feedbacks
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Use Starting Value: enables the starting shadow strenght", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- Start: (if enabled) starting shadow strenght value", EditorStyles.wordWrappedLabel);
-                GUILayout.Label("- End: end shadow strenght value to reach", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Use Starting Value: enables the starting shadow strength", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Start: (if enabled) starting shadow strength value", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- End: end shadow strength value to reach", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))

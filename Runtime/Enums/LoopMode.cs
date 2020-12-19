@@ -4,6 +4,6 @@
     {
         Disabled,
         XTimes,
-        UntilManuallyStoped
+        UntilManuallyStopped
     }
 }

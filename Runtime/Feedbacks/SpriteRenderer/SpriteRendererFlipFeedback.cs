@@ -18,6 +18,9 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        private bool initialFlipXValue;
+        private bool initialFlipYValue;
+
         public SpriteRenderer Target { get => target; set => target = value; }
         public bool FlipX { get => flipX; set => flipX = value; }
         public bool FlipY { get => flipY; set => flipY = value; }
@@ -45,6 +48,28 @@ namespace Juce.Feedbacks
             InfoUtils.GetTimingInfo(ref infoList, delay);
             infoList.Add($"FlipX: {flipX}");
             infoList.Add($"FlipY: {flipY}");
+        }
+
+        public override void OnFirstTimeExecute()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            initialFlipXValue = target.flipX;
+            initialFlipYValue = target.flipY;
+        }
+
+        public override void OnReset()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            target.flipX = initialFlipXValue;
+            target.flipY = initialFlipXValue;
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
