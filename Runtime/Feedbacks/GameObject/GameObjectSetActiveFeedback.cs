@@ -16,6 +16,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        private bool initialEnabledValue;
+
         public GameObject Target => target;
         public bool SetActive { get => setActive; set => setActive = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
@@ -41,6 +43,26 @@ namespace Juce.Feedbacks
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
             infoList.Add($"Active: {setActive}");
+        }
+
+        public override void OnFirstTimeExecute()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            initialEnabledValue = target.activeSelf;
+        }
+
+        public override void OnReset()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            target.SetActive(initialEnabledValue);
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

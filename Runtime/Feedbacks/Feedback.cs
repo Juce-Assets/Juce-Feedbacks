@@ -35,6 +35,16 @@ namespace Juce.Feedbacks
         {
         }
 
+        public virtual void OnReset()
+        {
+
+        }
+
+        public virtual void OnFirstTimeExecute()
+        {
+
+        }
+
         public abstract ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween);
     }
 }

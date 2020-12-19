@@ -23,8 +23,6 @@ namespace Juce.Feedbacks
 
         private SerializedProperty feedbacksProperty;
 
-        private bool developerMode;
-
         private void OnEnable()
         {
             GatherProperties();
@@ -169,6 +167,11 @@ namespace Juce.Feedbacks
                         if (GUILayout.Button("Restart"))
                         {
                             CustomTarget.Restart();
+                        }
+
+                        if (GUILayout.Button("Reset"))
+                        {
+                            CustomTarget.KillAndReset();
                         }
                     }
                     GUILayout.EndHorizontal();

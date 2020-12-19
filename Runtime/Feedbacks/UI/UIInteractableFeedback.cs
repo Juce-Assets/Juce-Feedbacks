@@ -18,6 +18,9 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
+        private bool initialInteractableValue;
+        private bool initialBlocksRaycastsValue;
+
         public GameObject Target { get => target; set => target = value; }
         public bool Interactable { get => interactable; set => interactable = value; }
         public bool BlocksRaycasts { get => blocksRaycasts; set => blocksRaycasts = value; }
@@ -44,6 +47,32 @@ namespace Juce.Feedbacks
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
             InfoUtils.GetInteractableInfo(ref infoList, interactable, blocksRaycasts);
+        }
+
+        public override void OnFirstTimeExecute()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            CanvasGroup canvasGroup = target.GetOrAddComponent<CanvasGroup>();
+
+            initialInteractableValue = canvasGroup.interactable;
+            initialBlocksRaycastsValue = canvasGroup.blocksRaycasts;
+        }
+
+        public override void OnReset()
+        {
+            if (target == null)
+            {
+                return;
+            }
+
+            CanvasGroup canvasGroup = target.GetOrAddComponent<CanvasGroup>();
+
+            canvasGroup.interactable = initialInteractableValue;
+            canvasGroup.blocksRaycasts = initialBlocksRaycastsValue;
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)

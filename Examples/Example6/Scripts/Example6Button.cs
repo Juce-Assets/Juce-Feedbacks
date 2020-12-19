@@ -3,7 +3,7 @@ using UnityEngine.EventSystems;
 
 namespace Juce.Feedbacks.Example6
 {
-    public class Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
+    public class Example6Button : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
     {
         [SerializeField] private FeedbacksPlayer pointerDownFeedback = default;
         [SerializeField] private FeedbacksPlayer pointerUpFeedback = default;
