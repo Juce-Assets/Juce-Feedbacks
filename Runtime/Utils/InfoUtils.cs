@@ -115,9 +115,18 @@ namespace Juce.Feedbacks
             }
         }
 
-        public static void GetStartEndVector2PropertyInfo(ref List<string> infoList, StartEndVector2Property startEndVector2)
+        public static void GetStartEndVector2PropertyInfo(
+            ref List<string> infoList, 
+            StartEndVector2Property startEndVector2, 
+            string propertyName = ""
+            )
         {
             string startString = string.Empty;
+
+            if(!string.IsNullOrEmpty(propertyName))
+            {
+                startString += $"{propertyName}: ";
+            }
 
             if (startEndVector2.UseStartX || startEndVector2.UseStartY)
             {

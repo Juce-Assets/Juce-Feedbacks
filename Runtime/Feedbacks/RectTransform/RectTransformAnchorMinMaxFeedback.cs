@@ -4,14 +4,18 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Anchor Position", "RectTransform/")]
-    public class RectTransformAnchorPositionFeedback : Feedback
+    [FeedbackIdentifier("Anchor Min-Max", "RectTransform/")]
+    public class RectTransformAnchorMinMaxFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
         [SerializeField] private RectTransform target = default;
 
-        [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private StartEndVector2Property value = default;
+        [Header(FeedbackSectionsUtils.ValuesSection + " (Min)")]
+        [SerializeField] private StartEndVector2Property minValue = default;
+
+
+        [Header(FeedbackSectionsUtils.ValuesSection + " (Max)")]
+        [SerializeField] private StartEndVector2Property maxValue = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
@@ -25,7 +29,8 @@ namespace Juce.Feedbacks
         [SerializeField] private LoopProperty looping = default;
 
         public RectTransform Target { get => target; set => target = value; }
-        public StartEndVector2Property Value => value;
+        public StartEndVector2Property MinValue => minValue;
+        public StartEndVector2Property MaxValue => maxValue;
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
         public float Duration { get => duration; set => duration = Mathf.Max(0, value); }
         public EasingProperty Easing => easing;
@@ -51,7 +56,8 @@ namespace Juce.Feedbacks
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay, duration);
-            InfoUtils.GetStartEndVector2PropertyInfo(ref infoList, value);
+            InfoUtils.GetStartEndVector2PropertyInfo(ref infoList, minValue, "Min");
+            InfoUtils.GetStartEndVector2PropertyInfo(ref infoList, maxValue, "Max");
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -69,39 +75,59 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(delayTween);
             }
 
-            Vector2 minMaxOffset = target.anchorMax - target.anchorMin;
+            SequenceTween startSequence = new SequenceTween();
 
-            if (value.UseStartValue)
+            if (minValue.UseStartValue)
             {
-                SequenceTween startSequence = new SequenceTween();
-
-                if (value.UseStartX)
+                if (minValue.UseStartX)
                 {
-                    startSequence.Join(target.TweenAnchorMinX(value.StartValueX, 0.0f));
-                    startSequence.Join(target.TweenAnchorMaxX(value.StartValueX + minMaxOffset.x, 0.0f));
+                    startSequence.Join(target.TweenAnchorMinX(minValue.StartValueX, 0.0f));
                 }
 
-                if (value.UseStartY)
+                if (minValue.UseStartY)
                 {
-                    startSequence.Join(target.TweenAnchorMinY(value.StartValueY, 0.0f));
-                    startSequence.Join(target.TweenAnchorMaxY(value.StartValueY + minMaxOffset.y, 0.0f));
+                    startSequence.Join(target.TweenAnchorMinY(minValue.StartValueY, 0.0f));
+                }
+            }
+
+            if (maxValue.UseStartValue)
+            {
+                if (maxValue.UseStartX)
+                {
+                    startSequence.Join(target.TweenAnchorMaxX(maxValue.StartValueX, 0.0f));
                 }
 
+                if (maxValue.UseStartY)
+                {
+                    startSequence.Join(target.TweenAnchorMaxY(maxValue.StartValueY, 0.0f));
+                }
+            }
+
+            if(minValue.UseStartValue || maxValue.UseStartValue)
+            {
                 sequenceTween.Append(startSequence);
             }
 
             SequenceTween endSequence = new SequenceTween();
 
-            if (value.UseEndX)
+            if (minValue.UseEndX)
             {
-                endSequence.Join(target.TweenAnchorMinX(value.EndValueX, duration));
-                endSequence.Join(target.TweenAnchorMaxX(value.EndValueX + minMaxOffset.x, duration));
+                endSequence.Join(target.TweenAnchorMinX(minValue.EndValueX, duration));
             }
 
-            if (value.UseEndY)
+            if (minValue.UseEndY)
             {
-                endSequence.Join(target.TweenAnchorMinY(value.EndValueY, duration));
-                endSequence.Join(target.TweenAnchorMaxY(value.EndValueY + minMaxOffset.y, duration));
+                endSequence.Join(target.TweenAnchorMinY(minValue.EndValueY, duration));
+            }
+
+            if (maxValue.UseEndX)
+            {
+                endSequence.Join(target.TweenAnchorMaxX(maxValue.EndValueX, duration));
+            }
+
+            if (maxValue.UseEndY)
+            {
+                endSequence.Join(target.TweenAnchorMaxY(maxValue.EndValueY, duration));
             }
 
             Tween.Tween progressTween = endSequence;
