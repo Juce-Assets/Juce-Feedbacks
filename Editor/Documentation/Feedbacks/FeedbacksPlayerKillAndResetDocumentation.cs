@@ -17,7 +17,7 @@ namespace Juce.Feedbacks
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
             {
-                GUILayout.Label("- Target: FeedbacksPlayer that is going to be completed", EditorStyles.wordWrappedLabel);
+                GUILayout.Label("- Target: FeedbacksPlayer that is going to be killed and reset", EditorStyles.wordWrappedLabel);
             }
 
             using (new EditorGUILayout.VerticalScope(EditorStyles.helpBox))
