@@ -17,8 +17,8 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
-        public Image Target => target;
-        public Sprite Sprite => sprite;
+        public Image Target { get => target; set => target = value; }
+        public Sprite Sprite { get => sprite; set => sprite = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)

@@ -4,28 +4,17 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Play", "AudioSource/")]
-    public class AudioSourcePlayFeedback : Feedback
+    [FeedbackIdentifier("Kill and reset", "Feedbacks Player/")]
+    public class FeedbacksPlayerKillAndResetFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private AudioSource target = default;
-
-        [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private AudioClip audioClip = default;
-
-        [SerializeField] private bool oneShot = default;
+        [SerializeField] private FeedbacksPlayer target = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
-        [Header(FeedbackSectionsUtils.LoopSection)]
-        [SerializeField] private LoopProperty looping = default;
-
-        public AudioSource Target { get => target; set => target = value; }
-        public AudioClip AudioClip { get => audioClip; set => audioClip = value; }
-        public bool OneShot { get => oneShot; set => oneShot = value; }
+        public FeedbacksPlayer Target { get => target; set => target = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
-        public LoopProperty Looping => looping;
 
         public override bool GetFeedbackErrors(out string errors)
         {
@@ -41,7 +30,7 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackTargetInfo()
         {
-            return target != null ? target.gameObject.name : string.Empty;
+            return target != null ? target.name : string.Empty;
         }
 
         public override void GetFeedbackInfo(ref List<string> infoList)
@@ -56,7 +45,7 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            target.Stop();
+            target.KillAndReset();
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -74,23 +63,13 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(delayTween);
             }
 
+            ExecuteResult result = new ExecuteResult();
+
             sequenceTween.AppendCallback(() =>
             {
-                if (!oneShot)
-                {
-                    target.clip = audioClip;
-
-                    target.Play();
-                }
-                else
-                {
-                    target.PlayOneShot(audioClip);
-                }
+                target.KillAndReset();
             });
 
-            LoopUtils.SetLoop(sequenceTween, looping);
-
-            ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;
 
             return result;
