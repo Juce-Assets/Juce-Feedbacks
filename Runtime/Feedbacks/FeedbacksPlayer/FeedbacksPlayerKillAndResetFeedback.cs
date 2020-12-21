@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Kill and reset", "Feedbacks Player/")]
+    [FeedbackIdentifier("Kill and Reset", "Feedbacks Player/")]
     public class FeedbacksPlayerKillAndResetFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
