@@ -21,7 +21,7 @@ namespace Juce.Feedbacks
         [Header(FeedbackSectionsUtils.LoopSection)]
         [SerializeField] private LoopProperty looping = default;
 
-        public AudioSource Target => target;
+        public AudioSource Target { get => target; set => target = value; }
         public AudioClip AudioClip { get => audioClip; set => audioClip = value; }
         public bool OneShot { get => oneShot; set => oneShot = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }

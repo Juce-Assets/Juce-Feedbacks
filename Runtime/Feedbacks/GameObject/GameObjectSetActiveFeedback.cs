@@ -18,7 +18,7 @@ namespace Juce.Feedbacks
 
         private bool initialEnabledValue;
 
-        public GameObject Target => target;
+        public GameObject Target { get => target; set => target = value; }
         public bool SetActive { get => setActive; set => setActive = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
