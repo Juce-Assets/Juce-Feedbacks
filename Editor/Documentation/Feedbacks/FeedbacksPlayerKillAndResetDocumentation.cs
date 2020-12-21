@@ -11,7 +11,7 @@ namespace Juce.Feedbacks
         public void DrawDocumentation()
         {
             GUILayout.Label("Instantly kills and resets the FeedbacksPlayer target values, to the ones at" +
-                "the beginning when started playing the FeedbacksPlayer", EditorStyles.wordWrappedLabel);
+                " the beginning, when it started playing", EditorStyles.wordWrappedLabel);
 
             EditorGUILayout.Space(2);
 
