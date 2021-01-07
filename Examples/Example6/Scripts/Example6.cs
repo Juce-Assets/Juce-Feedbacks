@@ -1,13 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 namespace Juce.Feedbacks.Example6
 {
     public class Example6 : MonoBehaviour
     {
-        [SerializeField] private UnityEngine.UI.Button button = default;
+        [SerializeField] private Button button = default;
         [SerializeField] private ClickDetector clickDetector = default;
         [SerializeField] private FeedbacksPlayer showPanelFeedback = default;
         [SerializeField] private FeedbacksPlayer hidePanelFeedback = default;

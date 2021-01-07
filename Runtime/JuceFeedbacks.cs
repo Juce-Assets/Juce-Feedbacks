@@ -1,5 +1,5 @@
-﻿using Juce.Utils.Singletons;
-using System;
+﻿using Juce.Tween;
+using Juce.Utils.Singletons;
 using System.Collections.Generic;
 
 namespace Juce.Feedbacks
@@ -7,6 +7,8 @@ namespace Juce.Feedbacks
     public class JuceFeedbacks : AutoStartMonoSingleton<JuceFeedbacks>
     {
         private readonly Dictionary<string, FeedbacksPlayer> feedbackPlayersUsedByScript = new Dictionary<string, FeedbacksPlayer>();
+
+        public static float TimeScale { get => JuceTween.TimeScale; set => JuceTween.TimeScale = value; }
 
         internal bool RegisterFeedbacksPlayerUsedByScript(FeedbacksPlayer feedbacksPlayer)
         {
