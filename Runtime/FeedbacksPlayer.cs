@@ -14,6 +14,7 @@ namespace Juce.Feedbacks
 
         [SerializeField] private bool executeOnAwake = default;
         [SerializeField] private ScriptUsageProperty scriptUsage = default;
+        [SerializeField] private bool useTimeScale = default;
         [SerializeField] private LoopProperty loop = default;
 
         private bool firstTimeExecute = true;
@@ -185,6 +186,8 @@ namespace Juce.Feedbacks
             }
 
             context.MainSequence.Append(context.CurrentSequence);
+
+            context.MainSequence.SetUseGeneralTimeScale(useTimeScale);
 
             LoopUtils.SetLoop(context.MainSequence, loop);
 
