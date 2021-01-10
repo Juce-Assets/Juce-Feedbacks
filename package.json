@@ -1,11 +1,11 @@
 {
   "name": "com.juce.feedbacks",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "displayName": "Juce-Feedbacks",
   "description": "Feedbacks library",
   "dependencies": {
-    "com.juce.tween": "1.2.0",
-	"com.juce.utils": "1.0.0"
+    "com.juce.tween": "1.3.0",
+	"com.juce.utils": "1.1.0"
   },
   "keywords": [
     "Juce",

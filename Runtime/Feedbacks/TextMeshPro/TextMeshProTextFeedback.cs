@@ -20,7 +20,7 @@ namespace Juce.Feedbacks
         [SerializeField] [Min(0)] private float delay = default;
 
         public TextMeshProUGUI Target { get => target; set => target = value; }
-        public string Value => value;
+        public string Value { get => value; set => this.value = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
