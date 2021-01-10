@@ -55,7 +55,7 @@ namespace Juce.Feedbacks
 
             sequenceTween.AppendCallback(() =>
             {
-                target.Destroy();
+                MonoBehaviour.Destroy(target);
             });
 
             ExecuteResult result = new ExecuteResult();

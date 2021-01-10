@@ -61,7 +61,12 @@ namespace Juce.Feedbacks
                 return null;
             }
 
-            CanvasGroup canvasGroup = target.GetOrAddComponent<CanvasGroup>();
+            CanvasGroup canvasGroup = target.GetComponent<CanvasGroup>();
+
+            if (canvasGroup == null)
+            {
+                canvasGroup = target.AddComponent<CanvasGroup>();
+            }
 
             Tween.Tween delayTween = null;
 
