@@ -4,22 +4,22 @@ using UnityEngine;
 
 namespace Juce.Feedbacks
 {
-    [FeedbackIdentifier("Set Active", "GameObject/")]
-    public class GameObjectSetActiveFeedback : Feedback
+    [FeedbackIdentifier("Set Enabled", "MonoBehaviour/")]
+    public class MonoBehaviourSetEnabledFeedback : Feedback
     {
         [Header(FeedbackSectionsUtils.TargetSection)]
-        [SerializeField] private GameObject target = default;
+        [SerializeField] private MonoBehaviour target = default;
 
         [Header(FeedbackSectionsUtils.ValuesSection)]
-        [SerializeField] private bool setActive = default;
+        [SerializeField] private bool setEnabled = default;
 
         [Header(FeedbackSectionsUtils.TimingSection)]
         [SerializeField] [Min(0)] private float delay = default;
 
-        private bool initialActiveValue;
+        private bool initialEnabledValue;
 
-        public GameObject Target { get => target; set => target = value; }
-        public bool SetActive { get => setActive; set => setActive = value; }
+        public MonoBehaviour Target { get => target; set => target = value; }
+        public bool SetEnabled { get => setEnabled; set => setEnabled = value; }
         public float Delay { get => delay; set => delay = Mathf.Max(0, value); }
 
         public override bool GetFeedbackErrors(out string errors)
@@ -36,13 +36,13 @@ namespace Juce.Feedbacks
 
         public override string GetFeedbackTargetInfo()
         {
-            return target != null ? target.name : string.Empty;
+            return target != null ? target.gameObject.name : string.Empty;
         }
 
         public override void GetFeedbackInfo(ref List<string> infoList)
         {
             InfoUtils.GetTimingInfo(ref infoList, delay);
-            infoList.Add($"Active: {setActive}");
+            infoList.Add($"Enabled: {setEnabled}");
         }
 
         public override void OnFirstTimeExecute()
@@ -52,7 +52,7 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            initialActiveValue = target.activeSelf;
+            initialEnabledValue = target.enabled;
         }
 
         public override void OnReset()
@@ -62,7 +62,7 @@ namespace Juce.Feedbacks
                 return;
             }
 
-            target.SetActive(initialActiveValue);
+            target.enabled = initialEnabledValue;
         }
 
         public override ExecuteResult OnExecute(FlowContext context, SequenceTween sequenceTween)
@@ -80,7 +80,7 @@ namespace Juce.Feedbacks
                 sequenceTween.Append(delayTween);
             }
 
-            sequenceTween.AppendCallback(() => target.SetActive(setActive));
+            sequenceTween.AppendCallback(() => target.enabled = setEnabled);
 
             ExecuteResult result = new ExecuteResult();
             result.DelayTween = delayTween;
