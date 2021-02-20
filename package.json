@@ -1,6 +1,6 @@
 {
   "name": "com.juce.feedbacks",
-  "version": "1.5.0",
+  "version": "1.6.0",
   "displayName": "Juce-Feedbacks",
   "description": "Feedbacks library",
   "dependencies": {
