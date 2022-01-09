@@ -4,6 +4,8 @@
 [![release](https://img.shields.io/github/release/Juce-Assets/Juce-Feedbacks.svg)](https://github.com/Juce-Assets/Juce-Feedbacks/releases/latest)
 [![openupm](https://img.shields.io/npm/v/com.juce.feedbacks?label=openupm&registry_uri=https://package.openupm.com)](https://openupm.com/packages/com.juce.feedbacks/)
 
+# Deprecated, new implementation found [here](https://github.com/Juce-Assets/Juce-TweenPlayer).
+
 ## Juce-Feedbacks
 Welcome to **Juce-Feedbacks**, the open-source feedbacks library that's part of the Juce Unity tools framework.
 
